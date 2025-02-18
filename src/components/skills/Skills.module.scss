@@ -63,6 +63,10 @@
     justify-content: center;
     align-items: center;
     overflow: hidden; /* Ensures images do not distort */
+    min-width: 100px !important;
+    min-height: 100px !important;
+    padding: 5px;
+
   }
 
   .badgeImageWrapper img {
