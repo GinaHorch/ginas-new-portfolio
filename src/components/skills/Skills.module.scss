@@ -49,11 +49,22 @@
   }
   
   .badgeImage {
-    max-width: 100px; /* Increased badge visibility */
-    height: auto;
-    padding: 10px;
+    max-width: 100px !important; 
+    height: auto !important;
+    max-height: 100px !important;
+    object-fit: contain !important;
+    position: relative !important;
   }
   
+  .badgeImageWrapper {
+    width: 100px !important;  /* Ensures badge container has fixed width */
+    height: 100px !important; /* Prevents collapse */
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensures images do not distort */
+  }
+
   .badgeImage img {
     width: 100% !important;
     height: auto !important;

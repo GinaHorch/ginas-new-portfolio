@@ -192,6 +192,7 @@ export default function Skills() {
                           border="brand-alpha-medium"
                           display-flex="px-s py-s neutral-background-weak brand-border-alpha-medium border-solid border-1 radius-full align-center fit-width shadow-l"               
                         >
+                        <div className={styles.badgeImageWrapper}> {/* NEW WRAPPER TO CONTROL SIZE */}
                           <SmartImage
                             enlarge
                             radius="full"
@@ -200,6 +201,7 @@ export default function Skills() {
                             src={image.src}
                             className={styles.badgeImage}
                           />
+                        </div>
                         </Badge>
                         </Flex>
                       ))}
