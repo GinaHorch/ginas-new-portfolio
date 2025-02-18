@@ -12,56 +12,36 @@
     top: var(--static-space-64);
 }
 
-#professional-scrum-master, 
-#safe-6-0-scrum-master, 
-#safe-skill-flow, 
-#safe-skill-lpm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 15px;
-  border-radius: 12px;
-  transition: transform 0.3s ease-in-out;
-  width: 220px;
-  height: auto;
-}
-
-body > div.display-flex.top-0.left-0.overflow-hidden.fill.position-fixed.Background_mask__niEBy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 15px;
-  border-radius: 12px;
-  transition: transform 0.3s ease-in-out;
-  width: 220px;
-  height: auto;
-}
-
 .badgeWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: auto;
-    gap: 10px;
-    width: 200px; /* Adjust base on badge size */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 15px !important; /* Override Once-UI */
+  border-radius: 12px !important;
+  transition: transform 0.3s ease-in-out !important;
+  width: 220px !important;
+  height: auto !important;
   }
+
 
   .badge {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 220px;
-    height: auto;
+    padding: 15px;
+    width: 100% !important;
+    max-width: 220px !important;
+    height: auto !important;
     border-radius: 50px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
+  }
+
+  .badge img {
+    width: 100px !important;
+    max-height: 120px !important;
+    object-fit: contain !important;
   }
   
   .badge:hover {
@@ -72,6 +52,14 @@ body > div.display-flex.top-0.left-0.overflow-hidden.fill.position-fixed.Backgro
     max-width: 100px; /* Increased badge visibility */
     height: auto;
     padding: 10px;
+  }
+  
+  .badgeImage img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 100px !important; /* Ensures full visibility */
+    object-fit: contain !important; /* Prevents stretching */
+    position: relative !important;
   }
   
 

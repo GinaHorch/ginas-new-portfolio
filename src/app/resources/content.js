@@ -406,7 +406,7 @@ const skills = {
     {
       src: "/images/skills/SSM.svg",
       alt: "SAFe 6.0 Scrum Master badge from Scaled Agile",
-      title: "SAFe 6.0 Scrum Master",
+      title: "SAFe 6 Scrum Master",
       link: "https://www.credly.com/badges/a58f3094-7b69-46fb-9cc9-97b1f78607d6/public_url",
       
     },

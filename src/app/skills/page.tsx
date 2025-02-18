@@ -183,7 +183,7 @@ export default function Skills() {
                           id={image.title.replace(/\s+/g, "-").toLowerCase()}
                           title={image.title}
                           href={image.link} // Use the link from the image object                          
-                          arrow // Show the arrow effect (default: true)
+                          arrow={false}
                           effect // Enable the hover effect (default: true)
                           className={styles.badge}
                           fitWidth
