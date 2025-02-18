@@ -12,6 +12,35 @@
     top: var(--static-space-64);
 }
 
+#professional-scrum-master, 
+#safe-6-0-scrum-master, 
+#safe-skill-flow, 
+#safe-skill-lpm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+  width: 220px;
+  height: auto;
+}
+
+body > div.display-flex.top-0.left-0.overflow-hidden.fill.position-fixed.Background_mask__niEBy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+  width: 220px;
+  height: auto;
+}
+
 .badgeWrapper {
     display: flex;
     flex-direction: column;
