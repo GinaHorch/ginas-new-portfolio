@@ -4,9 +4,6 @@ import withBundleAnalyzer from "@next/bundle-analyzer";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
-  experimental: {
-    optimizeCss: false, // Ensures Next.js does not optimize CSS incorrectly
-  },
 };
 
 // Add MDX support

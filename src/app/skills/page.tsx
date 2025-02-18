@@ -180,7 +180,7 @@ export default function Skills() {
                       {skills.certifications.images.map((image, index) => (
                         <Flex key={`${image.title}-${index}`} className={styles.badgeWrapper} vertical="center">
                         <Badge
-                          id={image.title}
+                          id={image.title.replace(/\s+/g, "-").toLowerCase()}
                           title={image.title}
                           href={image.link} // Use the link from the image object                          
                           arrow // Show the arrow effect (default: true)
