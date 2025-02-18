@@ -189,7 +189,8 @@ export default function Skills() {
                           fitWidth
                           radius="full"
                           background="neutral-weak"    
-                          border="brand-alpha-medium"                      
+                          border="brand-alpha-medium"
+                          display-flex="px-s py-s neutral-background-weak brand-border-alpha-medium border-solid border-1 radius-full align-center fit-width shadow-l"               
                         >
                           <SmartImage
                             enlarge
