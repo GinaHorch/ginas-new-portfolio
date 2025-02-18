@@ -20,5 +20,11 @@ const withBundleAnalyzerConfigured = withBundleAnalyzer({
 // Combine configurations
 const finalConfig = withMDX(withBundleAnalyzerConfigured(nextConfig));
 
+module.exports = {
+  experimental: {
+    optimizeCss: false,
+  },
+};
+
 export default finalConfig;
 
