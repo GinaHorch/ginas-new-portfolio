@@ -40,7 +40,7 @@
 
   .badge img {
     width: 100px !important;
-    max-height: 120px !important;
+    max-height: 100px !important;
     object-fit: contain !important;
   }
   
@@ -65,7 +65,7 @@
     overflow: hidden; /* Ensures images do not distort */
   }
 
-  .badgeImage img {
+  .badgeImageWrapper img {
     width: 100% !important;
     height: auto !important;
     max-height: 100px !important; /* Ensures full visibility */
