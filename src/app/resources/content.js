@@ -4,7 +4,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Scrum Master and Full Stack Developer",
+  role: "Agile Leadership & Methodologies",
   avatar: "/images/GinaHeadShot.webp",
   location: "Australia/Perth", // Expecting the IANA time zone identifier
   languages: ["English", "German"], 
@@ -59,22 +59,8 @@ const home = {
   subline: (
     <>
       I'm Gina, a certified Scrum Master (PSM I, SAFe 6.0) with a lifelong commitment to driving change and continuous improvement.
-      With 22 years in law enforcement, I led high-impact investigations into child sexual abuse, championed systemic improvements, 
-      and was honoured as Police Officer of the Year for my dedication to protecting vulnerable children. Operating in high-pressure, 
-      rapidly evolving environments, I learned to adapt quickly, assess incomplete information, and make critical decisions in uncertain conditions.
-
-      Seeking to broaden my impact, I pursued research with the Australian Centre for Child Protection, deepening my understanding 
-      of policy, frameworks, and evidence-based reform. Through this experience, I honed my ability to analyse complex data, synthesize insights, 
-      and apply structured problem-solving to real-world challenges.
-
-      Recognising a gap in my technical skills, I sought out the She Codes Plus program and was awarded Canva's Force For Good Scholarship.
-      This opportunity allowed me to expand my knowledge, gain full-stack development expertise, and embrace Agile methodologies.
-      My development journey has been marked by iterative refinement, collaboration, and data-driven decision making. 
-
-      Now, I bring an investigative, research-driven, and technical edge to Agile leadership — bridging the gap between development teams, stakeholders, 
-      and mission-driven solutions. 
       
-      Explore my portfolio to to see how I blend servant leadership, Lean-Agile principles, evidence-based solutions,
+      Explore my portfolio to see how I blend servant leadership, Lean-Agile principles, evidence-based solutions,
       and hands-on development experience to drive meaningful change.
     </>
   ),
@@ -102,30 +88,43 @@ const about = {
       <>
       <p>
       Gina is a certified Scrum Master and Full-Stack Developer with a strong foundation in collaboration, servant leadership, 
-      and delivering impactful solutions. With a 22-year career in law enforcement, followed by two years in research, she has 
-      spent her professional life fostering cross-functional teamwork, driving innovation, and ensuring alignment between 
-      strategy and execution.
+      and delivering impactful solutions. With a 22-year career in law enforcement, Gina led high-impact investigations into child 
+      sexual abuse, championed systemic improvements, and was honoured as Police Officer of the Year for her dedication to protecting 
+      vulnerable children. 
       </p>
       <p>
       Her Agile journey began long before formal certification, as she consistently applied key Agile principles — adaptability, 
       transparency, and continuous improvement—while managing high-pressure, multi-agency investigations. As an Investigations Manager 
       at a busy metropolitan police station, she coached and mentored teams to enhance investigative capabilities, balanced competing 
-      priorities, and built strong stakeholder relationships. In her role as a Research Assistant, she refined these skills further, 
-      facilitating data-driven decision-making and cross-functional collaboration.
+      priorities, and built strong stakeholder relationships. 
       </p>
       <p>
-      Now, as a Scrum Master, Gina is dedicated to building high-performing teams by fostering a culture of trust, empowerment, and 
+      Seeking to broaden her impact, Gina pursued research with the Australian Centre for Child Protection, deepening her understanding 
+      of policy, frameworks, and evidence-based reform. Through this experience, she honed her ability to analyse complex data, synthesize 
+      insights, and apply structured problem-solving to real-world challenges.
+      </p>
+      <p>
+      Throughout her law enforcement career, Gina utilised digital forensics to investigate complex cases, which sparked her appreciation
+      for the power of technology in uncovering critical evidence and enhancing investigative outcomes. Later, in research, she saw firsthand 
+      how many processes could be streamlined and enhanced through technology. Recognising the potential for innovation, Gina pursued the 
+      She Codes Plus program through the Canva Force For Good Scholarship, equipping herself with essential technical skills and a deep 
+      understanding of Agile methodologies to drive meaningful change.
+      </p>
+      <p>
+      As a Scrum Master, Gina is dedicated to building high-performing teams by fostering a culture of trust, empowerment, and 
       continuous learning. She excels at removing blockers, optimising workflows, and ensuring that teams stay aligned with business 
       objectives to deliver value-driven outcomes. 
       </p>
       <p>
-      In addition to her Agile expertise, Gina brings technical proficiency in full-stack development, crafting scalable, user-centered 
-      applications that solve real-world problems. She seamlessly integrates her deep understanding of Agile methodologies with hands-on 
-      experience in modern web technologies, ensuring that both teams and products evolve efficiently in dynamic environments. 
+      In addition to her Agile expertise, Gina brings technical proficiency in full-stack development, leveraging modern web technologies 
+      to build scalable, secure, and user-centered solutions. With hands-on experience in JavaScript, React, TypeScript, Python, and 
+      cloud-based deployment, she bridges the gap between strategy and execution. She seamlessly integrates her deep understanding
+      of Agile methodologies with technical problem-solving, ensuring that both teams and digital solutions evolve efficiently in dynamic 
+      environments, including government and mission-driven sectors.
       </p>
       <p>
       With a passion for servant leadership, innovation, and continuous improvement, Gina thrives at the intersection of technology 
-      and team empowerment, enabling organisations to navigate complexity and achieve meaningful, lasting impact.
+      and team empowerment, enabling government or mission-driven organisations to navigate complexity and achieve meaningful, lasting impact.
       </p>
       </>
     ),
@@ -395,7 +394,7 @@ const skills = {
   },
   intro: {
     display: true,
-    title: "Skills Overview",
+    title: "Technical Skills Overview",
     description: (
     <>
     <p>
