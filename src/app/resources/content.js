@@ -58,9 +58,24 @@ const home = {
   headline: <>Kaya, welcome to my Portfolio</>,
   subline: (
     <>
-      I'm Gina, a certified Scrum Master and Full-Stack Developer passionate about empowering teams
-      to deliver impactful solutions through Agile methodologies and scalable user-centred technology.
-      Explore my portfolio to learn more about my work and skills.
+      I'm Gina, a certified Scrum Master (PSM I, SAFe 6.0) with a lifelong commitment to driving change and continuous improvement.
+      With 22 years in law enforcement, I led high-impact investigations into child sexual abuse, championed systemic improvements, 
+      and was honoured as Police Officer of the Year for my dedication to protecting vulnerable children. Operating in high-pressure, 
+      rapidly evolving environments, I learned to adapt quickly, assess incomplete information, and make critical decisions in uncertain conditions.
+
+      Seeking to broaden my impact, I pursued research with the Australian Centre for Child Protection, deepening my understanding 
+      of policy, frameworks, and evidence-based reform. Through this experience, I honed my ability to analyse complex data, synthesize insights, 
+      and apply structured problem-solving to real-world challenges.
+
+      Recognising a gap in my technical skills, I sought out the She Codes Plus program and was awarded Canva's Force For Good Scholarship.
+      This opportunity allowed me to expand my knowledge, gain full-stack development expertise, and embrace Agile methodologies.
+      My development journey has been marked by iterative refinement, collaboration, and data-driven decision making. 
+
+      Now, I bring an investigative, research-driven, and technical edge to Agile leadership — bridging the gap between development teams, stakeholders, 
+      and mission-driven solutions. 
+      
+      Explore my portfolio to to see how I blend servant leadership, Lean-Agile principles, evidence-based solutions,
+      and hands-on development experience to drive meaningful change.
     </>
   ),
 };
