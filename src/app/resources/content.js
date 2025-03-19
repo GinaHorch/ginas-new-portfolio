@@ -87,10 +87,9 @@ const about = {
     description: (
       <>
       <p>
-      Gina is a certified Scrum Master and Full-Stack Developer with a strong foundation in collaboration, servant leadership, 
-      and delivering impactful solutions. With a 22-year career in law enforcement, Gina led high-impact investigations into child 
-      sexual abuse, championed systemic improvements, and was honoured as Police Officer of the Year for her dedication to protecting 
-      vulnerable children. 
+      Gina is a certified Scrum Master with a strong foundation in collaboration, servant leadership, and delivering impactful solutions. 
+      With a 22-year career in law enforcement, Gina led high-impact investigations into child sexual abuse, championed systemic improvements,
+      and was honoured as Police Officer of the Year for her dedication to protecting vulnerable children. 
       </p>
       <p>
       Her Agile journey began long before formal certification, as she consistently applied key Agile principles — adaptability, 
@@ -100,7 +99,7 @@ const about = {
       </p>
       <p>
       Seeking to broaden her impact, Gina pursued research with the Australian Centre for Child Protection, deepening her understanding 
-      of policy, frameworks, and evidence-based reform. Through this experience, she honed her ability to analyse complex data, synthesize 
+      of policy, frameworks, and evidence-based reform. Through this experience, she honed her ability to analyse complex data, synthesise 
       insights, and apply structured problem-solving to real-world challenges.
       </p>
       <p>
@@ -117,7 +116,7 @@ const about = {
       </p>
       <p>
       In addition to her Agile expertise, Gina brings technical proficiency in full-stack development, leveraging modern web technologies 
-      to build scalable, secure, and user-centered solutions. With hands-on experience in JavaScript, React, TypeScript, Python, and 
+      to build scalable, secure, and user-centred solutions. With hands-on experience in JavaScript, React, TypeScript, Python, and 
       cloud-based deployment, she bridges the gap between strategy and execution. She seamlessly integrates her deep understanding
       of Agile methodologies with technical problem-solving, ensuring that both teams and digital solutions evolve efficiently in dynamic 
       environments, including government and mission-driven sectors.
