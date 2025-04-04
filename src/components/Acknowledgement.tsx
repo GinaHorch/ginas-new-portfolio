@@ -36,10 +36,9 @@ export default function Acknowledgement() {
                     <div>
                         <h2 className={styles.modalTitle}>Acknowledgement of Country</h2>
                         <p className={styles.modalText}>
-                            In the spirit of reconciliation and unity, I acknowledge the Traditional Custodians of country 
-                            throughout Australia and their connections to the land, sea, sky, and community. I pay my respect
-                            to their Elders past and present and extend that respect to all Aboriginal and Torres Strait 
-                            Islander peoples today.                    
+                            In the spirit of reconciliation and unity, I acknowledge the Whadjuk people of the Noongar nation as the Traditional Custodians of the lands 
+                            on which I live, work and learn, and pay my respects to their Elders past and present. I recognise their connections to the land, water, sky, and community                    
+                            and appreciate the extraordinary cultural and scientific contributions made by First Nations people.               
                         </p>
                         <button className={styles.modalButton} onClick={handleClose}>
                             Acknowledge

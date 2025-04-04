@@ -5,6 +5,9 @@
 ## **Overview**
 This portfolio was built using [Once UI's Magic Portfolio](https://once-ui.com), leveraging its design system while implementing significant customisations to tailor it to my needs.
 
+## **Project Status**
+Some projects featured in this portfolio are currently in a dormant state, with their live demos temporarily decommissioned to manage hosting resources efficiently. If you're interested in exploring any project's functionality further, please contact me directly—I'd be delighted to walk you through the code or provide screenshots and a demonstration.
+
 ### **Key Learning Curve & Deployment Challenges**
 
 Building and deploying this portfolio provided a valuable learning experience, particularly in:
