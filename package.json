@@ -21,7 +21,7 @@
     "install": "^0.13.0",
     "next": "^16.1.6",
     "next-mdx-remote": "^6.0.0",
-    "npm": "^11.10.0",
+    "npm": "^11.11.1",
     "postcss": "^8.4.39",
     "postcss-preset-env": "^9.5.15",
     "prismjs": "^1.30.0",
