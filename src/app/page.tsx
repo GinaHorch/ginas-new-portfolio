@@ -1,18 +1,18 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { Heading, Tag, Icon, Flex, Text, Button, Avatar, RevealFx, Column } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
 import Acknowledgement from "@/components/Acknowledgement";
 import { baseURL, routes } from "@/app/resources";
 import { home, about, person } from "@/app/resources/content";
-import { Resources } from "@/components/agileResources/Resources";
 import styles from "@/components/about/About.module.scss";
 
-const OverviewSkillsChart = React.lazy(() => import("@/components/skills/OverviewSkillsChart"));
+const OverviewSkillsChart = dynamic(() => import("@/components/skills/OverviewSkillsChart"));
 
 export async function generateMetadata() {
   const title = home.title;
   const description = home.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
+  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(home.ogTitle)}`;
 
   return {
     title,
@@ -54,13 +54,13 @@ export default function Home() {
             name: home.title,
             description: home.description,
             url: `https://${baseURL}`,
-            image: `${baseURL}/og?title=${encodeURIComponent(home.title)}`,
+            image: `https://${baseURL}/og?title=${encodeURIComponent(home.title)}`,
             publisher: {
               "@type": "Person",
               name: person.name,
               image: {
                 "@type": "ImageObject",
-                url: `${baseURL}${person.avatar}`,
+                url: `https://${baseURL}${person.avatar}`,
               },
             },
           }),
@@ -85,8 +85,8 @@ export default function Home() {
               </Flex>
                 {person.languages.length > 0 && (
               <Flex wrap gap="s" horizontal="center">
-                  {person.languages.map((language, index) => (
-                    <Tag key={index} size="l">
+                  {person.languages.map((language) => (
+                    <Tag key={language} size="l">
                       {language}
                     </Tag>
                   ))}
@@ -107,7 +107,7 @@ export default function Home() {
                           size="m"
                       />
                       )}
-                      {about.title}
+                      {about.label}
                       </Flex>
                       </Button>
                   </RevealFx>
@@ -128,6 +128,24 @@ export default function Home() {
                     </Text>
                   </Column>
                 </RevealFx>
+                <RevealFx translateY="12" delay={0.4} horizontal="start" fillWidth padding="m">
+                  <Column fillWidth gap="12" aria-label={home.focus.label}>
+                    <Flex as="ul" wrap gap="8" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                      {home.focus.primary.map((item) => (
+                        <Tag as="li" key={item} size="l" variant="brand">
+                          {item}
+                        </Tag>
+                      ))}
+                    </Flex>
+                    <Flex as="ul" wrap gap="8" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                      {home.focus.supporting.map((item) => (
+                        <Tag as="li" key={item} size="m">
+                          {item}
+                        </Tag>
+                      ))}
+                    </Flex>
+                  </Column>
+                </RevealFx>
             </Column>
       </Flex>
               
@@ -138,21 +156,21 @@ export default function Home() {
         <Flex fillWidth gap="24" mobileDirection="column">
           <Flex direction="column" gap="s" align="start" flex={1}>
             <Heading as="h2" variant="display-strong-xs" wrap="balance">
-              My Projects
+              Featured work
             </Heading>
-            <Button 
-              id="projects" 
+            <Button
+              id="projects"
               data-border="rounded"
               variant="secondary"
               size="s"
               arrowIcon
               href="/work"
             >
-              Explore Projects
+              All projects
               </Button>
           </Flex>
           <Flex flex={2} paddingX="20">
-            <Projects range={[1, 1]} />
+            <Projects range={[1, 2]} />
           </Flex>
         </Flex>
       )}
@@ -160,43 +178,21 @@ export default function Home() {
         <Flex fillWidth gap="24" mobileDirection="column">
           <Flex direction="column" gap="s" align="start" flex={1}>
             <Heading as="h2" variant="display-strong-xs" wrap="balance">
-              My Tech Skills
+              Skills, by evidence
             </Heading>
-            <Button 
-              id="skills" 
+            <Button
+              id="skills"
               data-border="rounded"
               variant="secondary"
               size="s"
               arrowIcon
               href="/skills"
             >
-            Explore Skills
+            Explore skills
             </Button>
           </Flex>
           <Flex flex={2} paddingX="20">
             <OverviewSkillsChart />
-          </Flex>
-        </Flex>
-      )}
-      {routes["/agile"] && (
-        <Flex fillWidth gap="24" mobileDirection="column">
-          <Flex direction="column" gap="s" align="start" flex={1}>
-            <Heading as="h2" variant="display-strong-xs" wrap="balance">
-              My Agile Resources
-            </Heading>
-            <Button 
-              id="skills" 
-              data-border="rounded"
-              variant="secondary"
-              size="s"
-              arrowIcon
-              href="/agile"
-            >
-            Explore Resources
-            </Button>
-          </Flex>
-          <Flex flex={2} paddingX="20">
-            <Resources range={[3, 3]} thumbnail={true} />
           </Flex>
         </Flex>
       )}

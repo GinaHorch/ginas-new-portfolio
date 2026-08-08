@@ -1,12 +1,13 @@
-import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
-import React, { ReactNode } from "react";
+import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
+import type React from "react";
+import type { ReactNode } from "react";
 
 import { SmartImage, SmartLink, Text } from "@/once-ui/components";
 import { CodeBlock } from "@/once-ui/modules";
 import { HeadingLink } from "@/components";
 
-import { TextProps } from "@/once-ui/interfaces";
-import { SmartImageProps } from "@/once-ui/components/SmartImage";
+import type { TextProps } from "@/once-ui/interfaces";
+import type { SmartImageProps } from "@/once-ui/components/SmartImage";
 
 type TableProps = {
   data: {
@@ -16,10 +17,14 @@ type TableProps = {
 };
 
 function Table({ data }: TableProps) {
+  // Static MDX tables: position is the only stable identity a cell has.
+  // biome-ignore lint/suspicious/noArrayIndexKey: table cells are positional and never reordered
   const headers = data.headers.map((header, index) => <th key={index}>{header}</th>);
   const rows = data.rows.map((row, index) => (
+    // biome-ignore lint/suspicious/noArrayIndexKey: table rows are positional and never reordered
     <tr key={index}>
       {row.map((cell, cellIndex) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: table cells are positional and never reordered
         <td key={cellIndex}>{cell}</td>
       ))}
     </tr>

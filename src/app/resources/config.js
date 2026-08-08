@@ -1,17 +1,11 @@
-const baseURL = "http://localhost:3000/";
+// Host only — pages compose this as `https://${baseURL}` for metadata and OG images.
+const baseURL = "ginas-new-portfolio.vercel.app";
 
 const routes = {
   "/": true,
   "/about": true,
   "/work": true,
-  "/agile": true,
   "/skills": true,
-};
-
-// Enable password protection on selected routes
-// Set password in pages/api/authenticate.ts
-const protectedRoutes = {
-  "/agile/resource7": true,
 };
 
 const style = {
@@ -67,4 +61,4 @@ const display = {
   time: true,
 };
 
-export { routes, protectedRoutes, effects, style, display, baseURL };
+export { routes, effects, style, display, baseURL };

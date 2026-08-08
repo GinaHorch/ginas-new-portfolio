@@ -40,7 +40,7 @@ export default function Acknowledgement() {
                             on which I live, work and learn, and pay my respects to their Elders past and present. I recognise their connections to the land, water, sky, and community                    
                             and appreciate the extraordinary cultural and scientific contributions made by First Nations people.               
                         </p>
-                        <button className={styles.modalButton} onClick={handleClose}>
+                        <button type="button" className={styles.modalButton} onClick={handleClose}>
                             Acknowledge
                         </button>
                     </div>

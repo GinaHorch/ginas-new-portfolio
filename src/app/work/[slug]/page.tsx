@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Text, SmartLink } from "@/once-ui/components";
+import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
+import styles from "@/components/ProjectCard.module.scss";
 
 type Params = Promise<{ slug: string }>
 
@@ -32,19 +33,13 @@ export async function generateMetadata({ params }: { params: Params }) {
     summary: description,
     images,
     image,
-    team,
-    linkGithubFrontend,
-    linkGithubBackend,
-    linkLive,
   } = project.metadata;
-  
-  const ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/og?title=${title}`;
+
+  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
     description,
-    images,
-    team,
     openGraph: {
       title,
       description,
@@ -95,9 +90,9 @@ export default async function Page({ params }: { params: Params }) {
             datePublished: project.metadata.publishedAt,
             dateModified: project.metadata.publishedAt,
             description: project.metadata.summary,
-            image: project.metadata.image
-              ? `https://${baseURL}${project.metadata.image}`
-              : `https://${baseURL}/og?title=${project.metadata.title}`,
+            image: project.metadata.images[0]
+              ? `https://${baseURL}${project.metadata.images[0]}`
+              : `https://${baseURL}/og?title=${encodeURIComponent(project.metadata.title)}`,
             url: `https://${baseURL}/work/${project.slug}`,
             author: {
               "@type": "Person",
@@ -114,10 +109,11 @@ export default async function Page({ params }: { params: Params }) {
       </Column>
       {project.metadata.images.length > 0 && (
         <SmartImage
+          className={styles.topAnchored}
           priority
           aspectRatio="16 / 9"
           radius="m"
-          alt="image"
+          alt={project.metadata.title}
           src={project.metadata.images[0]}
         />
       )}
@@ -129,36 +125,39 @@ export default async function Page({ params }: { params: Params }) {
           </Text>
         </Flex>
       <CustomMDX source={project.content} />
-      <Flex gap="16" wrap>
+      <Flex gap="16" wrap paddingTop="24">
         {linkGithubFrontend && (
-          <SmartLink
+          <Button
             href={linkGithubFrontend}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ padding: "10px 20px", backgroundColor: "#333", color: "#fff", borderRadius: "5px" }}
+            variant="secondary"
+            size="m"
+            data-border="rounded"
+            prefixIcon="github"
           >
-            View Frontend Code
-          </SmartLink>
+            View frontend code
+          </Button>
         )}
         {linkGithubBackend && (
-          <SmartLink
+          <Button
             href={linkGithubBackend}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ padding: "10px 20px", backgroundColor: "#333", color: "#fff", borderRadius: "5px" }}
+            variant="secondary"
+            size="m"
+            data-border="rounded"
+            prefixIcon="github"
           >
-            View Backend Code
-          </SmartLink>
+            View backend code
+          </Button>
         )}
         {linkLive && (
-          <SmartLink
+          <Button
             href={linkLive}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ padding: "10px 20px", backgroundColor: "#333", color: "#fff", borderRadius: "5px" }}
+            variant="primary"
+            size="m"
+            data-border="rounded"
+            suffixIcon="arrowUpRightFromSquare"
           >
-            View Project
-          </SmartLink>
+            Visit the live site
+          </Button>
         )}
       </Flex>
       <ScrollToHash />

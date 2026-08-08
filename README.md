@@ -6,7 +6,7 @@
 This portfolio was built using [Once UI's Magic Portfolio](https://once-ui.com), leveraging its design system while implementing significant customisations to tailor it to my needs.
 
 ## **Project Status**
-Some projects featured in this portfolio are currently in a dormant state, with their live demos temporarily decommissioned to manage hosting resources efficiently. If you're interested in exploring any project's functionality further, please contact me directly—I'd be delighted to walk you through the code or provide screenshots and a demonstration.
+The portfolio features production and near-production work: a commercial Astro/Cloudflare website, an inherited TypeScript product with Stripe and CRM integrations, a Next.js/Supabase data platform, a full-stack guestbook PWA, and an end-to-end data pipeline. Several of these live in private work or organisational repositories, so their case studies describe the architecture and engineering rather than linking source code. Happy to talk through any of them directly.
 
 ### **Key Learning Curve & Deployment Challenges**
 
@@ -15,7 +15,7 @@ Building and deploying this portfolio provided a valuable learning experience, p
 - **Optimising code & reducing payload size** to comply with **1MB deployment restrictions** on Vercel.
 - **Tree-shaking dependencies** to minimise unnecessary package loads.
 - **Dynamic routing and metadata generation** using Next.js.
-- **Implementing UI enhancements**, including interactive modals and Agile resource structuring.
+- **Implementing UI enhancements**, including interactive modals and evidence-grouped skills presentation.
 
 ## **Custom Features & Enhancements**
 Beyond the original Once-UI template, I introduced several **custom features** to improve usability, accessibility, and interactivity.
@@ -24,9 +24,9 @@ Beyond the original Once-UI template, I introduced several **custom features** t
 - Implemented a **custom pop-up modal** that appears upon first visit, paying respect to Traditional Custodians.
 - Users need to **acknowledge the modal**, before diving into content.
 
-### **🔹 Agile Resources**
-- Developed an **Agile Resources section**, showcasing my **project management methodologies** and experience in **Agile frameworks**.
-- Integrated structured content to reflect **Agile workflows, sprint planning, and retrospectives**.
+### **🔹 Evidence-based Skills page**
+- Skills are grouped by capability and tagged with the **strongest evidence behind them** — production experience, practical experience, working knowledge, or currently developing — instead of subjective out-of-ten scores.
+- A single chart.js overview summarises how that evidence is distributed, with a screen-reader text alternative alongside the canvas.
 
 ### **🔹 Portfolio Optimisation**
 - **Lazy-loaded components & images** to improve performance.
@@ -47,7 +47,6 @@ Beyond the original Once-UI template, I introduced several **custom features** t
 ### **📝 Content Management**
 - Dynamic content rendering for sections based on JSON or Markdown files.
 - Auto-generated and displayed **social links**.
-- Built-in password protection for specific URLs.
 
 ## **🚀 Deployment**
 This portfolio is **deployed on Vercel**, leveraging its **Edge Functions** and **static optimisations** for **high-performance rendering**.  
@@ -69,7 +68,7 @@ A huge thanks to **Once-UI** for providing an **amazing boilerplate** and to the
 ### **📌 Next Steps**
 1. **Continued Portfolio Enhancements** – Further optimising performance and adding new projects.
 2. **User Feedback Integration** – Iterating on UX improvements based on visitor behavior.
-3. **Expanding Agile Resources** – Showcasing Agile leadership and methodologies in more depth.
+3. **Post-launch metrics for Andromedae** – Replacing pre-launch benchmarks with production Lighthouse and Core Web Vitals results once the domain cutover is verified.
 
 ---
 

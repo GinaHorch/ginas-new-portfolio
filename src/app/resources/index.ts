@@ -1,7 +1,6 @@
 // import a pre-defined template for config and content options
 export {
   routes,
-  protectedRoutes,
   effects,
   style,
   display,
@@ -12,7 +11,6 @@ export {
   social,
   home,
   about,
-  agileResources,
   work,
   skills,
 } from "@/app/resources/content";

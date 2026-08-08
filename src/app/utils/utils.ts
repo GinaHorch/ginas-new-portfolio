@@ -1,5 +1,6 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
+import { cache } from "react";
 import matter from "gray-matter";
 
 type Team = {
@@ -22,9 +23,6 @@ type Metadata = {
   linkGithubFrontend?: string;
   linkGithubBackend?: string;
   linkLive?: string;
-  linkScrum?: string;
-  linkSAFe?: string;
-  linkManifesto?: string;
 };
 
 function getMDXFiles(dir: string) {
@@ -56,9 +54,6 @@ function readMDXFile(filePath: string) {
     linkGithubFrontend: data.linkGithubFrontend || "",
     linkGithubBackend: data.linkGithubBackend || "",
     linkLive: data.linkLive || "",
-    linkScrum: data.linkScrum || "",
-    linkSAFe: data.linkSAFe || "",
-    linkManifesto: data.linkManifesto || "",
   };
 
   return { metadata, content };
@@ -78,7 +73,9 @@ function getMDXData(dir: string) {
   });
 }
 
+const getMDXDataForDir = cache((dir: string) => getMDXData(dir));
+
 export function getPosts(customPath = ["", "", "", ""]) {
   const resourcesDir = path.join(process.cwd(), ...customPath);
-  return getMDXData(resourcesDir);
+  return getMDXDataForDir(resourcesDir);
 }

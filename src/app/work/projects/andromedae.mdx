@@ -1,0 +1,102 @@
+---
+title: "Andromedae — Commercial Website Rebuild"
+publishedAt: "2026-08-08"
+summary: "A commercial SMSF administration website rebuilt from a legacy Wix site into a maintainable Astro/TypeScript implementation, with its Cloudflare deployment, security headers, accessibility work and production migration prepared ahead of the domain cutover."
+images:
+  - "/images/projects/project-01/andromedae-home-desktop.png"
+  - "/images/projects/project-01/andromedae-services.png"
+  - "/images/projects/project-01/andromedae-team.png"
+  - "/images/projects/project-01/andromedae-home-mobile.png"
+  - "/images/projects/project-01/andromedae-contact-us.png"
+
+team:
+  - name: "Gina Horch"
+    role: "Developer — technical implementation and production delivery"
+    avatar: "/images/GinaHeadShot.webp"
+---
+
+## Context
+
+Andromedae is an Australian SMSF administration business running its public website on a legacy Wix site. The business needed a complete rebuild: a modern, maintainable implementation built around its updated visual identity, covering services, company and team information, fees, contact options, privacy and security practices, the complaints process and supporting business information.
+
+This is a production replacement rather than a portfolio demonstration. The Astro implementation has been built, deployed and tested through Cloudflare/Wrangler, and the public-domain cutover is scheduled for **10 August 2026**. Until that cutover succeeds, `www.andromedae.com.au` continues to serve the legacy Wix site.
+
+## My role
+
+I am responsible for the technical implementation and production delivery of the new website. The visual design direction was supplied to the project as Figma design work; my job was to turn it into a working, accessible, maintainable site and get it safely into production.
+
+That covered:
+
+- translating the supplied Figma design direction into a responsive website;
+- establishing the Astro project architecture and reusable component/page layouts;
+- implementing the site in TypeScript, Astro and CSS;
+- developing and maintaining the design-token and styling system;
+- optimising and managing website imagery;
+- accessibility work — semantic structure, heading hierarchy, keyboard navigation, focus states, image alternatives and colour contrast;
+- SEO fundamentals including metadata, sitemap and robots configuration;
+- preparing redirects that preserve legacy Wix URLs;
+- configuring Cloudflare deployment and production security headers;
+- planning the DNS, TLS and rollback requirements for the migration; and
+- documenting the deployment and ongoing development approach.
+
+I also maintain the website after launch as part of a broader systems, security and development role at Andromedae.
+
+## Technical approach
+
+- **Astro** for the site framework, with **TypeScript**, **HTML** and vanilla **CSS**
+- **Astro image optimisation** for the site's imagery
+- **Cloudflare**, deployed through the **Cloudflare Workers / Wrangler** workflow
+- **Git / GitHub** for version control
+- **Figma** as the design source
+- **Claude Code** as the primary AI-assisted development environment
+
+The site deliberately uses a lightweight component and CSS architecture rather than pulling in a large UI framework it does not need. For a content site of this size, a small set of well-factored components and a disciplined token system is less for the business to carry than a framework it does not need.
+
+## The interesting problem: migrating a live commercial site
+
+Rebuilding the site was the straightforward half. The harder half was replacing a live commercial website without losing the things the business already depends on.
+
+That meant treating the cutover as its own engineering problem: preserving legacy Wix URLs through redirects so existing links and search rankings survive, planning DNS and TLS changes, preparing security headers as part of the production configuration rather than as a post-launch addition, and documenting a rollback strategy so a failed cutover has a defined way back rather than an improvised one.
+
+## AI-assisted workflow
+
+Claude Code is part of a structured engineering workflow here, not a code-generation shortcut.
+
+The project carries a persistent `CLAUDE.md` giving the agent project-specific context and constraints: architecture, component conventions, styling rules, accessibility expectations, image-handling requirements, implementation constraints, verification requirements, and what counts as acceptable completed work. I have also been developing reusable Claude Code skills for the project, including design-related workflows.
+
+Within that context, Claude Code supports implementation planning, component development, analysing existing patterns before changes are made, translating design requirements into implementation tasks, debugging, refactoring, responsive-design and accessibility reviews, deployment preparation, security review, documentation, code review and verification.
+
+Implementation work runs through a spec-driven loop with two human gates: compare the current implementation against the reference, produce a scoped plan, **get that plan approved before a single file is touched**, implement only the approved change, verify it, then check the result against written acceptance criteria before anything is called done. If a check fails, the loop returns to the relevant earlier step rather than moving forward.
+
+![Spec-driven agentic workflow: standing project rules and an on-demand reference skill feed a seven-step loop — compare, plan, human approval gate, implement, verify, checklist and human review gate, report — with failed checks returning to an earlier step.](/images/projects/project-01/claude-code-workflow.png)
+
+My role is to define the requirements and constraints, make the architectural and security decisions, approve the plan, review proposed changes, test the resulting site and decide whether the work meets the project's Definition of Done.
+
+The useful distinction is not how much code an agent produced. It is how the assistance is governed, reviewed and verified.
+
+## Where it stands
+
+Confirmed before the production-domain cutover:
+
+- a complete commercial website rebuild;
+- a migration path from Wix to a developer-managed Astro architecture;
+- Cloudflare Workers deployment configured;
+- a pre-production build deployed and tested through Cloudflare/Wrangler;
+- a reusable component architecture and responsive implementation;
+- accessibility built into the development requirements;
+- security headers and production configuration prepared;
+- legacy URL preservation planned through redirects;
+- SEO migration prepared; and
+- a documented rollback strategy for the cutover.
+
+A Lighthouse run against the pre-production Cloudflare Workers deployment returned 100 for Performance, Accessibility and Best Practices, with a 0.4s First Contentful Paint, 0.6s Largest Contentful Paint and 0.003 Cumulative Layout Shift.
+
+Those are **pre-launch** numbers. They were measured against the Workers deployment, not the public production domain, so they are development evidence rather than production metrics. I will re-run them against the live domain after the cutover before treating any score as a production result.
+
+## What I took from it
+
+Security and accessibility are much cheaper as development requirements than as post-launch fixes — headers, semantics, focus behaviour and contrast were part of the build rather than a remediation pass afterwards.
+
+The other lesson is about AI-assisted work at production scale: the quality of the output tracks the quality of the context and the verification around it. A persistent `CLAUDE.md`, explicit constraints, reusable skills and a real Definition of Done do more for the result than any individual prompt.
+
+The repository is a private work repository, so this case study describes the architecture and engineering approach rather than linking source code.

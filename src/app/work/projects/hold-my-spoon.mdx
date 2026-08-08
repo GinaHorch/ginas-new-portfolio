@@ -1,0 +1,88 @@
+---
+title: "Hold My Spoon — Inheriting and Extending a Production Product"
+publishedAt: "2026-08-05"
+summary: "Took over a partially developed TypeScript recipe application and substantially extended it — API and third-party integrations, Stripe subscription and webhook workflows, production debugging and iterative stakeholder-driven releases."
+linkLive: "https://holdmyspoon.com/"
+images:
+  - "/images/projects/project-02/holdmyspoon-home.png"
+
+team:
+  - name: "Gina Horch"
+    role: "App Creator & Collaborator"
+    avatar: "/images/GinaHeadShot.webp"
+---
+
+## Context
+
+Hold My Spoon is a public web application that makes recipes easier to follow, particularly for neurodivergent users and anyone who finds traditional recipe formats overwhelming. Users bring recipes into the app and get a clearer cooking workflow: structured instructions, ingredient information, shopping support and a focused Cook Mode. It is also installable as a Progressive Web App.
+
+## What I inherited
+
+Hold My Spoon was already partially developed when I became involved. **I did not originate the product or build its original codebase from scratch.**
+
+My role was to take over an existing application that was moving toward full-scale launch: understand the code and the systems around it, complete and improve functionality, resolve issues surfaced through testing and stakeholder feedback, and help bring the product into a usable production state.
+
+I keep that distinction explicit, because it is the point of the case study. Reading someone else's application, working within product constraints that were set before you arrived, and diagnosing behaviour that spans several connected systems is a different skill from starting a greenfield project.
+
+## My role
+
+I worked as an **App Creator and Collaborator**, taking responsibility for substantial development, debugging, integration, testing and production support inside the existing application:
+
+- understanding and extending an existing TypeScript application;
+- completing and improving existing functionality;
+- developing features through repeated stakeholder-feedback cycles;
+- debugging application behaviour and resolving user-flow issues;
+- backend automation work;
+- API and third-party integration work;
+- subscription and account-access workflows;
+- Stripe integration and webhook behaviour;
+- GoHighLevel / LeadConnector funnel and CRM integration;
+- testing purchasing and subscription flows and investigating billing edge cases;
+- application-access provisioning following purchases and subscriptions;
+- production testing and support through launch; and
+- improving the product through iterative releases.
+
+The product later moved into maintenance mode, with work focused on keeping existing systems running reliably rather than continued feature expansion.
+
+## Technical approach
+
+- **TypeScript** and **React**
+- **Progressive Web App**
+- **Stripe** and **Stripe webhooks**
+- **GoHighLevel / LeadConnector**
+- **API integrations** across the application and external commercial systems
+- **Replit** as the AI-assisted development environment
+- **Git** / private work repository
+
+## The interesting problem: access that reflects events happening elsewhere
+
+The part of this project I found most interesting was not the UI. Hold My Spoon sits inside a wider commercial workflow: the application itself, plus external subscription, payment, CRM/funnel and access-provisioning systems.
+
+The engineering problem is that a customer's access to the app depends on events that do not necessarily originate inside the app. A subscription can be created, upgraded or duplicated through an external funnel; the application still has to end up in the correct state. Working with subscription lifecycle events and Stripe webhooks so that commercial events trigger the right application behaviour — rather than assuming every purchase starts with a user clicking a button in the product — was the core of the integration work.
+
+Testing surfaced real integration edge cases across subscription creation, product upgrades, duplicate purchasing, subscription-tier state, user access, billing behaviour, payment flows, and the feedback the user sees while purchasing. Each one had to be reasoned about across distributed behaviour, not just within a single component.
+
+## AI-assisted workflow
+
+Hold My Spoon was developed heavily through Replit and its AI-assisted development environment. The workflow was iterative rather than generate-once-and-accept:
+
+**requirement or issue → implementation → test → stakeholder review → identify the problem → revise → test again → release**
+
+AI tooling accelerated implementation, investigation, debugging, feature modification, API/integration work, backend automation, interpreting existing code and identifying likely causes of bugs.
+
+I stayed responsible for translating stakeholder feedback into technical requirements, understanding how the existing application actually behaved, testing proposed changes, recognising when a generated change did not solve the underlying problem, reasoning across the app and its external integrations, validating the commercial workflows, and deciding whether a change was ready to release.
+
+That last one matters. On an existing production codebase, the most valuable thing you can do with an AI-generated change is notice that it made the symptom disappear without fixing the cause.
+
+## Outcome
+
+- took over a partially developed application and helped bring it into production;
+- shipped improvements through repeated stakeholder and testing cycles;
+- worked across frontend, backend automation and integrations;
+- supported Stripe subscription and payment workflows;
+- worked with GoHighLevel / LeadConnector integrations;
+- implemented and debugged webhook-driven behaviour;
+- resolved production issues and edge cases; and
+- supported a public, installable PWA.
+
+The repository is a private work repository, so this case study describes the architecture and engineering work rather than linking source code.

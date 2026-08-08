@@ -1,0 +1,8 @@
+/**
+ * Several project screenshots are full-page captures — very tall relative to the
+ * 16:9 frame the carousel and detail hero use. Anchoring to the top shows the top
+ * of the page (header, hero) rather than an arbitrary middle band.
+ */
+.topAnchored img {
+  object-position: top;
+}

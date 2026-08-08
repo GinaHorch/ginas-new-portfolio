@@ -21,10 +21,10 @@ export async function generateMetadata() {
       icon: "/favicon.ico",
     },
     openGraph: {
-      title: `${person.firstName}'s Portfolio`,
-      description: "Portfolio website showcasing my work.",
-      url: baseURL,
-      siteName: `${person.firstName}'s Portfolio`,
+      title: home.title,
+      description: home.description,
+      url: `https://${baseURL}`,
+      siteName: `${person.name} — Software Developer`,
       locale: "en_AU",
       type: "website",
     },
@@ -140,7 +140,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
               opacity: effects.lines.opacity as any,
             }}
           />
-          <Flex fillWidth minHeight="16"></Flex>
+          <Flex fillWidth minHeight="16" />
           <Header />
           <Flex
             position="relative"

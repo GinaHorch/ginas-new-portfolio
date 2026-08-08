@@ -1,0 +1,46 @@
+---
+title: "End-to-End Data Engineering Pipeline"
+publishedAt: "2024-12-17"
+summary: "A containerised ELT pipeline built with Airbyte, dbt, Dagster and PostgreSQL — data ingestion, modular SQL transformation and orchestration, packaged for reproducible deployment."
+linkGithubFrontend: "https://github.com/GinaHorch/Linkedin-end-to-end-data-engineering"
+images:
+  - "/images/projects/project-05/end-to-end-data-engineering.png"
+
+team:
+  - name: "Gina Horch"
+    role: "Data Engineer"
+    avatar: "/images/GinaHeadShot.webp"
+---
+
+## Context
+
+This project implements a **fully functional ELT (Extract, Load, Transform) pipeline** using modern data-stack tooling, processing data for a fictional e-commerce company. It is a learning project rather than a production system — its value is in covering the whole path from ingestion through modelling to orchestration, rather than a single stage of it.
+
+It sits alongside the database and integration work I do day to day: the same concerns — schema design, dependency management, reproducible environments, and knowing what a transformation actually did — turn up in application data work as much as in dedicated pipelines.
+
+## Technical approach
+
+- **Data ingestion**: Airbyte extracts data from multiple sources and loads it into PostgreSQL.
+- **Data transformation**: dbt handles modular, SQL-based transformations.
+- **Orchestration**: Dagster manages and schedules pipeline execution.
+- **Containerised environment**: the pipeline is fully containerised with Docker for reproducibility and ease of deployment.
+- **Version control and documentation**: Git for code management, with documentation covering the workflow.
+
+## Technologies used
+
+- **Programming & scripting**: Python
+- **Data ingestion**: Airbyte
+- **Data transformation**: dbt
+- **Pipeline orchestration**: Dagster
+- **Database**: PostgreSQL
+- **Deployment**: Docker
+- **Development tools**: Git, Visual Studio Code
+
+## Challenges
+
+- **Pipeline orchestration**: managing dependencies and execution flow through Dagster, where the order things run in is the design rather than an afterthought.
+- **Scalability considerations**: keeping the architecture modular so additional data sources can be added without reworking what exists.
+
+## Outcome
+
+The project consolidated my understanding of ELT architecture and modern data-engineering workflows — modelling data, expressing transformations as version-controlled SQL, and running the whole thing as a reproducible, orchestrated system rather than a set of scripts.

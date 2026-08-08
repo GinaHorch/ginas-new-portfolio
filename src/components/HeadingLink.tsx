@@ -1,6 +1,7 @@
 "use client";
 
-import React, { JSX} from "react";
+import type React from "react";
+import type { JSX} from "react";
 import { Heading, Flex, IconButton, useToast } from "@/once-ui/components";
 
 import styles from "@/components/HeadingLink.module.scss";

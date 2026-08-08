@@ -1,0 +1,113 @@
+---
+title: "She Codes Data Platform"
+publishedAt: "2026-08-07"
+summary: "A connected Next.js/TypeScript data platform for She Codes Australia, integrating multiple operational systems on Supabase/PostgreSQL with significant work across automation, identity resolution, authentication, privacy and data integrity."
+images:
+  - "/images/projects/project-03/she-codes-australia-landing.png"
+  - "/images/projects/project-03/shecodes-data-architecture.png"
+
+team:
+  - name: "Gina Horch"
+    role: "Full-Stack & Data Platform Developer"
+    avatar: "/images/GinaHeadShot.webp"
+---
+
+## Context
+
+The She Codes Data Platform helps She Codes Australia manage and understand its community, mentors, events, participation and impact. What started as dashboard and data work grew into a substantially broader system supporting different user groups and operational workflows — experiences for the community, for mentors, for administrators, for organisational leadership, and for onboarding and account claiming.
+
+Its purpose is connective: it brings together data that historically lived across several separate operational platforms and gives the organisation a more unified view of people, participation and mentor engagement.
+
+The repository belongs to She Codes Australia and contains internal systems, so this case study describes architecture and engineering problems rather than organisational data. No participant records, personal identifiers or account counts appear here, and vendors are kept generic.
+
+## My role
+
+I initially worked on the platform through a paid engagement and have since continued development and maintenance as a volunteer. The work has been substantial full-stack, data and platform development:
+
+- TypeScript/React application development;
+- Supabase/PostgreSQL data work, data modelling and data-quality investigation;
+- person and identity resolution, and external-system mappings;
+- mentor records, email relationships, user-role relationships, events and attendance, transactions, mentor points and recognition;
+- onboarding and account-claiming workflows, consent handling and authentication behaviour;
+- administration workflows and reporting;
+- automated data synchronisation, API integrations, webhooks and scheduled workflows;
+- database repair and reconciliation, duplicate-record investigation and safe record-merging approaches;
+- privacy review and permissions/access review; and
+- production debugging and ongoing maintenance.
+
+An increasingly large part of the work is investigating **what the system actually does under unusual or historical data conditions** — rather than assuming the intended, ideal user flow describes every account in the database.
+
+## Technical approach
+
+- **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS**, **TanStack Query**
+- **Supabase** and **PostgreSQL**, with **Supabase Auth** and **Row Level Security**
+- **Next.js API routes** and **Deno/TypeScript Supabase Edge Functions**
+- **Python 3.11** automation
+- **GitHub Actions** for scheduled workflows
+- **Netlify** deployment
+- **Cursor** as the primary AI-assisted development and investigation environment
+
+The platform also integrates with several third-party services covering event management, community communication, scheduling, CRM/marketing automation and messaging.
+
+![Simplified architecture: external operational platforms feed an integration and automation layer, into Supabase/PostgreSQL, surfaced through the Next.js platform.](/images/projects/project-03/shecodes-data-architecture.png)
+
+## The interesting problem: identity resolution
+
+The technically richest problem in this platform is deciding when two records are the same person.
+
+One real person may historically appear across multiple systems with different IDs, different email addresses, old and new records, platform-specific identifiers and partially overlapping profile information. Resolve those records wrongly and you corrupt relationships that reach into attendance, mentor history, transactions and authentication.
+
+That forces careful reasoning about distinctions the data does not always make for you:
+
+**a person · an account · an email address · a mentor record · an external-system identity**
+
+These are five different things, and historical data does not reliably keep them apart. Data integrity and controlled reconciliation have become a major component of the work as a result.
+
+## Authentication, permissions and privacy
+
+The system uses Supabase authentication and PostgreSQL Row Level Security. Security-related work has included authenticated role-based access, mentor account claiming, email verification, explicit dashboard consent, reviewing differences between manually created and self-claimed accounts, investigating access-control edge cases, RLS behaviour, server-side service-role operations, privacy review, and checking for unintended disclosure through public views.
+
+One privacy audit surfaced an edge case worth generalising: the intended consent workflow and the actual behaviour of manually created historical accounts did not align. The intended flow was correct — but it described accounts created through it, and not every account in the database had been created that way. The remediation was to reason from the data as it exists rather than from the flow as designed.
+
+## Automation and integrations
+
+The platform runs on automated processes rather than relying only on interactive user actions: multiple scheduled GitHub Actions and automated workflows, data synchronisation, external API processing, webhook handling, mentor data processing, communication and event workflows, database updates, and health/monitoring processes — alongside Python automation and Supabase/Deno Edge Functions connecting external operational systems to the platform.
+
+## AI-assisted workflow
+
+Development combines several AI tools rather than relying on one. **Cursor** is the primary AI-assisted development and investigation environment, **Supabase AI** supports schema- and query-level reasoning inside the database environment, and **ChatGPT** supports broader investigation and cross-referencing outside the IDE.
+
+Because investigations move between those tools, I developed a **cross-tool continuity workflow**: verified schema understanding, constraints, findings, assumptions and unresolved questions are carried forward when switching tools, so the next environment starts from established context instead of re-deriving it.
+
+AI assistance supports navigating complex parts of the codebase, tracing behaviour across routes and database functions, investigating bugs, interpreting TypeScript and SQL, developing features, generating candidate SQL for investigation, identifying dependencies, reviewing authentication and consent flows, reasoning about database relationships, developing controlled repair procedures, documenting findings and reviewing implementation options.
+
+The engineering responsibility remains mine. For potentially destructive data work, **AI-generated SQL is not treated as inherently safe**. The working pattern is:
+
+1. inspect the relevant schema and code;
+2. identify foreign-key and dependency relationships;
+3. run diagnostic queries;
+4. rehearse the proposed change;
+5. verify the affected records;
+6. preserve audit/history information where required;
+7. apply the smallest appropriate change; and
+8. verify again afterwards.
+
+I also deliberately keep lessons from failed or imperfect AI-assisted runs, so later work benefits from earlier debugging instead of rediscovering the same problems.
+
+## Outcome
+
+- developed and maintained a connected production data platform integrating data across multiple operational systems;
+- Next.js/React/TypeScript application development with role-specific experiences;
+- substantial PostgreSQL/Supabase work;
+- automated synchronisation and processing through multiple scheduled GitHub Actions and workflows;
+- API and webhook integrations;
+- authentication and account-claim workflows;
+- consent and privacy investigation;
+- person/identity reconciliation, historical-data repair and constraint-aware database changes;
+- mentor recognition and points workflows;
+- reporting and administrative tooling; and
+- cross-tool AI context continuity for complex investigations.
+
+The work spans a large historical mentor and community dataset drawn from multiple external operational systems.
+
+**Repository:** private She Codes Australia repository · previous public deployment currently offline while changes are underway.
