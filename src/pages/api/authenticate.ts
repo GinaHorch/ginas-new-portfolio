@@ -4,7 +4,11 @@ import * as cookie from "cookie";
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const { password } = req.body;
-    const correctPassword = "SAFe6Password!";
+    const correctPassword = process.env.AGILE_RESOURCE_PASSWORD;
+
+    if (!correctPassword) {
+      return res.status(500).json({ message: "Server misconfiguration" });
+    }
 
     if (password === correctPassword) {
       res.setHeader(
