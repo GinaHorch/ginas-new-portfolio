@@ -1,5 +1,5 @@
 import { getPosts } from "@/app/utils/utils";
-import { Column, Flex, Avatar, Icon, Tag } from "@/once-ui/components";
+import { Avatar, Column, Flex, Heading, Icon, Tag } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
 import { baseURL } from "@/app/resources";
 import { person, work, about } from "@/app/resources/content";
@@ -95,7 +95,13 @@ export default function Work() {
             )}
           </Column>
         )}
+        <Column fillWidth flex={9} gap="m">
+          {/* The project list is a set of h2s; without this the page had no h1 at all. */}
+          <Heading as="h1" variant="display-strong-s" paddingX="l">
+            {work.label}
+          </Heading>
           <Projects />
+        </Column>
       </Flex>
     </Column>
   );

@@ -9,7 +9,7 @@ Orientation for working on this repo. Read this before making changes — it cov
 - **Styling**: SCSS Modules (`ComponentName.module.scss`) layered on Once UI's CSS-custom-property token system (`src/once-ui/tokens/theme.scss`). **No Tailwind.**
 - **Content**: MDX (`@next/mdx`, `gray-matter`, `next-mdx-remote`) for project case studies; a plain JS content module (`src/app/resources/content.js`) for static site copy
 - **Linting/formatting**: **Biome** (`biome.json`, pinned to `@biomejs/biome@1.9.4` as a devDependency) — not ESLint/Prettier. `npm run lint` runs `biome lint src/app src/components`; the vendored `src/once-ui/` library is deliberately out of scope.
-- **No test suite** — no test framework, no test files, no test script. Don't assume tests exist or write tests unless explicitly asked to set up a framework first.
+- **Testing**: **Playwright** end-to-end tests in `tests/`. There are no unit tests and no unit-test runner — don't assume Jest/Vitest exists.
 - **ESLint is gone.** It had no config, no script and no CI use — a leftover from `next lint`, which Next 16 removed. It was also the only thing pulling in `ajv` (a Dependabot ReDoS alert). Don't reinstall it; Biome is the linter of record.
 - **`npm` and `install` were listed as runtime dependencies** and have been removed. Nothing imported them; `npm`'s vendored tree was the source of most of the repo's audit alerts, including the only critical one. If `npm audit` suddenly reports a lot of new advisories, check whether something re-added them.
 - Deployed on **Vercel**
@@ -24,7 +24,42 @@ npm run lint     # biome lint src/app src/components
 npm run format   # biome format --write src/app src/components
 npm run clean    # rm -rf .next
 ANALYZE=true npm run build   # bundle analyzer (see next.config.mjs)
+
+npm run test:e2e         # Playwright, all projects
+npm run test:e2e:ui      # Playwright UI mode, for debugging a failure
+npm run test:e2e:update  # re-record visual baselines (deliberate visual changes only)
+npm run test:e2e:report  # open the last HTML report
 ```
+
+## Testing
+
+Playwright specs live in `tests/`, run against a **production build** on port 3100 (the dev server injects a dev-tools indicator and serves images differently, both of which pollute snapshots). `playwright.config.ts` starts and stops that server itself, and reuses one if it is already running.
+
+Two projects run every spec: `desktop` (1280x900 Chrome) and `mobile` (Pixel 5). Specs that only make sense on one use `test.skip(({ isMobile }) => ...)`.
+
+| Spec | Covers |
+|---|---|
+| `visitor-journey.spec.ts` | The real path through the site: land → acknowledge Country → hero → About → Projects → a case study → Skills. Also asserts every page has exactly one `h1`. |
+| `mobile-navigation.spec.ts` | The small-screen header — it moves to the bottom of the viewport and drops text labels for icons — plus accessible names, tap navigation, and no horizontal overflow on any page. |
+| `visual-regression.spec.ts` | Full-page screenshots per page per project, the acknowledgement modal, and the skills chart on its own. |
+
+### Rules for changes affecting user-visible behaviour
+
+1. Run the existing Playwright tests.
+2. Add or update a test when the approved behaviour changes.
+3. **Do not modify a failing test simply to make the implementation pass** unless the requirement itself has changed.
+4. If a test fails, inspect the failure and trace (`npm run test:e2e:report`, or `npx playwright show-trace <trace.zip>`) and determine whether the *implementation* or the *expectation* is wrong.
+5. The task is not complete until the relevant Playwright tests and `npm run build` pass.
+
+Rule 4 is the one that earns its keep. When these tests were introduced, two failures had two different causes: the homepage assertion was stale because the hero copy had legitimately been rewritten (expectation wrong — update the test), while `/work` genuinely had no `h1` at all (implementation wrong — fix the page). Reaching for the same fix in both cases would have been wrong once.
+
+### Writing tests against this site
+
+- **The Acknowledgement of Country modal** is rendered by the homepage only, not the layout, and is gated on `sessionStorage.hasAcknowledged`. It appears on the first visit of every test context. It opens from a `useEffect`, so *polling* for it after navigation is a race — use `skipAcknowledgement()` to seed sessionStorage before navigation, or `acknowledgeCountry()` to dismiss it deliberately.
+- **Nav items exist twice in the DOM** (labelled and icon-only, one hidden by CSS). Use the `navLink()` helper rather than `getByRole` directly, or locators hit strict-mode violations.
+- **Visual baselines are committed** under `tests/visual-regression.spec.ts-snapshots/` and are per project and platform (`-desktop-darwin`, `-mobile-darwin`). A run on Linux/CI will need its own set recorded.
+- **Snapshot budget is `maxDiffPixels: 150`**, absolute rather than a ratio — a ratio scales with page height, so on a long page a real layout shift can hide under it.
+- `stabiliseForScreenshot()` disables motion, scrolls to trigger lazy images, waits for fonts, and the header (containing a live clock) is masked out.
 
 ## Route map
 
@@ -82,7 +117,7 @@ There is no Pages Router directory and no API routes — `/agile`, its resource 
 
 The repo is linked to the `ginas-new-portfolio` Vercel project (`.vercel/repo.json`), and the Vercel MCP server is configured.
 
-- **Vercel MCP** (`https://mcp.vercel.com`, hosted, OAuth) — for read/inspection: deployment status, build/runtime logs, docs search. Good fit for a review-agent role (e.g. "did the last preview deploy succeed"). Add with `claude mcp add --transport http vercel https://mcp.vercel.com`, then `/mcp` to authorize. It grants account-level access including paid domain-purchase tools — require confirmation on those, don't hand them to an unattended agent.
+- **Vercel MCP** (hosted, OAuth) — for read/inspection: deployment status, build/runtime logs, docs search. Already added as `vercel-ginas-new-portfolio`. If `claude mcp list` shows it as **"Needs authentication"**, run `/mcp` in Claude Code, select it and complete the browser OAuth flow — until then its tools are not exposed to the session and the CLI has to do the work. It grants account-level access including paid domain-purchase tools — require confirmation on those, don't hand them to an unattended agent.
 - **Vercel CLI** — for anything that writes state or needs a real local build: `vercel env add` for env vars, `VERCEL_ANALYZE_BUILD_OUTPUT=1 vercel build --yes` to catch bundle-size regressions locally before pushing (see the payload-limit quirk above).
 
 ## Skills available in this repo
@@ -93,7 +128,7 @@ The repo is linked to the `ginas-new-portfolio` Vercel project (`.vercel/repo.js
 
 ## Portfolio repositioning (landed)
 
-The site has been repositioned from a "Scrum Master / career pivot" narrative to **TypeScript and full-stack development, real production software and AI-assisted engineering**, supported by React/Next.js, Astro, APIs/integrations, Supabase/PostgreSQL, cyber security, systems thinking and collaborative delivery.
+The site has been repositioned from a "Scrum Master / career pivot" narrative to **full-stack development across TypeScript and Python, real production software, and security and systems thinking**, supported by React/Next.js, Astro, APIs/integrations, Supabase/PostgreSQL, AI-assisted engineering and collaborative delivery. The positioning was widened in August 2026 — an earlier "TypeScript developer" framing was too narrow. `.claude/context/positioning.md` is the source of truth and records why.
 
 Keep any new copy consistent with `.claude/context/positioning.md` — in particular: don't lead with Scrum Master, career-changer or "aspiring developer" framing; present AI as an engineering workflow, not a tool list; and preserve accurate ownership (built vs inherited vs implemented-from-someone-else's-design).
 

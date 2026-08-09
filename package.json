@@ -7,7 +7,11 @@
     "start": "next start",
     "lint": "biome lint src/app src/components",
     "clean": "rm -rf .next",
-    "format": "biome format --write src/app src/components"
+    "format": "biome format --write src/app src/components",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:update": "playwright test --update-snapshots",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.1.2",

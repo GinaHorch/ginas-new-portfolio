@@ -6,9 +6,25 @@
 
 **Primary positioning statement:**
 
-**TypeScript and full-stack developer building and improving production applications with AI-assisted engineering, security and systems thinking.**
+**Systems, security and development specialist working across TypeScript and Python — building and improving production applications with AI-assisted engineering and security built in.**
+
+Supporting role line, as used in `person.role`:
+
+**Full-Stack Developer — TypeScript, Python & AI-Augmented Systems**
 
 The portfolio is moving away from a **"Scrum Master / career pivot into tech"** narrative. That background remains useful context, but it is no longer the headline.
+
+### Why this is broader than "TypeScript developer"
+
+An earlier version of this document led with *"TypeScript and full-stack developer"*. That framing was pitched at one particular recruiter and proved too narrow: it reads as a single-language front-end hire and hides the systems, security, data and automation work that makes up a large share of what Gina actually does.
+
+The current framing is deliberately wider. It should still be unmistakably a **developer** positioning — this is not a move back toward a non-technical or purely operational identity — but the depth beyond TypeScript is part of the pitch, not a footnote:
+
+- **Two languages, not one.** TypeScript across the stack, Python for automation and data work.
+- **Systems as well as applications.** Cloud, deployment, DNS/TLS, endpoint and identity administration, migrations, production support.
+- **Security as a thread through the build**, not a specialism bolted on: authentication and access control, Row Level Security, privacy and consent, secure configuration and headers.
+
+Do not swing so far that the developer story is lost. "Systems and security" should read as *added depth around* the development work, not as a replacement for it.
 
 Do not position Gina simply as an "AI Engineer" or imply machine-learning/model-development expertise that the portfolio does not demonstrate. Prefer:
 
@@ -41,13 +57,15 @@ The portfolio serves two overlapping audiences, in this order:
 The portfolio should tell this story in approximately this order:
 
 1. Developer
-2. TypeScript / React / full-stack capability
+2. Full-stack capability across TypeScript and Python (React/Next.js remain the most visible frameworks)
 3. Real production applications and delivery
-4. AI-assisted engineering workflows
-5. APIs, integrations, databases and automation
-6. Cyber security and systems thinking
+4. Security and systems thinking as part of how the work is built
+5. AI-assisted engineering workflows
+6. APIs, integrations, databases and automation
 7. Collaborative and iterative ways of working
 8. Career background and transferable experience
+
+Security and systems moved up this list when the positioning widened. They should be present in the hero, not held back until the Skills page — but they still sit *below* the plain statement that Gina builds software.
 
 Do not lead with:
 
@@ -63,32 +81,36 @@ These may appear as supporting context where relevant.
 
 The homepage hero should quickly communicate:
 
-**Developer + TypeScript + real-world software + AI-assisted engineering**
+**Developer + real production software + breadth across languages and systems + security + AI-assisted engineering**
 
 Strong technologies/concepts to surface prominently include:
 
 - TypeScript
+- Python
 - React
 - Next.js
 - Astro
 - Supabase / PostgreSQL
 - APIs & integrations
+- Cyber security
+- Cloud & systems
 - AI-assisted development
 - Claude Code
 - Cursor
 - Replit
 - Cloudflare
-- Cyber security
 
 Avoid presenting a large wall of technologies immediately. Prefer a concise core set with deeper skills available further down the site.
 
 A suitable conceptual hierarchy is:
 
-**TypeScript · React · Full Stack · AI-Assisted Engineering**
+**TypeScript · Python · Full Stack · Security & Systems · AI-Assisted Engineering**
 
 supported by:
 
-**Supabase · APIs · Cloudflare · Security · Systems**
+**React · Next.js · Astro · Supabase · APIs · Cloudflare**
+
+Whatever the final tag set, anything the hero copy claims in prose must be represented. If the subline says "TypeScript and Python", Python cannot then be missing from the capability tags directly beneath it.
 
 ## AI-assisted engineering direction
 
@@ -223,14 +245,18 @@ Do not invent technologies, metrics, outcomes, responsibilities, seniority or de
 
 Use naturally where appropriate:
 
-- TypeScript Developer
-- React Developer
 - Full-Stack Developer
-- Front-End Developer
+- Software Developer
+- TypeScript Developer
+- Python Developer
+- React Developer
 - Next.js
 - React
 - TypeScript
+- Python
 - JavaScript
+- systems administration
+- application security
 - Supabase
 - PostgreSQL
 - REST API
@@ -344,13 +370,15 @@ The career history should explain **why Gina approaches technical problems the w
 
 Prefer titles such as:
 
-**Gina Horch | TypeScript & Full-Stack Developer**
+**Gina Horch | Full-Stack Developer**
 
-or:
+or, where there is room:
 
-**Gina Horch | Software Developer · TypeScript · React · AI-Assisted Engineering**
+**Gina Horch | Full-Stack Developer · TypeScript, Python & Systems**
 
-Metadata descriptions should mention a selection of TypeScript, React, full-stack development, production applications, AI-assisted engineering, APIs/integrations and cyber security.
+Keep the page `<title>` short — it is truncated in search results and browser tabs, so the fuller role line belongs in `person.role` and the meta description rather than the title.
+
+Metadata descriptions should mention a selection of full-stack development, TypeScript **and Python**, production applications, security and systems, AI-assisted engineering, and APIs/integrations. Descriptions that list only TypeScript and React now understate the positioning.
 
 Do not use "Scrum Master" in the primary site title or homepage meta description.
 
@@ -361,7 +389,9 @@ Before approving new homepage, About or project copy, ask:
 - Within 10 seconds, would a recruiter understand that Gina currently develops software?
 - Does the portfolio show evidence of production work rather than only training projects?
 - Does AI appear as an engineering workflow rather than a gimmick?
-- Are TypeScript, React/full-stack capability and real applications clearly visible?
+- Are full-stack capability and real applications clearly visible?
+- Is the breadth beyond TypeScript — Python, data, systems, security — visible without burying the developer story?
+- Does every capability the hero claims in prose also appear in the tags and the Skills page?
 - Does cyber security strengthen the development story without overwhelming it?
 - Is Agile visible as a collaborative way of working rather than the primary identity?
 - Are claims accurate about what Gina built, inherited, designed or collaborated on?

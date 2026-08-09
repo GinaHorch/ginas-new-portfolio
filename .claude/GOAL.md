@@ -8,7 +8,9 @@ The context documents in `.claude/context/` define the approved messaging, proje
 
 The portfolio currently frames Gina primarily around a **"Scrum Master / career pivot"** narrative.
 
-The goal is to reposition it around **TypeScript and full-stack development, real production software and AI-assisted engineering**, supported by demonstrated capability across React/Next.js, Astro, APIs and integrations, Supabase/PostgreSQL, cyber security, systems thinking and collaborative delivery.
+The goal is to reposition it around **full-stack development across TypeScript and Python, real production software, and security and systems thinking**, supported by demonstrated capability across React/Next.js, Astro, APIs and integrations, Supabase/PostgreSQL, AI-assisted engineering and collaborative delivery.
+
+**Revised August 2026.** This originally read "TypeScript and full-stack development". That was pitched at a single recruiter and proved too narrow — see the *Why this is broader than "TypeScript developer"* section of `positioning.md`.
 
 React remains a prominent skill, but the portfolio should not narrow Gina's current capability to "React developer" alone.
 
@@ -27,7 +29,7 @@ React remains a prominent skill, but the portfolio should not narrow Gina's curr
 ### Site positioning
 
 - [x] Homepage (`/`) and About (`/about`) clearly position Gina as a current software developer, not primarily as a Scrum Master or career changer.
-- [x] Above-the-fold messaging leads with TypeScript/full-stack development, real software and AI-assisted engineering, consistent with `positioning.md`.
+- [x] Above-the-fold messaging leads with full-stack development, real software, and security/systems depth, consistent with `positioning.md`. *(Re-verified against the widened positioning: the hero states systems, security and development across TypeScript and Python.)*
 - [x] React/Next.js remain prominent without excluding Astro, APIs, databases, deployment, security and systems capability.
 - [x] AI is presented as an engineering workflow involving context, constraints, review and verification — not as a substitute for technical judgement.
 - [x] Cyber security and systems experience strengthen the development story without overwhelming it.

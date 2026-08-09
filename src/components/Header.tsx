@@ -7,7 +7,7 @@ import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
 import styles from "@/components/Header.module.scss";
 
 import { routes, display } from "@/app/resources";
-import { person, about, work, skills } from "@/app/resources/content";
+import { person, about, home, work, skills } from "@/app/resources/content";
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -70,9 +70,20 @@ export const Header = () => {
             padding="4"
             horizontal="center"
           >
-            <Flex gap="4" vertical="center" textVariant="body-default-s">
+            <Flex
+              as="nav"
+              aria-label="Main"
+              gap="4"
+              vertical="center"
+              textVariant="body-default-s"
+            >
               {routes["/"] && (
-                <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
+                <ToggleButton
+                  prefixIcon="home"
+                  href="/"
+                  aria-label={home.label}
+                  selected={pathname === "/"}
+                />
               )}
               <Line vert maxHeight="24" />
               {routes["/about"] && (
@@ -88,6 +99,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="person"
                     href="/about"
+                    aria-label={about.label}
                     selected={pathname === "/about"}
                   />
                 </>
@@ -105,6 +117,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="grid"
                     href="/work"
+                    aria-label={work.label}
                     selected={pathname.startsWith("/work")}
                   />
                 </>
@@ -122,6 +135,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="skills"
                     href="/skills"
+                    aria-label={skills.label}
                     selected={pathname.startsWith("/skills")}
                   />
                 </>
@@ -137,7 +151,9 @@ export const Header = () => {
             textVariant="body-default-s"
             gap="20"
           >
-            <Flex hide="s">{display.time && <TimeDisplay timeZone={person.location} />}</Flex>
+            <Flex hide="s" data-testid="header-clock">
+              {display.time && <TimeDisplay timeZone={person.location} />}
+            </Flex>
           </Flex>
         </Flex>
       </Flex>

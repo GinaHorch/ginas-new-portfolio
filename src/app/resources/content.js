@@ -55,7 +55,7 @@ const home = {
   label: "Home",
   title: `${person.name} | Full-Stack Developer`,
   description:
-    "Full-stack developer building and improving production applications with React, Next.js, Astro, Supabase and APIs — plus AI-assisted engineering, security and systems thinking.",
+    "Systems, security and development specialist working across TypeScript and Python. Full-stack developer building and improving production applications with React, Next.js, Astro, Supabase and APIs, with security and AI-assisted engineering built into the work.",
   ogTitle: "I build real systems, and protect what they touch",
   headline: <>Kaya. I build real systems, and protect what they touch.</>,
   subline: (
@@ -68,8 +68,10 @@ const home = {
   ),
   focus: {
     label: "What I work with",
-    primary: ["TypeScript", "React", "Full Stack", "AI-Assisted Engineering"],
-    supporting: ["Next.js", "Astro", "Supabase", "APIs", "Cloudflare", "Security", "Systems"],
+    // Every capability the subline claims in prose has to appear here too — see the
+    // hero guidance in .claude/context/positioning.md.
+    primary: ["TypeScript", "Python", "Full Stack", "Security & Systems", "AI-Assisted Engineering"],
+    supporting: ["React", "Next.js", "Astro", "Supabase", "APIs", "Cloudflare"],
   },
 };
 
@@ -77,7 +79,7 @@ const about = {
   label: "About",
   title: `About ${person.name} | Software Developer`,
   ogTitle: "About Gina",
-  description: `${person.name} is a full-stack developer in Perth, Western Australia, building production applications with AI-assisted engineering, security and systems thinking.`,
+  description: `${person.name} is a full-stack developer in Perth, Western Australia, working across TypeScript and Python and building production applications with security, systems and AI-assisted engineering built in.`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -323,7 +325,7 @@ const skills = {
   title: `Skills | ${person.name}`,
   ogTitle: "Skills",
   description:
-    "TypeScript, React, Next.js, Astro, Supabase and PostgreSQL, API and webhook integrations, AI-assisted engineering, cyber security, cloud and systems, and collaborative delivery.",
+    "TypeScript and Python, React, Next.js, Astro, Supabase and PostgreSQL, API and webhook integrations, AI-assisted engineering, cyber security, cloud and systems, and collaborative delivery.",
   tableOfContent: {
     display: true,
     subItems: false,
