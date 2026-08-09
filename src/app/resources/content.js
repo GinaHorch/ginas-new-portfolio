@@ -26,7 +26,7 @@ const social = [
   {
     name: "Email",
     icon: "email",
-    link: "mailto:social.insight.solutions@gmail.com",
+    link: "mailto:Social-Insight-Solutions@pm.me",
   },
 ];
 
@@ -109,7 +109,7 @@ const about = {
       a system you did not write, and changing it safely, is the harder and more useful skill.
       </p>
       <p>
-      I work with AI-assisted development tools — Claude Code, Cursor, Replit — as part of a disciplined
+      I work with AI-assisted development tools - Claude Code, Cursor, Replit - as part of a disciplined
       engineering workflow rather than as a shortcut. That means persistent project context and constraints,
       planning before implementation, reviewing what comes back, testing behaviour, diagnosing failures, and
       keeping a clear Definition of Done. I remain responsible for the requirements, the technical decisions,
