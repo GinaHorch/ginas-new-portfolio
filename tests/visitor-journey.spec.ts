@@ -69,7 +69,7 @@ test.describe("visitor journey", () => {
 
       const caseStudyLinks = page.getByRole("link", { name: /Dive into the Details/i });
       await expect(caseStudyLinks.first()).toBeVisible();
-      expect(await caseStudyLinks.count()).toBeGreaterThanOrEqual(5);
+      expect(await caseStudyLinks.count()).toBeGreaterThanOrEqual(6);
 
       await caseStudyLinks.first().click();
       await page.waitForURL("**/work/**");

@@ -75,7 +75,9 @@ src/app/
 └── not-found.tsx           → 404
 ```
 
-Project slugs are the MDX filenames: `andromedae`, `hold-my-spoon`, `she-codes-data-platform`, `wedding-guestbook-platform`, `end-to-end-data-engineering`.
+Project slugs are the MDX filenames: `andromedae`, `hold-my-spoon`, `she-codes-data-platform`, `wedding-guestbook-platform`, `end-to-end-data-engineering`, `spec-driven-agentic-development`.
+
+`spec-driven-agentic-development` is a process case study rather than an application. It is excluded from the homepage's featured projects (`<Projects range={[1, 2]} exclude={[...]} />` in `src/app/page.tsx`) so the homepage keeps leading with production applications, per the messaging hierarchy in `positioning.md`. It renders `<RunEvidencePanel />`, a zero-JS server component registered in `src/components/mdx.tsx`; every figure in it is traceable to `.claude/context/agentic-run-evidence.md`.
 
 There is no Pages Router directory and no API routes — `/agile`, its resource MDX, and the `src/pages/api/` password gate were removed with the repositioning (see `.claude/context/removals.md`).
 
@@ -146,6 +148,7 @@ This work is tracked in:
 - **`.claude/context/positioning.md`** — approved messaging direction and framing guardrails.
 - **`.claude/context/removals.md`** — approved keep/remove/replace decisions, including removal of Agile Resources.
 - **`.claude/context/projects/*.md`** — populated factual source documents for the replacement case studies. Do not invent project details, metrics, ownership or technologies beyond what the relevant context file supports.
+- **`.claude/context/agentic-run-evidence.md`** — how the repositioning was executed: the goal-driven autonomous run, run statistics, parallel/review agent topology, validation performed and blockers preserved. It is the factual source for the `spec-driven-agentic-development` case study — treat it the same way as the project context files, and don't add claims to that case study which this document doesn't support.
 
 ### Current-state vs target-state rule
 

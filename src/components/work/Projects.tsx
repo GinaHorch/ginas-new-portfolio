@@ -4,12 +4,18 @@ import { ProjectCard } from "@/components";
 
 interface ProjectsProps {
   range?: [number, number?];
+  /** Slugs to leave out — used to keep the homepage leading with product work. */
+  exclude?: string[];
 }
 
-export function Projects({ range }: ProjectsProps) {
+export function Projects({ range, exclude }: ProjectsProps) {
   const allProjects = getPosts(["src", "app", "work", "projects"]);
 
-  const sortedProjects = [...allProjects].sort((a, b) => {
+  const visibleProjects = exclude?.length
+    ? allProjects.filter((project) => !exclude.includes(project.slug))
+    : allProjects;
+
+  const sortedProjects = [...visibleProjects].sort((a, b) => {
     return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
   });
 

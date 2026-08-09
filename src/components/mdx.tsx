@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { SmartLink, Text } from "@/once-ui/components";
 import { CodeBlock } from "@/once-ui/modules";
 import { HeadingLink } from "@/components";
+import { RunEvidencePanel } from "@/components/work/RunEvidencePanel";
 
 import type { TextProps } from "@/once-ui/interfaces";
 
@@ -155,6 +156,7 @@ const components = {
   a: CustomLink as any,
   Table,
   CodeBlock,
+  RunEvidencePanel,
 };
 
 type CustomMDXProps = MDXRemoteProps & {

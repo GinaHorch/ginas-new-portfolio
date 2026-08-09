@@ -1,0 +1,46 @@
+---
+title: "Spec-Driven Agentic Development"
+publishedAt: "2026-08-09"
+summary: "How I run implementation work with coding agents — a written definition of done, an approval gate before anything is written, parallel research, an independent reviewer, and a checklist gate before anything is called finished. Includes evidence from one real autonomous run."
+images:
+  - "/images/projects/project-06/spec-driven-agentic-workflow.png"
+
+team:
+  - name: "Gina Horch"
+    role: "Engineering workflow — definition of done, agent orchestration, review and verification"
+    avatar: "/images/GinaHeadShot.webp"
+---
+
+## Context
+
+Most of what makes AI-assisted development work or fail happens before a model writes a line of code, and after it stops. The interesting engineering is in the specification, the constraints, the verification and the review — not in the prompt.
+
+This is the workflow I use, and the evidence from one run of it. It is deliberately generalised: no client detail, no source code, no repository internals.
+
+The honest disclosure is that this portfolio is itself an output of the process described here. The repositioning of this site — its case studies, its messaging, the removal of a superseded section and its entire authentication surface — was carried out as a single goal-driven run under the workflow below.
+
+## The workflow
+
+![Spec-driven agentic workflow: standing project rules and an on-demand reference skill feed a seven-step loop — compare, plan, human approval gate, implement, verify, checklist and human review gate, report — with failed checks returning to an earlier step.](/images/projects/project-06/spec-driven-agentic-workflow.png)
+
+Two things carry most of the weight.
+
+**The definition of done is written first, and it is a file.** Acceptance criteria live in the repository as a checklist, alongside separate documents recording approved messaging, factual boundaries and what may and may not be published. An agent may only tick a criterion once it has genuinely been verified. Because the criteria are committed, they outlive the session that produced them and can be checked by anyone afterwards.
+
+**Checking is a step in the workflow, not an afterthought.** A failed check returns the work to an earlier step rather than being reported as a caveat. There are two human gates: one before any file is touched, and one before anything is called done.
+
+<RunEvidencePanel />
+
+## What the process caught
+
+The reviewer's most useful finding was against the run's own output. Two shared pages had come to describe a client site as being in commercial production, while the case study they linked to correctly recorded that the public domain had not yet cut over. The implementing agent had written both and did not notice the contradiction; a reviewer reading the source documents first, without that context, found it in minutes.
+
+A second finding was a delivery constraint asserted in a case study that no source document supported. It was plausible, well-written and untrue. That is the characteristic failure mode of a language model writing narrative content, and it is the reason the review step reads the evidence before it reads the output.
+
+Separately, the run found and fixed five defects that predated it and sat outside the brief — among them a misconfigured base URL that was corrupting every canonical link, social image and sitemap entry on the site, and a lint script that had silently not been running.
+
+## Limits
+
+This is a workflow for work that has a checkable definition of done. It suits implementation against a specification, migrations, removals and consistency passes across many files. It does not replace deciding what to build, and it is weakest exactly where the specification is thin — an agent will fill a gap in the brief with something plausible rather than stopping, which is what the review gate exists to catch.
+
+Three criteria in that run were left unchecked because they needed access that was unavailable at the time. Leaving them visibly unfinished was the correct outcome. When the tooling was authenticated later, the check they were blocking on found a real deployment regression that would otherwise have shipped.

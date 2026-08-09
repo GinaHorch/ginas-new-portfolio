@@ -1,0 +1,46 @@
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Run metadata reads as one continuous line, wrapping to as many rows as the
+   viewport needs, rather than as a grid of stat cards. Spacing separates the
+   items — an inline character would strand itself at every wrap point. */
+.manifest {
+  column-gap: var(--static-space-20);
+  row-gap: var(--static-space-4);
+}
+
+.figure {
+  color: var(--neutral-on-background-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The one figure the panel exists to make: zero human prompts. Emerald is used
+   here and on the check glyphs and nowhere else in the panel. */
+.zero {
+  color: var(--brand-on-background-medium);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  align-items: flex-start;
+}
+
+.check {
+  color: var(--brand-on-background-medium);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.footnote {
+  border-top: 1px solid var(--neutral-border-medium);
+  padding-top: var(--static-space-16);
+}

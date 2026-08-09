@@ -26,6 +26,7 @@ Do not silently rewrite current-state technical documentation as if a planned re
 - **`projects/she-codes-data-platform.md`** — factual source for the She Codes Data Platform case study. Privacy and organisational confidentiality constraints are especially important here.
 - **`projects/wedding-apps.md`** — factual source for the Wedding Guestbook & Media Platform case study. The application is access-restricted and the repository private; the couple are not named and no screenshots or live link are published.
 - **`removals.md`** — determines what is replaced, retained or deleted. Nothing should be removed based on inference.
+- **`agentic-run-evidence.md`** — a record of *how* the repositioning was executed: the goal-driven autonomous run, its statistics, the parallel and review agent topology, the validation performed, and the blockers left honestly unresolved. Not a source of truth for site content — it documents process, and is the factual basis for the `spec-driven-agentic-development` case study. Client identities, code and transcript internals are excluded from it by design.
 
 ## Agent reading rules
 
@@ -92,3 +93,5 @@ Until one is added, agents must:
 - Andromedae production metrics remain intentionally pending the scheduled public-domain cutover and post-launch verification. The case study labels its Lighthouse numbers pre-launch and links no live site yet.
 
 See the follow-ups section at the end of `.claude/GOAL.md` for the remaining human-in-the-loop items.
+
+How the work was actually run — the autonomous run, agent topology, validation and preserved blockers — is recorded in `agentic-run-evidence.md`.

@@ -315,7 +315,7 @@ const work = {
   title: `Projects | ${person.name}`,
   ogTitle: "Projects",
   description:
-    "Case studies by Gina Horch — a commercial Astro website rebuild, an inherited TypeScript product, a Next.js/Supabase data platform, a full-stack guestbook PWA and an end-to-end data pipeline.",
+    "Case studies by Gina Horch — a commercial Astro website rebuild, an inherited TypeScript product, a Next.js/Supabase data platform, a full-stack guestbook PWA, an end-to-end data pipeline, and the spec-driven agentic workflow behind the work.",
   // Create new project pages by adding a new .mdx file to app/work/projects
   // All projects will be listed on the /home and /work routes
 };
