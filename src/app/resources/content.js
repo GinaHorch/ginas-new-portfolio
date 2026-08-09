@@ -53,7 +53,7 @@ const flags = [
 
 const home = {
   label: "Home",
-  title: `${person.name} | TypeScript & Full-Stack Developer`,
+  title: `${person.name} | Full-Stack Developer`,
   description:
     "Full-stack developer building and improving production applications with React, Next.js, Astro, Supabase and APIs — plus AI-assisted engineering, security and systems thinking.",
   ogTitle: "I build real systems, and protect what they touch",
