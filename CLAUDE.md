@@ -10,6 +10,8 @@ Orientation for working on this repo. Read this before making changes — it cov
 - **Content**: MDX (`@next/mdx`, `gray-matter`, `next-mdx-remote`) for project case studies; a plain JS content module (`src/app/resources/content.js`) for static site copy
 - **Linting/formatting**: **Biome** (`biome.json`, pinned to `@biomejs/biome@1.9.4` as a devDependency) — not ESLint/Prettier. `npm run lint` runs `biome lint src/app src/components`; the vendored `src/once-ui/` library is deliberately out of scope.
 - **No test suite** — no test framework, no test files, no test script. Don't assume tests exist or write tests unless explicitly asked to set up a framework first.
+- **ESLint is gone.** It had no config, no script and no CI use — a leftover from `next lint`, which Next 16 removed. It was also the only thing pulling in `ajv` (a Dependabot ReDoS alert). Don't reinstall it; Biome is the linter of record.
+- **`npm` and `install` were listed as runtime dependencies** and have been removed. Nothing imported them; `npm`'s vendored tree was the source of most of the repo's audit alerts, including the only critical one. If `npm audit` suddenly reports a lot of new advisories, check whether something re-added them.
 - Deployed on **Vercel**
 
 ## Commands
