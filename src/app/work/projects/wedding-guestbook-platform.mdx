@@ -1,0 +1,100 @@
+---
+title: "Wedding Guestbook & Media Platform"
+publishedAt: "2026-08-06"
+summary: "A full-stack Next.js guestbook PWA built from a supplied professional design — multi-file media upload, client-side compression, access-controlled Supabase storage, and an admin dashboard that hands a non-technical couple full control over their own guests' content."
+images:
+  - "/images/projects/project-04/wedding-guestbook-architecture.png"
+
+team:
+  - name: "Gina Horch"
+    role: "Developer — technical implementation"
+    avatar: "/images/GinaHeadShot.webp"
+---
+
+## Context
+
+A wedding guestbook, replaced with something guests actually have in their pockets. Instead of a book on a table, guests scan a QR code at the event, open an installable Progressive Web App on their phones, leave a message, upload photographs and video, and browse the memories other guests have shared — during the wedding and afterwards.
+
+This is the **second iteration** of the concept. The first, **Snappily Ever After**, was a group project I worked on. This version I built solo: rebuilt from a supplied professional design, and extended with the piece the first version did not have — a full admin dashboard that lets the couple manage their own event data instead of depending on a developer.
+
+That addition is what turned it from a nice guest experience into something a couple can actually own.
+
+## Design credit
+
+**The visual design and identity for this iteration, including the custom illustrations and UX direction, were created by Bianca Di Biase.**
+
+My role was development and technical implementation. This case study is about building someone else's design faithfully and completely — not about designing it.
+
+## What it does
+
+For guests:
+
+- leave a personal message;
+- upload up to **five photographs and one video** per message;
+- browse submitted photos and videos in an interactive gallery and carousel;
+- open it from a QR code at the event; and
+- install it to the home screen as a PWA, with service-worker caching.
+
+For the couple, through the admin dashboard:
+
+- view every guest message;
+- review, approve, reject or remove photographs and videos;
+- moderate content;
+- manage access; and
+- download the media.
+
+## Technical approach
+
+- **Next.js 16**, **React**, **TypeScript**
+- **Supabase** for the database, authentication and access-controlled storage
+- **React Dropzone** for uploads, **Browser Image Compression** for client-side optimisation
+- **SwiperJS** for the galleries
+- **Progressive Web App** with a service worker
+- **Vercel** deployment
+- **Cursor** and **Supabase AI** as the AI-assisted development environment
+- **Git / GitHub**
+
+![Wedding guestbook PWA architecture: QR-code guest access to an installable PWA, a Next.js/React/TypeScript frontend, client-side compression before upload, Supabase handling authentication, database and access-controlled storage, an admin dashboard giving the couple independent control, and Vercel production hosting.](/images/projects/project-04/wedding-guestbook-architecture.png)
+
+## The interesting problem: who controls the content
+
+The technically interesting part of this project is not the upload form. It is that the content flowing into this application is *other people's personal material* — photographs and video of a private event, taken by guests, stored on infrastructure the couple do not administer.
+
+The obvious way to build this is to leave moderation with the developer: someone emails you, you log into a dashboard, you delete the photo. That is a bad answer. It means every request to remove a photograph goes through a third party, and it means the couple's control over their own wedding depends on someone else being available.
+
+So the admin dashboard was built for a **non-technical** owner. The couple authenticate, and from there they can see every message, approve or reject submissions, remove anything they are not comfortable with, manage who has access, and download their own media — without a developer in the loop, and without touching a database.
+
+Underneath that, Supabase's access-controlled storage decides who can view, upload or manage media at all, and the admin routes sit behind authentication. The control shown in the interface is enforced at the data layer rather than merely hidden in the UI.
+
+Client-side image compression solves the other half of the problem. Phone cameras produce large files, and guests are using whatever connection the venue has. Compressing in the browser before transfer keeps oversized uploads from reaching storage and keeps submissions workable on a phone — without asking anyone to think about file sizes at their friends' wedding.
+
+## Privacy approach
+
+**This application is not linked from this portfolio, and no screenshots of it appear here.**
+
+It holds real guests' messages, photographs and videos, plus administrative access belonging to the couple whose event it was. Publishing a live link or screenshots would expose real people's private content without their consent, so the couple are not named, the repository is private, and the application has been access-restricted rather than left publicly reachable now that it is no longer needed live.
+
+The project is represented here through written description and the generalised architecture diagram above instead. That covers the full-stack, media-processing, security and deployment work without putting anyone's wedding on the internet a second time.
+
+It is also, in a small way, the point of the project. An application built around other people's private content should be one they can shut down, clear out or lock away themselves — and demonstrating it should not require breaking that.
+
+## AI-assisted workflow
+
+Cursor was the primary AI-assisted development environment, with Supabase AI supporting schema and query work directly against the database. That assistance covered translating requirements into implementation tasks, component development, TypeScript implementation, Supabase integration, file-upload handling, responsive behaviour, PWA configuration, admin functionality, debugging and iterative UI refinement.
+
+I remained responsible for understanding the supplied design and deciding how to implement its UX technically, defining application behaviour, integrating frontend and backend, testing both the guest and administrator flows, validating uploads, testing responsive and mobile behaviour, reviewing generated changes, and deploying the application. The tooling accelerated implementation; it did not independently build the application.
+
+## Outcome
+
+- a complete deployed application used for a real event;
+- full-stack Next.js/TypeScript implementation;
+- Supabase-backed data and media with access-controlled storage;
+- a non-technical-friendly admin dashboard giving the client couple full independent control over their guest content and access;
+- multi-file media upload with client-side image optimisation;
+- content moderation;
+- a responsive, installable PWA with service-worker caching; and
+- Vercel production deployment.
+
+What makes this full-stack rather than a front end is the combination:
+
+**frontend + authentication + database + access-controlled storage + media processing + administration + deployment**

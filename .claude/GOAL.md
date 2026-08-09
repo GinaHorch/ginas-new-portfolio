@@ -21,7 +21,7 @@ React remains a prominent skill, but the portfolio should not narrow Gina's curr
 - [x] `.claude/context/projects/andromedae.md` is populated with verified project facts and pre-/post-launch metric guardrails.
 - [x] `.claude/context/projects/hold-my-spoon.md` is populated with verified inherited-codebase, API/integration and AI-assisted workflow details.
 - [x] `.claude/context/projects/she-codes-data-platform.md` is populated with verified platform, data, identity, privacy and AI-assisted workflow details.
-- [x] `.claude/context/projects/wedding-apps.md` is populated with verified Becko & Ava Wedding Guestbook details, design attribution and privacy boundaries.
+- [x] `.claude/context/projects/wedding-apps.md` is populated with verified wedding guestbook details, design attribution and privacy boundaries.
 - [x] The retained end-to-end data engineering project is either given its own context document or is reframed only from verified facts already present in its existing MDX.
 
 ### Site positioning
@@ -32,7 +32,7 @@ React remains a prominent skill, but the portfolio should not narrow Gina's curr
 - [x] AI is presented as an engineering workflow involving context, constraints, review and verification — not as a substitute for technical judgement.
 - [x] Cyber security and systems experience strengthen the development story without overwhelming it.
 - [x] Agile philosophy remains visible as collaborative/iterative ways of working, while Scrum Master identity is de-emphasised.
-- [ ] Current GitHub and LinkedIn links are verified. — **GitHub verified** (`github.com/GinaHorch` resolves to the right profile). **LinkedIn blocked:** `linkedin.com/in/gina-sis/` returns HTTP 999 to automated requests, so it cannot be verified programmatically. Note that project MDX previously carried a *different* handle (`gina-horch`); the unused duplicate was dropped, but a human needs to confirm which handle is current.
+- [x] Current GitHub and LinkedIn links are verified. GitHub (`github.com/GinaHorch`) resolves to the right profile. LinkedIn (`linkedin.com/in/gina-sis/`) returns HTTP 999 to automated requests and was confirmed by the site owner instead; `content.js` already uses it, so no change was needed. The stale `gina-horch` handle that used to sit in project frontmatter is gone.
 - [x] Homepage/page metadata and OG copy reflect the new positioning and no longer lead with Scrum Master/career-pivot language.
 
 ### Project case studies
@@ -40,7 +40,7 @@ React remains a prominent skill, but the portfolio should not narrow Gina's curr
 - [x] A case study exists for **Andromedae** with accurate pre-/post-launch language and no unverified production metrics.
 - [x] A case study exists for **Hold My Spoon** that clearly states the app was inherited partially built and demonstrates substantial development, APIs/integrations, Stripe/webhook work and iterative production support.
 - [x] A case study exists for **She Codes Data Platform** that presents it as a connected data/application platform rather than merely a dashboard and protects private organisational data.
-- [x] A full case study exists for **Becko & Ava Wedding Guestbook**, linking the public live application, crediting Bianca Di Biase for design/visual identity, respecting the private repository, and exposing no private guest/admin data.
+- [x] A full case study exists for the **Wedding Guestbook & Media Platform**, crediting Bianca Di Biase for design/visual identity, respecting the private repository, and exposing no private guest/admin data. Per the updated context document it is deliberately *not* linked and carries no screenshots — the couple are unnamed, the app is access-restricted, and the project is represented by a generalised architecture diagram.
 - [x] The retained end-to-end data engineering project is reframed toward the new positioning without invented facts.
 - [x] Project ownership is accurate across all case studies: built vs inherited, design vs development, and organisational/private boundaries are not blurred.
 
@@ -68,8 +68,14 @@ React remains a prominent skill, but the portfolio should not narrow Gina's curr
 - [x] Public/private boundaries are reviewed for all projects before deployment.
 - [x] `npm run lint` passes.
 - [x] `npm run build` passes.
-- [ ] Bundle/payload size is checked via `VERCEL_ANALYZE_BUILD_OUTPUT=1 vercel build --yes` (the `/og` route has hit Vercel's payload limit before — see commit `2668946`). — **Blocked:** the Vercel CLI is not installed and the repo is not linked (`vercel login`/`vercel link` are interactive). Local build output was checked instead: `.next/static` totals 1.5 MB across all routes, `.next/server/app/og` is 36 KB plus a 408 KB font asset, no runtime dependency was added and `cookie` was removed. The `/og` route stays on the `nodejs` runtime.
-- [ ] Preview deployment is verified via `vercel deploy` or Vercel MCP before promoting to production. — **Blocked:** same reason; no Vercel CLI, no linked project, no Vercel MCP server configured. Verified locally instead against `next build` + `next start`: every route returns 200, `/og` renders, and the sitemap lists only the five current projects.
+- [x] Bundle/payload size is checked via `VERCEL_ANALYZE_BUILD_OUTPUT=1 vercel build --yes`. The first run found **every function at 78 MB**, because `getPosts()` resolves MDX through `process.cwd()` and Next was tracing the whole project — including `public/` — into each function bundle. Two fixes:
+  1. Deleted ~53 MB of orphaned Agile/Scrum/SAFe resource PDFs from `public/pdf/` (nothing referenced them after the `/agile` removal; the four personal certificate PDFs were kept).
+  2. Added `outputFileTracingRoot` and `outputFileTracingExcludes` to `next.config.mjs` so statically-served assets under `public/` stay out of function bundles. `public/fonts/Inter.ttf` and `public/images/GinaHeadShot-og.jpg` remain traced because `/og` reads them at runtime.
+
+  Result: **78 MB → 6.92 MB** for every page function, 4.20 MB for `/robots.txt` and `/sitemap.xml`, and 22.06 MB for `/og` (dominated by `next/og`'s satori/resvg wasm, and comfortably inside the Node runtime limit — the route stays on `nodejs`). The "inferred workspace root" build warning is also gone.
+- [x] Preview deployment is verified via `vercel deploy`. Deployed with `vercel deploy --prebuilt` to the **preview** target only (`target: null`) — not promoted to production. Deployment Protection is enabled on the project, so verification used `vercel curl`. All nine current routes return 200 with the right titles; `/og` renders; the sitemap and `robots.txt` are correct; `/agile`, `/api/check-auth` and the retired `/work/becko-ava-wedding-guestbook` slug all return 404; and no client names appear anywhere in the rendered output.
+
+  Note: the first deploy failed with *"the Root Directory must be a relative path…"*. The cause was a repo-scoped Vercel link (`.vercel/repo.json` with `"directory": "."`). Re-linking at project scope (`.vercel/project.json`) fixed it.
 - [x] `CLAUDE.md` is updated after structural removals so it accurately describes the final repository state.
 
 ## Execution model
@@ -88,9 +94,18 @@ Andromedae production-domain cutover is scheduled for **10 August 2026**. Produc
 
 ### Follow-ups for the maintainer
 
-- Add `linkLive: "https://www.andromedae.com.au/"` to `andromedae.mdx` after the cutover is verified, and replace the pre-launch Lighthouse paragraph with measured production results.
-- Delete the now-unused `AGILE_RESOURCE_PASSWORD` from the local `.env.local` and from the Vercel project's environment variables. Nothing reads it any more.
-- `public/images/projects/project-04/wedding-gallery-swipe.png` was left out of the wedding case study: it captures an "Error fetching messages: TypeError: Failed to fetch" state. Replace it with a working gallery screenshot to use it.
-- `public/images/projects/project-01/andromedae-lighthouse.png` is not published: its address bar exposes the client's pre-production Cloudflare Workers URL. Crop that out, or re-shoot against the production domain after cutover.
-- Confirm which LinkedIn handle is current (`gina-sis` is what the site uses).
-- `notes.txt` at the repo root still contains planning notes for the removed Agile Resources section.
+**Outstanding — after the Andromedae domain cutover:**
+
+- Add `linkLive: "https://www.andromedae.com.au/"` to `andromedae.mdx` once the cutover is verified.
+- Re-run Lighthouse against the public production domain and replace the pre-launch paragraph in `andromedae.mdx` with the measured production results, removing the pre-launch labelling.
+- Relax the "built for a commercial client" wording in `content.js` (About intro and the Software Development skill group) to "in commercial production", and reconsider `Astro`, `Cloudflare`, `Cloudflare Workers / Wrangler`, `Security headers / CSP` and `Accessibility (WCAG)` in `skillsData.ts`, which are currently `practical` precisely because Andromedae was not yet serving the public.
+
+**Resolved:**
+
+- ~~`AGILE_RESOURCE_PASSWORD`~~ deleted from `.env.local` and from the Vercel project.
+- ~~Lighthouse screenshot exposing the staging URL~~ — replaced with a cropped version and published in the case study.
+- ~~Wedding gallery screenshot showing an error state~~ — removed; the case study is now deliberately screenshot-free (see below).
+- ~~LinkedIn handle~~ confirmed as `gina-sis`; `content.js` already used it and needs no change.
+- ~~`notes.txt`~~ deleted.
+
+**Wedding case study — standing constraint:** the couple are not named, the application is not linked, and no screenshots of it are published. It is represented by a generalised architecture diagram only. Do not reintroduce a live link, screenshots or client names.

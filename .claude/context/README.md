@@ -24,7 +24,7 @@ Do not silently rewrite current-state technical documentation as if a planned re
 - **`projects/andromedae.md`** — factual source for the Andromedae project case study.
 - **`projects/hold-my-spoon.md`** — factual source for the Hold My Spoon case study, including inherited-codebase and API/integration boundaries.
 - **`projects/she-codes-data-platform.md`** — factual source for the She Codes Data Platform case study. Privacy and organisational confidentiality constraints are especially important here.
-- **`projects/wedding-apps.md`** — factual source for the Becko & Ava Wedding Guestbook case study. The application is public; the repository and guest/admin data remain private.
+- **`projects/wedding-apps.md`** — factual source for the Wedding Guestbook & Media Platform case study. The application is access-restricted and the repository private; the couple are not named and no screenshots or live link are published.
 - **`removals.md`** — determines what is replaced, retained or deleted. Nothing should be removed based on inference.
 
 ## Agent reading rules

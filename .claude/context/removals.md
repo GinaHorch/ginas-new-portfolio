@@ -9,7 +9,7 @@ The current site has seven project MDX files (`src/app/work/projects/project1.md
 | `project1.mdx` | culture4kids | Replace | Replace with Andromedae. Relevant replacement assets have already been prepared/replaced. |
 | `project2.mdx` | the good list | Replace | Replace with Hold My Spoon. Relevant replacement assets have already been prepared/replaced. |
 | `project3.mdx` | job-tracker | Replace | Replace with She Codes Data Platform. Relevant replacement assets have already been prepared/replaced. |
-| `project4.mdx` | DDD Diamond Smash | Replace | Replace with Becko & Ava Wedding Guestbook. Relevant replacement assets have already been prepared/replaced. |
+| `project4.mdx` | DDD Diamond Smash | Replace | Replace with the Wedding Guestbook & Media Platform. Relevant replacement assets have already been prepared/replaced. |
 | `project5.mdx` | end-to-end data engineering | Keep / Reframe | Retain the project. Reframe existing verified content toward the new developer/data-engineering positioning. Do not introduce new project facts, technologies, responsibilities, outcomes or metrics unless separately verified or added to context. |
 | `project6.mdx` | portfolio | Remove | Public images/folder already removed. Delete the MDX and verify no remaining references. |
 | `project7.mdx` | redux to do list | Remove | Public images/folder already removed. Delete the MDX and verify no remaining references. |
@@ -84,7 +84,7 @@ All decisions in this document have been applied. Final slug mapping:
 | culture4kids → Replace | `andromedae.mdx` → `/work/andromedae` |
 | the good list → Replace | `hold-my-spoon.mdx` → `/work/hold-my-spoon` |
 | job-tracker → Replace | `she-codes-data-platform.mdx` → `/work/she-codes-data-platform` |
-| DDD Diamond Smash → Replace | `becko-ava-wedding-guestbook.mdx` → `/work/becko-ava-wedding-guestbook` |
+| DDD Diamond Smash → Replace | `wedding-guestbook-platform.mdx` → `/work/wedding-guestbook-platform` |
 | end-to-end data engineering → Keep / Reframe | `end-to-end-data-engineering.mdx` → `/work/end-to-end-data-engineering` |
 | portfolio → Remove | deleted |
 | redux to do list → Remove | deleted |

@@ -38,7 +38,7 @@ src/app/
 └── not-found.tsx           → 404
 ```
 
-Project slugs are the MDX filenames: `andromedae`, `hold-my-spoon`, `she-codes-data-platform`, `becko-ava-wedding-guestbook`, `end-to-end-data-engineering`.
+Project slugs are the MDX filenames: `andromedae`, `hold-my-spoon`, `she-codes-data-platform`, `wedding-guestbook-platform`, `end-to-end-data-engineering`.
 
 There is no Pages Router directory and no API routes — `/agile`, its resource MDX, and the `src/pages/api/` password gate were removed with the repositioning (see `.claude/context/removals.md`).
 
@@ -64,20 +64,21 @@ There is no Pages Router directory and no API routes — `/agile`, its resource 
 ## Known quirks
 
 - **Vercel payload limit already bit this project once** — commit `2668946` switched `src/app/og/route.tsx` from the `edge` to `nodejs` runtime after a 1MB deployment payload failure. Don't revert that. Check bundle/function size (`ANALYZE=true npm run build`, or `VERCEL_ANALYZE_BUILD_OUTPUT=1 vercel build --yes`) before adding heavy dependencies or new routes.
-- **Full-page screenshots as project images**: most assets under `public/images/projects/` are tall full-page captures, while the carousel and detail hero use a 16:9 frame. `.topAnchored` in `src/components/ProjectCard.module.scss` anchors them with `object-position: top` so the top of the page shows instead of an arbitrary middle band. Keep that class on any new project image frame.
+- **`public/` is deliberately excluded from function traces.** `getPosts()` resolves MDX through `process.cwd()`, which makes Next trace the whole project into every serverless function — that put every function at 78 MB. `next.config.mjs` now sets `outputFileTracingRoot` and `outputFileTracingExcludes` to keep statically-served assets out of function bundles (now ~6.9 MB per page function). **`public/fonts/Inter.ttf` and `public/images/GinaHeadShot-og.jpg` must stay traced** — `/og` reads both at runtime. If you add a runtime file read under `public/`, add it back to the trace.
+- **`/og` reads assets off disk, not over HTTP.** Turbopack's production server doesn't implement `fetch()` for `file://` URLs, and satori can't decode WebP — hence the JPEG avatar copy. Don't switch it back to fetching `person.avatar`.
+- **Full-page screenshots as project images**: most assets under `public/images/projects/` are tall full-page captures, while the carousel and detail hero use a 16:9 frame. `.topAnchored` in `src/components/ProjectCard.module.scss` anchors them with `object-position: top` so the top of the page shows instead of an arbitrary middle band. Keep that class on any new project image frame. Images *inside* MDX bodies are different — `createImage` in `mdx.tsx` renders them at natural height via `next/image` so diagrams stay readable, rather than cropping them to 16:9.
 - **Two Biome rules are off** in `biome.json`: `noDangerouslySetInnerHtml` (JSON-LD structured data on every page) and `noExplicitAny` (deliberate casts at the Once UI type boundary in `mdx.tsx` and `layout.tsx`). Everything else in `src/app` and `src/components` is clean — keep it that way.
 - **Barrel files** (`src/once-ui/components/index.ts`, `src/components/index.ts`) exist but `src/components/index.ts` only re-exports 5 of the components — others are imported by direct path. Follow whatever the surrounding code already does.
 
 ## Security
 
 - **The site has no authentication, no API routes, no cookies and no server-side user input.** The `/agile` password gate, `src/pages/api/authenticate.ts`, `src/pages/api/check-auth.ts`, the `authToken` cookie, the `cookie` dependency and `AGILE_RESOURCE_PASSWORD` were all removed with the Agile Resources feature. Don't reintroduce an auth flow without a real requirement.
-- **A stale `AGILE_RESOURCE_PASSWORD` may still exist** in the local (gitignored) `.env.local` and in the Vercel project's environment variables. Neither is read by any code any more; both should be deleted by the maintainer.
 - Use the built-in **`security-review`** skill for any change touching auth, cookies, the password gate, or anything handling user input.
 - The **`security-guidance`** plugin (Anthropic official, `claude-plugins-official` marketplace) is recommended as a standing safety net — pattern-based warnings on edits plus LLM diff review. Install it yourself with `/plugin install security-guidance@claude-plugins-official` (this is a runtime/CLI action, not something achievable via file edits).
 
 ## Vercel tooling: CLI + MCP, split by purpose
 
-The repo is not yet linked to a Vercel project (no `.vercel/` folder) — run `vercel login` and `vercel link` once before using either of these.
+The repo is linked to the `ginas-new-portfolio` Vercel project (`.vercel/repo.json`), and the Vercel MCP server is configured.
 
 - **Vercel MCP** (`https://mcp.vercel.com`, hosted, OAuth) — for read/inspection: deployment status, build/runtime logs, docs search. Good fit for a review-agent role (e.g. "did the last preview deploy succeed"). Add with `claude mcp add --transport http vercel https://mcp.vercel.com`, then `/mcp` to authorize. It grants account-level access including paid domain-purchase tools — require confirmation on those, don't hand them to an unattended agent.
 - **Vercel CLI** — for anything that writes state or needs a real local build: `vercel env add` for env vars, `VERCEL_ANALYZE_BUILD_OUTPUT=1 vercel build --yes` to catch bundle-size regressions locally before pushing (see the payload-limit quirk above).
@@ -99,7 +100,7 @@ The project set is:
 - **Andromedae** — commercial Astro/Cloudflare website and structured Claude Code workflow;
 - **Hold My Spoon** — inherited TypeScript product with API/integration, Stripe/webhook and production-debugging work;
 - **She Codes Data Platform** — connected Next.js/TypeScript/Supabase data platform with identity, automation, privacy and data-integrity work;
-- **Becko & Ava Wedding Guestbook** — public full-stack Next.js PWA (private repository), developed from Bianca Di Biase's supplied design;
+- **Wedding Guestbook & Media Platform** — full-stack Next.js PWA developed from Bianca Di Biase's supplied design, with an admin dashboard giving a non-technical couple independent control. **Deliberately unlinked and screenshot-free**: it holds real guests' private media, so the couple are not named and the case study relies on a generalised architecture diagram. Do not add a live link, screenshots or client names to this one;
 - **End-to-End Data Engineering Pipeline** — retained and reframed, not replaced.
 
 This work is tracked in:

@@ -1,189 +1,86 @@
-# Project: Becko & Ava Wedding Guestbook
+Project 4: Wedding Guestbook & Media Platform
+What is it?
 
-## What is it?
+A full-stack, installable Progressive Web App built for real wedding guests to share messages, photographs and videos during and after a couple's wedding — replacing a traditional physical guestbook. Guests could leave a personal message, upload media, and browse memories shared by other guests, all from their phones via a QR code.
 
-Becko & Ava's Wedding Guestbook is an interactive Progressive Web App created for real wedding guests to share messages, photographs and videos during and after the couple's wedding.
+This is the second, solo-built iteration of a wedding guestbook concept I first worked on as part of a group project, Snappily Ever After. For this version I rebuilt the concept from a supplied professional design and added a full non-technical-friendly admin dashboard, so the couple could manage their own event data directly rather than depending on a developer.
 
-Instead of a traditional physical guestbook, guests can access the application from their phones, leave a personal message, upload media and browse memories contributed by other guests.
+Because this application holds real guests' personal messages, photographs and videos, it's described here without images, without identifying the couple, and without a public link — see "Privacy approach" below.
 
-The application also includes an **authenticated/protected administration area** so submissions can be reviewed and moderated.
+Design and attribution
 
-This is a full public portfolio case study. The live application is public; the GitHub repository and real guest/admin data remain private.
+Visual design and identity for this iteration were created by Bianca Di Biase, including custom illustrations and UX direction. My role was development and technical implementation.
 
-## Design and attribution
+This attribution stays visible because it accurately reflects ownership and demonstrates my ability to work from another professional's design, rather than implying I created the visual identity myself.
 
-The visual design and identity were created by **Bianca Di Biase**, including the custom illustrations and UX direction.
+Your role
 
-I was responsible for the **development and technical implementation** of the application.
+I developed the working application from the supplied design. My contribution included:
 
-This attribution should remain visible in the portfolio. It accurately reflects ownership and demonstrates my ability to work from another professional's design rather than implying that I created the visual identity myself.
+Next.js application development;
+TypeScript implementation;
+translating the visual design into responsive components;
+Supabase integration;
+database-backed guest messages;
+photograph and video uploads;
+media storage;
+client-side image compression;
+interactive image/video galleries;
+responsive carousel functionality;
+PWA functionality with service-worker caching and mobile installation;
+a non-technical-friendly admin dashboard, giving the couple independent control over guest messages, photos, videos and access — without needing developer support;
+authenticated administration and protected admin routes;
+content moderation and media download functionality;
+production deployment to Vercel; and
+QR-code-compatible access for wedding guests.
+Tech stack
+Next.js 16
+React
+TypeScript
+Supabase
+React Dropzone
+SwiperJS
+Browser Image Compression
+Progressive Web App / Service Worker
+Vercel
+Cursor
+Git / GitHub
+How AI-assisted tooling was used
 
-## Your role
+Development used Cursor as the primary AI-assisted development environment, alongside Supabase AI for schema and query assistance directly against the database.
 
-I developed the working application from the supplied design.
+AI assistance supported translating requirements into implementation tasks, component development, TypeScript implementation, Supabase integration, debugging, file-upload handling, responsive behaviour, PWA configuration, admin functionality, and iterative UI refinement.
 
-My contribution included:
+I remained responsible for understanding the supplied design, determining how to implement the UX technically, defining application behaviour, integrating the frontend and backend, testing guest and administrator flows, validating uploads, testing responsive/mobile behaviour, reviewing AI-generated changes, and deploying the final application. AI tooling accelerated implementation; it did not independently build the application.
 
-- Next.js application development;
-- TypeScript implementation;
-- translating the visual design into responsive components;
-- Supabase integration;
-- database-backed guest messages;
-- photograph uploads;
-- video uploads;
-- media storage;
-- client-side image compression;
-- interactive image/video galleries;
-- responsive carousel functionality;
-- PWA functionality;
-- service-worker caching;
-- mobile installation support;
-- authenticated administration;
-- protected admin routes;
-- content moderation functionality;
-- media download functionality;
-- production deployment to Vercel; and
-- QR-code-compatible access for wedding guests.
+Application / data specifics
 
-## Tech stack
+Guests can leave a message, upload up to five photographs and one video per message, browse submitted media, and install the app as a PWA. Client-side image compression reduces unnecessarily large uploads before files reach backend storage.
 
-- **Next.js 16**
-- **React**
-- **TypeScript**
-- **Supabase**
-- **React Dropzone**
-- **SwiperJS**
-- **Browser Image Compression**
-- **Progressive Web App / Service Worker**
-- **Vercel**
-- **Cursor**
-- **Git / GitHub**
+The admin dashboard lets the couple — without any technical background — view guest messages, review and moderate photographs and videos, approve or reject submissions, manage access, and download media.
 
-## How Cursor was used
+Together this spans frontend + authentication + database + storage + media processing + administration + deployment — full-stack work, not just a public-facing UI.
 
-Cursor was used as the AI-assisted development environment while implementing the application.
+Privacy approach
 
-AI assistance supported:
+This application is not publicly linked from this portfolio. It holds real guests' personal messages, photographs and videos, and administrative access belonging to the couple who own the event — publishing a live link or screenshots would expose real people's private content without their consent. The couple's names aren't used here for the same reason, and the app has been taken offline / access-restricted rather than left publicly reachable now that it's no longer needed live.
 
-- translating requirements into implementation tasks;
-- Next.js component development;
-- TypeScript implementation;
-- Supabase integration;
-- debugging;
-- file-upload handling;
-- responsive behaviour;
-- PWA configuration;
-- admin functionality;
-- iterative UI refinement; and
-- implementation troubleshooting.
+Repository: private.
 
-I remained responsible for:
+Instead, this project is represented through written description and the architecture diagram above, covering the full-stack, media-processing, security and deployment work involved.
 
-- understanding Bianca's design;
-- determining how to implement the UX technically;
-- defining application behaviour;
-- integrating the frontend and backend;
-- testing guest and administrator flows;
-- validating uploads;
-- testing responsive/mobile behaviour;
-- reviewing AI-generated changes; and
-- deploying the final application.
+Key achievements / metrics
+complete deployed application used for a real event;
+full-stack Next.js/TypeScript implementation;
+Supabase-backed data and media, with access-controlled storage;
+built a non-technical-friendly admin dashboard giving the client couple full independent control over their guest content and access;
+multi-file media upload with client-side image optimisation;
+content moderation;
+responsive, installable PWA with service-worker caching;
+Vercel production deployment.
 
-Do not describe Cursor as having independently built the application.
+Functional metric: supports up to 5 photographs + 1 video per guest submission.
 
-## Application / data specifics
+One-line pitch
 
-Guests can:
-
-- leave a message;
-- upload up to **five photographs**;
-- upload **one video per message**;
-- browse submitted photographs and videos;
-- access the application from mobile devices; and
-- install it as a PWA.
-
-Client-side image compression reduces unnecessarily large photo uploads before files are transferred to backend storage.
-
-The administration area allows authorised users to:
-
-- view guest messages;
-- review photographs and videos;
-- approve or reject submissions;
-- download media; and
-- moderate content.
-
-This demonstrates application development beyond the public UI because it combines:
-
-**frontend + authentication + database + storage + media processing + administration + deployment**
-
-## Live link / repo
-
-**Live application:**  
-https://becko-ava-wedding.vercel.app/
-
-**Repository:**  
-https://github.com/GinaHorch/becko-ava-wedding
-
-The GitHub repository is private.
-
-## Public / private boundaries
-
-### Safe to show publicly
-
-- live application URL;
-- public-facing UI;
-- technical stack;
-- generic feature descriptions;
-- architecture at an appropriate high level;
-- screenshots using public or synthetic/test content;
-- Bianca Di Biase's design/visual-identity credit;
-- Gina Horch's development/technical-implementation credit.
-
-### Do not publish
-
-- real private guest submissions;
-- private guest photographs or videos unless explicit permission exists;
-- personal guest details;
-- production admin data;
-- authentication credentials or implementation secrets;
-- Supabase keys/secrets;
-- private storage paths or internal configuration that would weaken security;
-- admin screenshots containing identifiable guest information.
-
-Any admin screenshot used in the portfolio must contain synthetic/test data or be properly anonymised.
-
-## Key achievements / metrics
-
-Confirmed achievements:
-
-- complete deployed application used for a real event;
-- full-stack Next.js/TypeScript implementation;
-- Supabase-backed data and media;
-- authenticated/protected administration;
-- multi-file media upload;
-- client-side image optimisation;
-- content moderation;
-- responsive mobile experience;
-- installable PWA;
-- service-worker caching; and
-- Vercel production deployment.
-
-Useful concrete functional metric:
-
-- supports up to **5 photographs + 1 video per guest submission**.
-
-If reliable usage statistics are available later, guest submissions, photographs uploaded, videos uploaded or PWA installs may be considered. They are not necessary for the case study and must not be invented.
-
-## Screenshots / assets needed
-
-Recommended:
-
-- `wedding-home-mobile.png` — strongest hero/mobile view;
-- `wedding-message-upload.png` — guestbook submission interface using public/test content;
-- a gallery/media view using safe content;
-- an admin view only if it uses synthetic/test or properly anonymised data;
-- a design-to-implementation comparison showing Bianca's supplied design alongside the implemented interface, with design credit clearly visible.
-
-## One-line pitch
-
-**Developed a full-stack Next.js wedding guestbook PWA from a supplied professional design, combining Supabase, authenticated administration, media uploads, optimisation and mobile-first deployment.**
+Developed a full-stack Next.js wedding guestbook PWA from a supplied professional design — media upload and processing, secure access-controlled storage, and a non-technical-friendly admin dashboard giving the client couple full control, deployed as an installable PWA.

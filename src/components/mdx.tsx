@@ -1,13 +1,13 @@
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
+import Image from "next/image";
 import type React from "react";
 import type { ReactNode } from "react";
 
-import { SmartImage, SmartLink, Text } from "@/once-ui/components";
+import { SmartLink, Text } from "@/once-ui/components";
 import { CodeBlock } from "@/once-ui/modules";
 import { HeadingLink } from "@/components";
 
 import type { TextProps } from "@/once-ui/interfaces";
-import type { SmartImageProps } from "@/once-ui/components/SmartImage";
 
 type TableProps = {
   data: {
@@ -69,21 +69,31 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
   );
 }
 
-function createImage({ alt, src, ...props }: SmartImageProps & { src: string }) {
+function createImage({ alt, src }: { alt?: string; src: string }) {
   if (!src) {
-    console.error("SmartImage requires a valid 'src' property.");
+    console.error("An image in MDX is missing a 'src'.");
     return null;
   }
 
+  // Images inside a case study are usually diagrams or captures that are taller than
+  // wide, and they have to stay readable. SmartImage would crop them into a fixed 16:9
+  // frame, so render at natural height instead: width/height 0 plus `sizes` is the
+  // documented next/image pattern for images whose intrinsic size isn't known here.
   return (
-    <SmartImage
-      className="my-20"
-      enlarge
-      radius="m"
-      aspectRatio="16 / 9"
-      alt={alt}
+    <Image
       src={src}
-      {...props}
+      alt={alt ?? ""}
+      width={0}
+      height={0}
+      sizes="(max-width: 960px) 100vw, 960px"
+      style={{
+        width: "100%",
+        height: "auto",
+        borderRadius: "var(--radius-m)",
+        border: "1px solid var(--neutral-alpha-weak)",
+        marginTop: "var(--static-space-24)",
+        marginBottom: "var(--static-space-24)",
+      }}
     />
   );
 }

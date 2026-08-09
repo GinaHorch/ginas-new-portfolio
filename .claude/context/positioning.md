@@ -26,7 +26,7 @@ Each featured project should demonstrate a distinct engineering capability rathe
 
 - **Andromedae:** I can engineer, secure and ship a commercial production website.
 - **She Codes Data Platform:** I can work inside a complex data platform and reason about integrations, identity, permissions, data integrity and security.
-- **Becko & Ava Wedding Guestbook:** I can turn someone else's professional design into a complete full-stack application and deploy it for real users.
+- **Wedding Guestbook & Media Platform:** I can turn someone else's professional design into a complete full-stack application, deploy it for real users, and hand the client independent control over their own private content.
 - **Hold My Spoon:** I can inherit an existing product, understand it, diagnose problems, work across APIs/integrations, and continue developing it.
 
 ## Primary audience
