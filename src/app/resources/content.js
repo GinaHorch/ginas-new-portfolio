@@ -4,7 +4,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "TypeScript & Full-Stack Developer",
+  role: "Full-Stack Developer - TypeScript, Python & AI-Augmented Systems",
   avatar: "/images/GinaHeadShot.webp",
   location: "Australia/Perth", // Expecting the IANA time zone identifier
   languages: ["English", "German"],
@@ -55,16 +55,15 @@ const home = {
   label: "Home",
   title: `${person.name} | TypeScript & Full-Stack Developer`,
   description:
-    "TypeScript and full-stack developer building and improving production applications with React, Next.js, Astro, Supabase and APIs — plus AI-assisted engineering, security and systems thinking.",
-  ogTitle: "I build production software",
-  headline: <>Kaya. I build production software.</>,
+    "Full-stack developer building and improving production applications with React, Next.js, Astro, Supabase and APIs — plus AI-assisted engineering, security and systems thinking.",
+  ogTitle: "I build real systems, and protect what they touch",
+  headline: <>Kaya. I build real systems, and protect what they touch.</>,
   subline: (
     <>
-      I'm Gina, a TypeScript and full-stack developer. I build and improve real applications —
-      a connected data platform, a public product I inherited and extended, a commercial website heading
-      into production —
-      and I treat AI as an engineering practice: context, constraints, review and verification.
-      Security is part of how I build, not something added afterwards.
+      I'm Gina, a systems, security and development specialist working across TypeScript and Python. I build and 
+      improve real applications — a connected data platform, a public product I inherited and extended, a commercial 
+      website heading into production — and I treat AI as an engineering practice: context, constraints, review and 
+      verification. Security is part of how I build, not something added afterwards.
     </>
   ),
   focus: {
@@ -78,7 +77,7 @@ const about = {
   label: "About",
   title: `About ${person.name} | Software Developer`,
   ogTitle: "About Gina",
-  description: `${person.name} is a TypeScript and full-stack developer in Perth, Western Australia, building production applications with AI-assisted engineering, security and systems thinking.`,
+  description: `${person.name} is a full-stack developer in Perth, Western Australia, building production applications with AI-assisted engineering, security and systems thinking.`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -96,10 +95,12 @@ const about = {
     description: (
       <>
       <p>
-      I'm a software developer working mainly in TypeScript across the full stack. Day to day that means
-      React and Next.js applications, an Astro site built for a commercial client, PostgreSQL and Supabase
-      behind them, and the API integrations, webhooks and scheduled automation that connect those systems
-      to everything else an organisation already runs on.
+      I'm a software developer working across TypeScript and Python, building full-stack production systems 
+      with an AI-augmented engineering practice — context, constraints, review and verification, not just 
+      prompting and accepting. Day to day that means React and Next.js applications, an Astro site built for 
+      a commercial client, PostgreSQL and Supabase behind them, Python-based automation and integrations, and 
+      the webhooks and scheduled jobs that connect those systems to everything else an organisation already 
+      runs on.
       </p>
       <p>
       The work I care most about is the kind that has real users attached to it: rebuilding a company's
