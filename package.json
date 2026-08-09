@@ -35,6 +35,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@csstools/postcss-global-data": "^2.1.1",
+    "@playwright/test": "^1.62.1",
     "@types/node": "^20",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19",
