@@ -392,8 +392,9 @@ const skills = {
     skills: [
       {
         title: "Software Development",
-        description: <>Where most of my work happens: TypeScript across the stack, React and Next.js applications,
-        an Astro site built for a commercial client, and the HTML, CSS, SQL and Git practice underneath it all.</>,
+        description: <>Where most of my work happens: TypeScript across the stack and Python for automation and
+        data work, React and Next.js applications, an Astro site built for a commercial client, and the HTML,
+        CSS, SQL and Git practice underneath it all.</>,
       },
       {
         title: "AI-Assisted Engineering",
@@ -409,9 +410,9 @@ const skills = {
       },
       {
         title: "Cyber Security",
-        description: <>Security treated as part of engineering: authentication and access control, Row Level
-        Security, privacy and consent, secure configuration and headers — alongside endpoint, identity and
-        network security learning through professional work and Diploma study.</>,
+        description: <>Security treated as part of engineering rather than a pass at the end: authentication and
+        access control, Row Level Security, privacy and consent, secure configuration and headers — alongside
+        endpoint, identity and network security from professional systems work and Diploma study.</>,
       },
       {
         title: "Cloud, Systems & Deployment",
