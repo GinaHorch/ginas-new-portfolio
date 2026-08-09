@@ -1,3 +1,13 @@
+/*
+ * A container query, not a viewport media query: this chart is rendered both full
+ * width on /skills and inside a narrow flex column on the home page, so how much
+ * room it actually has has little to do with the size of the screen.
+ */
+.chartWrapper {
+  container-type: inline-size;
+  width: 100%;
+}
+
 .chartContainer {
   border: 1px solid var(--neutral-border-medium);
   border-radius: var(--radius-l);
@@ -11,6 +21,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/*
+ * Below roughly this width the category labels start wrapping onto two lines (see
+ * the tick callback in OverviewSkillsChart), and the legend wraps too. Without the
+ * extra height the wrapped labels overlap each other.
+ */
+@container (max-width: 560px) {
+  .chartContainer {
+    height: calc(54px * 6 + 170px);
+    padding: var(--static-space-12);
+  }
 }
 
 .chartContainer canvas {

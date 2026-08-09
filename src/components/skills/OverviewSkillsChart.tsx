@@ -22,6 +22,43 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const TEXT = "#E0E0E0";
 const GRID = "rgba(224, 224, 224, 0.12)";
 
+// Chart.js caps how much width the category axis may take and then clips whatever
+// overflows, so on a narrow canvas "Cloud, Systems & Deployment" rendered as
+// "Systems & Deployment". Wrapping the labels keeps the full text at a readable size
+// instead of shrinking the font or abbreviating the group names, which have to stay
+// identical to the section headings below the chart.
+// Measured from the rendered canvas: Inter at 13px runs 6.15-7.0px per character
+// across these six labels. Use the widest so the estimate never under-reserves and
+// lets a label clip; erring wide only means wrapping slightly sooner than needed.
+const AXIS_WIDTH_FRACTION = 0.36;
+const APPROX_CHAR_WIDTH = 7;
+const MIN_CHARS_PER_LINE = 10;
+
+function wrapLabel(label: string, maxChars: number): string | string[] {
+  if (label.length <= maxChars) {
+    return label;
+  }
+
+  const lines: string[] = [];
+  let line = "";
+
+  for (const word of label.split(" ")) {
+    const candidate = line ? `${line} ${word}` : word;
+    if (line && candidate.length > maxChars) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = candidate;
+    }
+  }
+
+  if (line) {
+    lines.push(line);
+  }
+
+  return lines;
+}
+
 const OverviewSkillsChart = () => {
   const groups = skillCountsByLevel();
 
@@ -75,19 +112,34 @@ const OverviewSkillsChart = () => {
       },
       y: {
         stacked: true,
-        ticks: { color: TEXT, font: { size: 13 }, autoSkip: false },
+        ticks: {
+          color: TEXT,
+          font: { size: 13 },
+          autoSkip: false,
+          // Regular function so `this` is the scale, giving the live canvas width —
+          // this then also survives orientation changes and window resizes.
+          callback(this: { chart: { width: number } }, _value: unknown, index: number) {
+            const maxChars = Math.max(
+              MIN_CHARS_PER_LINE,
+              Math.floor((this.chart.width * AXIS_WIDTH_FRACTION) / APPROX_CHAR_WIDTH),
+            );
+            return wrapLabel(groups[index]?.title ?? "", maxChars);
+          },
+        },
         grid: { display: false },
       },
     },
   };
 
   return (
-    <div className={styles.chartContainer}>
-      <Bar
-        data={data}
-        options={options}
-        aria-label="Chart: number of skills in each group, broken down by evidence level. A text version follows."
-      />
+    <div className={styles.chartWrapper}>
+      <div className={styles.chartContainer}>
+        <Bar
+          data={data}
+          options={options}
+          aria-label="Chart: number of skills in each group, broken down by evidence level. A text version follows."
+        />
+      </div>
       <div className={styles.visuallyHidden}>
         <ul>
           {skillGroups.map((group) => (
