@@ -140,7 +140,7 @@ Recommended assets:
 - `andromedae-services.png` — service section/page showing component design;
 - `andromedae-team.png` — team/about implementation;
 - `andromedae-contact-us.png` — contact/booking experience if visually useful;
-- `andromedae-lighthouse.png` — use the production-domain Lighthouse result after launch; if retaining the current Wrangler result, label it clearly as pre-launch;
+- ~~`andromedae-lighthouse.png`~~ — removed at the 10 August 2026 cutover. It showed the pre-launch Wrangler result, which the measured production figures superseded. Lighthouse results are now stated as text in the case study rather than as a screenshot: it keeps them readable to assistive technology, and it avoids a stale image contradicting the numbers beside it. Re-shoot only if a screenshot adds something the text cannot;
 - `claude-code-workflow.png` — diagram of the structured agentic workflow without exposing private source code or business information.
 
 ## One-line pitch

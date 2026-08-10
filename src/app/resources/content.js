@@ -99,8 +99,8 @@ const about = {
       <p>
       I'm a software developer working across TypeScript and Python, building full-stack production systems 
       with an AI-augmented engineering practice — context, constraints, review and verification, not just 
-      prompting and accepting. Day to day that means React and Next.js applications, an Astro site built for 
-      a commercial client, PostgreSQL and Supabase behind them, Python-based automation and integrations, and 
+      prompting and accepting. Day to day that means React and Next.js applications, an Astro site in
+      commercial production, PostgreSQL and Supabase behind them, Python-based automation and integrations, and
       the webhooks and scheduled jobs that connect those systems to everything else an organisation already 
       runs on.
       </p>
@@ -393,7 +393,7 @@ const skills = {
       {
         title: "Software Development",
         description: <>Where most of my work happens: TypeScript across the stack and Python for automation and
-        data work, React and Next.js applications, an Astro site built for a commercial client, and the HTML,
+        data work, React and Next.js applications, an Astro site in commercial production, and the HTML,
         CSS, SQL and Git practice underneath it all.</>,
       },
       {

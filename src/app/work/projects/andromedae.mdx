@@ -1,7 +1,8 @@
 ---
 title: "Andromedae — Commercial Website Rebuild"
 publishedAt: "2026-08-08"
-summary: "A commercial SMSF administration website rebuilt from a legacy Wix site into a maintainable Astro/TypeScript implementation, with its Cloudflare deployment, security headers, accessibility work and production migration prepared ahead of the domain cutover."
+summary: "A commercial SMSF administration website rebuilt from a legacy Wix site into a maintainable Astro/TypeScript implementation — now live on Cloudflare, with its security headers, accessibility and migration verified against the public production domain."
+linkLive: "https://www.andromedae.com.au/"
 images:
   - "/images/projects/project-01/andromedae-home-desktop.png"
   - "/images/projects/project-01/andromedae-services.png"
@@ -19,7 +20,7 @@ team:
 
 Andromedae is an Australian SMSF administration business running its public website on a legacy Wix site. The business needed a complete rebuild: a modern, maintainable implementation built around its updated visual identity, covering services, company and team information, fees, contact options, privacy and security practices, the complaints process and supporting business information.
 
-This is a production replacement rather than a portfolio demonstration. The Astro implementation has been built, deployed and tested through Cloudflare/Wrangler, and the public-domain cutover is scheduled for **10 August 2026**. Until that cutover succeeds, `www.andromedae.com.au` continues to serve the legacy Wix site.
+This is a production replacement rather than a portfolio demonstration. The Astro implementation went live on the public domain on **10 August 2026**, replacing the legacy Wix site. `www.andromedae.com.au` is now served from Cloudflare, with the apex domain redirecting to `www`.
 
 ## My role
 
@@ -76,24 +77,20 @@ The useful distinction is not how much code an agent produced. It is how the ass
 
 ## Where it stands
 
-Confirmed before the production-domain cutover:
+Live on the public domain since 10 August 2026, replacing the legacy Wix site. Delivered: the rebuild itself, the migration to a developer-managed Astro architecture, production deployment through Cloudflare Workers/Wrangler, a reusable component architecture, accessibility as a development requirement rather than a retrofit, security headers serving in production, legacy URL preservation through redirects, SEO migration, and a documented rollback strategy for the cutover.
 
-- a complete commercial website rebuild;
-- a migration path from Wix to a developer-managed Astro architecture;
-- Cloudflare Workers deployment configured;
-- a pre-production build deployed and tested through Cloudflare/Wrangler;
-- a reusable component architecture and responsive implementation;
-- accessibility built into the development requirements;
-- security headers and production configuration prepared;
-- legacy URL preservation planned through redirects;
-- SEO migration prepared; and
-- a documented rollback strategy for the cutover.
+### Measured against the live domain
 
-A Lighthouse run against the pre-production Cloudflare Workers deployment returned 100 for Performance, Accessibility and Best Practices, with a 0.4s First Contentful Paint, 0.6s Largest Contentful Paint and 0.003 Cumulative Layout Shift.
+The security posture is the part that is verifiable from outside, so it is the part worth stating precisely. The production response carries HSTS, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, a `Permissions-Policy` denying camera, microphone, geolocation and payment, and a Content-Security-Policy that permits scripts only from the site's own origin plus one named hash — no `unsafe-inline` for scripts, with `object-src 'none'` and `frame-ancestors 'none'`.
 
-Those are **pre-launch** numbers. They were measured against the Workers deployment, not the public production domain, so they are development evidence rather than production metrics. I will re-run them against the live domain after the cutover before treating any score as a production result.
+Lighthouse against the public domain, replacing the pre-launch figures this section used to carry:
 
-![Pre-launch Lighthouse report for the Cloudflare Workers deployment: 100 Performance, 100 Accessibility, 100 Best Practices, with a 0.4s First Contentful Paint, 0.6s Largest Contentful Paint, 0ms Total Blocking Time and 0.003 Cumulative Layout Shift.](/images/projects/project-01/andromedae-lighthouse.png)
+- **Desktop** — Performance 96, Accessibility 100, Best Practices 93, SEO 85. First Contentful Paint 0.6s, Largest Contentful Paint 1.3s, Total Blocking Time 0ms, Cumulative Layout Shift 0.004.
+- **Mobile** — Performance 75, Accessibility 100, Best Practices 93, SEO 85. First Contentful Paint 1.6s, Largest Contentful Paint 6.1s, Total Blocking Time 0ms, Cumulative Layout Shift 0.005.
+
+The mobile Largest Contentful Paint is the real weak point, and it is a delivery problem rather than a page-weight one — the whole page is 843 KB. The hero image is a CSS `background-image`, which the browser's preload scanner cannot see, so 2.3 seconds of that 6.1 is spent waiting before the request is even made. Promoting the hero to a real `<img>` with a high fetch priority and a smaller variant for small screens is the fix, and it is the next piece of work on the site. Publishing the number with its cause is more useful than publishing the desktop score alone.
+
+The Best Practices deduction is the platform's rather than the site's: Cloudflare injects its own analytics beacon and bot-management script into the response, and the Content-Security-Policy correctly refuses to execute them. A policy strict enough to catch its own CDN is the trade-off working as designed — though it does mean Cloudflare Web Analytics collects nothing until it is either allow-listed deliberately or switched off. The SEO deduction is one undescriptive "Read More" link, and a `Content-Signal` directive in `robots.txt` that Lighthouse does not recognise as valid.
 
 ## What I took from it
 

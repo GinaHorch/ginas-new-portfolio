@@ -156,7 +156,7 @@ This work is tracked in:
 
 ### Open items carried forward
 
-- **Andromedae has no `linkLive`** until the production-domain cutover (scheduled 10 August 2026) succeeds — `www.andromedae.com.au` still served the legacy Wix site as of 8 August 2026. Add the link, and replace the pre-launch Lighthouse framing with measured production results, only after verifying the live domain.
+- **Andromedae went live on 10 August 2026** and the case study now carries a `linkLive` plus Lighthouse figures measured against the public domain (desktop 96/100/93/85, mobile 75/100/93/85). Its remaining open items are on the client site rather than in this repo — a 6.1s mobile LCP caused by the hero being a CSS `background-image`, and Cloudflare's injected analytics/bot scripts being blocked by the site's own CSP. See the follow-ups in `.claude/GOAL.md`. Re-measure and update the case-study figures once the hero delivery changes; don't quote the desktop score alone.
 - **`baseURL` is `ginas-new-portfolio.vercel.app`** in `config.js`. Change it if a custom domain is set up; everything that builds canonical URLs, OG images, JSON-LD, the sitemap and robots reads from it.
 
 ### Agent workflow

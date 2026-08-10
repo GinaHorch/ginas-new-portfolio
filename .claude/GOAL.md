@@ -92,15 +92,26 @@ After this workflow has been completed manually and reliably at least once, it m
 
 **Implementation complete except for three externally blocked items** (LinkedIn link verification, Vercel bundle-payload check, Vercel preview deployment). Each is annotated inline above.
 
-Andromedae production-domain cutover is scheduled for **10 August 2026**. Production Lighthouse/Core Web Vitals and post-launch metrics remain pending until measured against the public production site. The case study currently states pre-launch numbers and labels them as such, and carries **no `linkLive`** — the public domain still served the legacy Wix site at the time of writing.
+The Andromedae production-domain cutover **completed on 10 August 2026** and was verified: `www.andromedae.com.au` is served from Cloudflare with no Wix markers in the response, the apex domain 301s to `www`, and the security headers are live. Production Lighthouse was measured against the public domain and the case study now carries those figures and a `linkLive`.
 
 ### Follow-ups for the maintainer
 
-**Outstanding — after the Andromedae domain cutover:**
+**Outstanding — on the Andromedae site itself (not this repository):**
 
-- Add `linkLive: "https://www.andromedae.com.au/"` to `andromedae.mdx` once the cutover is verified.
-- Re-run Lighthouse against the public production domain and replace the pre-launch paragraph in `andromedae.mdx` with the measured production results, removing the pre-launch labelling.
-- Relax the "built for a commercial client" wording in `content.js` (About intro and the Software Development skill group) to "in commercial production", and reconsider `Astro`, `Cloudflare`, `Cloudflare Workers / Wrangler`, `Security headers / CSP` and `Accessibility (WCAG)` in `skillsData.ts`, which are currently `practical` precisely because Andromedae was not yet serving the public.
+Measuring the live domain on 10 August 2026 surfaced three things. None is a defect in the site's own code, but the first two change what the case study can claim, so they are worth closing before the numbers are re-measured:
+
+- **Mobile Largest Contentful Paint is 6.1s** (mobile Performance 75; desktop is 96 with a 1.3s LCP). The hero is a CSS `background-image`, so the preload scanner cannot discover it — 2.3s of the 6.1 is load delay before the request starts, and 3.2s is the transfer of `homepage-banner-high-res`. Fix: promote the hero to a real `<img>` with `fetchpriority="high"`, and serve a smaller variant to small screens. Total page weight is only 843 KB, so this is a delivery problem, not a payload one.
+- **Cloudflare's injected scripts are blocked by the site's own CSP** — the Web Analytics beacon (`static.cloudflareinsights.com/beacon.min.js`) and the bot-management inline script (`__CF$cv$params`). The site's own inline script hash matches its CSP exactly, so this is Cloudflare injecting into a response whose policy does not admit it. Consequence: Web Analytics collects nothing, and two console errors per page load hold Best Practices at 93. Decide deliberately between allow-listing `static.cloudflareinsights.com` (weakens the policy), moving to a self-hosted analytics snippet, or switching the injection off.
+- **SEO 85** — one undescriptive "Read More" link to `/blog/`, and a `Content-Signal` directive in `robots.txt` that Lighthouse reports as an unknown directive. The latter is a deliberate content-signals policy rather than a mistake; the link text is a genuine one-line fix.
+
+Re-run Lighthouse and update the figures in `andromedae.mdx` once the hero delivery is changed.
+
+**Resolved at the 10 August 2026 cutover:**
+
+- ~~Add `linkLive`~~ — added to `andromedae.mdx` after verifying the live domain.
+- ~~Re-run Lighthouse against the public production domain~~ — measured on desktop and mobile; the pre-launch paragraph and its screenshot are gone, replaced with the measured figures, the verified production security headers, and the cause of each deduction.
+- ~~Relax the "built for a commercial client" wording~~ — now "in commercial production" in both the About intro and the Software Development skill group.
+- ~~Reconsider the `practical` evidence levels that were held back by the pending cutover~~ — `Astro`, `Cloudflare`, `Cloudflare Workers / Wrangler`, `Security headers / CSP` and `Accessibility (WCAG)` are now `production`. The site is a commercial business's live public website, which meets the level's definition ("in a system real people depend on"), and Lighthouse accessibility measured 100 against the live domain.
 
 **Resolved:**
 
