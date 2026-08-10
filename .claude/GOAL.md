@@ -98,13 +98,15 @@ The Andromedae production-domain cutover **completed on 10 August 2026** and was
 
 **Outstanding — on the Andromedae site itself (not this repository):**
 
-Measuring the live domain on 10 August 2026 surfaced three things. None is a defect in the site's own code, but the first two change what the case study can claim, so they are worth closing before the numbers are re-measured:
+- **Fonts are now 70% of the page.** `Montserrat-VariableFont_wght.ttf` transfers at 280 KB and `roxboroughcf-extrabold.otf` at 43 KB — 323 KB of a 461 KB page, served as raw TTF/OTF relying on Brotli in transit rather than as WOFF2. WOFF2's compression is font-aware, and Montserrat ships Cyrillic, Greek and Vietnamese coverage the site does not use. Converting to WOFF2 and subsetting to Latin should take the fonts to roughly 60–80 KB and the page to around 200 KB. This is what is now holding mobile LCP at 2.5s rather than clearly below it.
+- **One console error remains by design** — Cloudflare's bot-management inline script carries a per-request token, so it cannot be allow-listed by hash. Best Practices stays at 93 unless `unsafe-inline` is added, which is not worth it. Recorded as accepted, not outstanding work.
 
-- **Mobile Largest Contentful Paint is 6.1s** (mobile Performance 75; desktop is 96 with a 1.3s LCP). The hero is a CSS `background-image`, so the preload scanner cannot discover it — 2.3s of the 6.1 is load delay before the request starts, and 3.2s is the transfer of `homepage-banner-high-res`. Fix: promote the hero to a real `<img>` with `fetchpriority="high"`, and serve a smaller variant to small screens. Total page weight is only 843 KB, so this is a delivery problem, not a payload one.
-- **Cloudflare's injected scripts are blocked by the site's own CSP** — the Web Analytics beacon (`static.cloudflareinsights.com/beacon.min.js`) and the bot-management inline script (`__CF$cv$params`). The site's own inline script hash matches its CSP exactly, so this is Cloudflare injecting into a response whose policy does not admit it. Consequence: Web Analytics collects nothing, and two console errors per page load hold Best Practices at 93. Decide deliberately between allow-listing `static.cloudflareinsights.com` (weakens the policy), moving to a self-hosted analytics snippet, or switching the injection off.
-- **SEO 85** — one undescriptive "Read More" link to `/blog/`, and a `Content-Signal` directive in `robots.txt` that Lighthouse reports as an unknown directive. The latter is a deliberate content-signals policy rather than a mistake; the link text is a genuine one-line fix.
+**Resolved 10 August 2026, after the cutover — verified independently:**
 
-Re-run Lighthouse and update the figures in `andromedae.mdx` once the hero delivery is changed.
+- ~~Mobile LCP 6.1s~~ — hero promoted to a real `<img>` with a width-based `srcset`, `sizes="100vw"` and `fetchpriority="high"`. A 412px viewport now receives the 828px variant at 28 KB rather than the 2880px variant at 422 KB. Mobile LCP 6.1s → **2.5s** (median of three runs), mobile Performance 75 → **95**, total page 843 KB → 461 KB.
+- ~~Cloudflare Web Analytics collecting nothing~~ — `static.cloudflareinsights.com` added to `script-src` and `cloudflareinsights.com` to `connect-src`. The beacon now loads; the rest of the policy is unchanged and still carries no `unsafe-inline` for scripts.
+- ~~Undescriptive "Read More" link~~ — gone; zero generic link texts on the homepage. SEO 85 → **92**.
+- `Content-Signal` in `robots.txt` — deliberately kept. It is the only remaining SEO deduction.
 
 **Resolved at the 10 August 2026 cutover:**
 

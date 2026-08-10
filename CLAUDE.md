@@ -156,7 +156,7 @@ This work is tracked in:
 
 ### Open items carried forward
 
-- **Andromedae went live on 10 August 2026** and the case study now carries a `linkLive` plus Lighthouse figures measured against the public domain (desktop 96/100/93/85, mobile 75/100/93/85). Its remaining open items are on the client site rather than in this repo — a 6.1s mobile LCP caused by the hero being a CSS `background-image`, and Cloudflare's injected analytics/bot scripts being blocked by the site's own CSP. See the follow-ups in `.claude/GOAL.md`. Re-measure and update the case-study figures once the hero delivery changes; don't quote the desktop score alone.
+- **Andromedae went live on 10 August 2026.** The case study carries a `linkLive` and Lighthouse figures measured against the public domain — desktop 96/100/93/92, mobile 95/100/93/92, mobile LCP 2.5s — as medians over repeated runs, not single runs. The hero-image regression found at launch (6.1s mobile LCP) has been fixed on the client site and re-verified here. Remaining open items are on that site, not in this repo: fonts are 70% of the page (raw TTF/OTF rather than WOFF2, unsubsetted), and one console error persists by design because Cloudflare's bot-management script cannot be hash-allow-listed. See the follow-ups in `.claude/GOAL.md`. **Re-measure before changing any figure here, quote medians, and never quote the desktop score alone** — the desktop number hid a 6.1s mobile LCP once already.
 - **`baseURL` is `ginas-new-portfolio.vercel.app`** in `config.js`. Change it if a custom domain is set up; everything that builds canonical URLs, OG images, JSON-LD, the sitemap and robots reads from it.
 
 ### Agent workflow
