@@ -43,3 +43,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Personal credential documents kept as private source material for .claude/context.
+# These carry a legal name and student number and must never be committed or served.
+.claude/context/*.pdf

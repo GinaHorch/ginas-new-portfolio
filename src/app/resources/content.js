@@ -120,8 +120,8 @@ const about = {
       </p>
       <p>
       Security and systems thinking run through all of it. I work on authentication and access control, Row
-      Level Security, privacy and consent, secure configuration and security headers, and I'm studying a
-      Diploma of Information Technology with a cybersecurity focus. Treating security as part of engineering,
+      Level Security, privacy and consent, secure configuration and security headers, and I hold a
+      Diploma of Information Technology specialising in cyber security and business analysis. Treating security as part of engineering,
       rather than a pass to run after the build, is considerably cheaper and produces better software.
       </p>
       <p>
@@ -244,9 +244,12 @@ const about = {
     title: "Studies",
     institutions: [
       {
-        name: "Diploma of Information Technology (Cyber Security)",
-        description: <>Currently studying a Diploma of Information Technology, including cybersecurity and
-        business analysis.</>,
+        name: "Diploma of Information Technology (Cyber Security & Business Analysis)",
+        description: <>ICT50220, completed 2026 through EQC Institute (Equinim College, RTO 45758) and
+        recognised under the Australian Qualifications Framework. Units covered network security, cyber
+        security requirements, threat data analysis, security architecture, incident response, disaster
+        recovery and critical-infrastructure protection, alongside business analysis: technical requirements,
+        feasibility reporting and quality assurance.</>,
       },
       {
         name: "Microsoft Career Essentials in Software Development",
@@ -353,29 +356,43 @@ const skills = {
     display: true,
     title: "Certifications & courses",
     description: (
-      <>Credentials issued through Microsoft/LinkedIn Learning and Atlassian. A Diploma of Information
-      Technology, including cybersecurity, is in progress.</>
+      <>Formal qualifications and completed courses, most recent first. Verification is available on
+      request — certificates issued through an organisation's LinkedIn Learning licence no longer resolve
+      to public URLs once that access ends, so none is linked here rather than linking somewhere broken.</>
     ),
+    // Dates below are taken from the issued certificates. No links: the LinkedIn
+    // Learning certificate URLs were issued under an organisation licence and now
+    // return 404, and a PDF proves nothing a line of text does not.
     items: [
       {
-        title: "Microsoft Career Essentials in Software Development",
-        issuer: "Microsoft & LinkedIn",
-        link: "https://www.linkedin.com/learning/certificates/dfc0a18f83a25526159ccf0bdf9590f284a6a4b1893abefacc2a25948c926ade",
+        title: "ICT50220 Diploma of Information Technology (Cyber Security & Business Analysis)",
+        issuer: "EQC Institute (Equinim College, RTO 45758) — nationally recognised training",
+        year: "2026",
       },
       {
-        title: "Microsoft Career Essentials in Cyber Security",
-        issuer: "Microsoft & LinkedIn",
-        link: "https://www.linkedin.com/learning/certificates/748a55382243a9d074bf3cd1ffc27c3f9665bcc7a743f9ad5bbb73f14d919d3f",
+        title: "Master AI-Assisted Development with GitHub Copilot",
+        issuer: "Packt — virtual event, attended",
+        year: "2026",
       },
       {
-        title: "Microsoft Career Essentials in Business Analysis",
+        title: "Career Essentials in Cybersecurity",
         issuer: "Microsoft & LinkedIn",
-        link: "https://www.linkedin.com/learning/certificates/c8e19f48805a4f6d09e440dc9ac05ef0843373ca4b672a7fef24589d51a1d38d",
+        year: "2024",
       },
       {
-        title: "Professional Certificate in Agile Project Management",
+        title: "Career Essentials in Software Development",
+        issuer: "Microsoft & LinkedIn",
+        year: "2024",
+      },
+      {
+        title: "Career Essentials in Business Analysis",
+        issuer: "Microsoft & LinkedIn",
+        year: "2024",
+      },
+      {
+        title: "Agile Project Management Professional Certificate",
         issuer: "Atlassian",
-        link: "https://www.linkedin.com/learning/certificates/13e4f6daa55c82ec88073398d9afbe53c12ee95fcb5233f9b8b4b04e79022595",
+        year: "2024",
       },
     ],
   },
@@ -412,7 +429,8 @@ const skills = {
         title: "Cyber Security",
         description: <>Security treated as part of engineering rather than a pass at the end: authentication and
         access control, Row Level Security, privacy and consent, secure configuration and headers — alongside
-        endpoint, identity and network security from professional systems work and Diploma study.</>,
+        network security, threat analysis, security architecture and incident response from a completed
+        Diploma of Information Technology specialising in cyber security.</>,
       },
       {
         title: "Cloud, Systems & Deployment",

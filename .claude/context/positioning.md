@@ -170,7 +170,9 @@ Relevant areas include, where supported by actual work or study:
 - Linux
 - Nmap and controlled security-lab work
 
-Formal study through the Diploma of Information Technology, including cybersecurity and business-analysis learning, should appear in Skills/Education context.
+The **ICT50220 Diploma of Information Technology (Cyber Security & Business Analysis)** was completed in August 2026 through EQC Institute (Equinim College, RTO 45758) and is nationally recognised under the AQF. It should appear in Skills/Education context as a completed qualification.
+
+Completed units evidence network security, cyber security requirements, threat data analysis, security architecture, incident response, disaster recovery and critical-infrastructure protection, plus business analysis (technical requirements, feasibility reporting, quality assurance). Formal study justifies **working knowledge** on the Skills page — not "practical", which is reserved for hands-on delivery. Do not imply penetration-testing or offensive-security capability: no unit covers it.
 
 Do not imply penetration-testing or offensive-security expertise beyond what is actually demonstrated.
 

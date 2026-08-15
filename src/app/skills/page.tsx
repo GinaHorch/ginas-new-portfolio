@@ -1,6 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { Avatar, Button, Column, Flex, Heading, Icon, SmartLink, Tag, Text } from "@/once-ui/components";
+import { Avatar, Button, Column, Flex, Heading, Icon, Tag, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { skills, social, person, about } from "@/app/resources/content";
 import { SkillGroupList } from "@/components/skills/SkillGroupList";
@@ -168,11 +168,9 @@ export default function Skills() {
               <Column as="ul" fillWidth gap="12" style={{ listStyle: "none", padding: 0 }}>
                 {skills.certifications.items.map((item) => (
                   <Flex as="li" key={item.title} direction="column" gap="4">
-                    <SmartLink href={item.link} style={{ margin: 0, width: "fit-content" }}>
-                      <Text variant="body-strong-m">{item.title}</Text>
-                    </SmartLink>
+                    <Text variant="body-strong-m">{item.title}</Text>
                     <Text variant="body-default-s" onBackground="neutral-weak">
-                      {item.issuer}
+                      {item.issuer} · {item.year}
                     </Text>
                   </Flex>
                 ))}
