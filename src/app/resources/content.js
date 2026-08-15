@@ -249,7 +249,9 @@ const about = {
         recognised under the Australian Qualifications Framework. Units covered network security, cyber
         security requirements, threat data analysis, security architecture, incident response, disaster
         recovery and critical-infrastructure protection, alongside business analysis: technical requirements,
-        feasibility reporting and quality assurance.</>,
+        feasibility reporting and quality assurance. The course also included a practical lab program — Kali
+        Linux, Nmap, Wireshark, Metasploitable, Cisco Packet Tracer, AWS IAM and encryption, Windows endpoint
+        and backup, OWASP Top 10 and introductory penetration testing in a controlled environment.</>,
       },
       {
         name: "Microsoft Career Essentials in Software Development",
@@ -428,9 +430,10 @@ const skills = {
       {
         title: "Cyber Security",
         description: <>Security treated as part of engineering rather than a pass at the end: authentication and
-        access control, Row Level Security, privacy and consent, secure configuration and headers — alongside
-        network security, threat analysis, security architecture and incident response from a completed
-        Diploma of Information Technology specialising in cyber security.</>,
+        access control, Row Level Security, privacy and consent, secure configuration and headers in production
+        work — alongside hands-on lab practice from a completed Diploma specialising in cyber security, covering
+        Kali Linux, Nmap, Wireshark, firewalls and access control lists, AWS IAM and encryption, OWASP Top 10 and
+        introductory penetration testing against deliberately vulnerable targets.</>,
       },
       {
         title: "Cloud, Systems & Deployment",

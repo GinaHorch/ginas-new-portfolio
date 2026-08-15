@@ -172,7 +172,15 @@ Relevant areas include, where supported by actual work or study:
 
 The **ICT50220 Diploma of Information Technology (Cyber Security & Business Analysis)** was completed in August 2026 through EQC Institute (Equinim College, RTO 45758) and is nationally recognised under the AQF. It should appear in Skills/Education context as a completed qualification.
 
-Completed units evidence network security, cyber security requirements, threat data analysis, security architecture, incident response, disaster recovery and critical-infrastructure protection, plus business analysis (technical requirements, feasibility reporting, quality assurance). Formal study justifies **working knowledge** on the Skills page — not "practical", which is reserved for hands-on delivery. Do not imply penetration-testing or offensive-security capability: no unit covers it.
+Completed units evidence network security, cyber security requirements, threat data analysis, security architecture, incident response, disaster recovery and critical-infrastructure protection, plus business analysis (technical requirements, feasibility reporting, quality assurance). The Diploma also included a **practical lab program** that the certificate and Record of Results do not itemise. It is recorded in `.claude/context/diploma-practical-labs.md`, which is the source for any Skills-page level citing hands-on lab work.
+
+Level rules that follow from this:
+
+- Coursework-only topics (threat data analysis, security architecture, incident response, security baselines) → **working knowledge**.
+- Hands-on lab topics (Kali Linux, Nmap, Wireshark, firewalls/ACLs, AWS IAM and encryption, OWASP Top 10, vulnerability scanning) → **practical experience**.
+- Nothing becomes **production experience** on the strength of study or labs. A lab is not a system real people depend on.
+
+Introductory offensive-security lab work — SQL injection, reconnaissance, OSINT, vulnerability scanning against Metasploitable — may be described as penetration testing **fundamentals**, clearly marked as controlled lab work. Do not present Gina as a penetration tester or imply professional offensive-security engagements.
 
 Do not imply penetration-testing or offensive-security expertise beyond what is actually demonstrated.
 
