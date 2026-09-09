@@ -16,21 +16,25 @@
   width: 100%;
   margin: 0 auto var(--static-space-24);
   overflow: hidden;
-  /* Six groups plus legend and title. */
-  height: calc(38px * 6 + 120px);
+  /*
+   * One row per skill group, plus legend and title. `--group-count` is set inline by
+   * OverviewSkillsChart from the data itself — hard-coding the number here meant the
+   * chart silently squashed the first time a group was added.
+   */
+  height: calc(38px * var(--group-count, 6) + 120px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 /*
- * Below roughly this width the category labels start wrapping onto two lines (see
- * the tick callback in OverviewSkillsChart), and the legend wraps too. Without the
+ * Below roughly this width the category labels start wrapping onto two or three lines
+ * (see the tick callback in OverviewSkillsChart), and the legend wraps too. Without the
  * extra height the wrapped labels overlap each other.
  */
 @container (max-width: 560px) {
   .chartContainer {
-    height: calc(54px * 6 + 170px);
+    height: calc(58px * var(--group-count, 6) + 170px);
     padding: var(--static-space-12);
   }
 }

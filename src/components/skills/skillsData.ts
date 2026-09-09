@@ -134,13 +134,54 @@ export const skillGroups: SkillGroup[] = [
       { name: "Wireshark & packet analysis", level: "practical" },
       { name: "Vulnerability management", level: "practical" },
       { name: "Encryption", level: "practical" },
-      { name: "SIEM & SOC fundamentals", level: "practical" },
       { name: "Penetration testing fundamentals (lab)", level: "practical" },
       { name: "Disaster recovery & continuity", level: "practical" },
-      { name: "Threat data analysis", level: "working" },
       { name: "Security architecture", level: "working" },
-      { name: "Incident response & investigation", level: "working" },
       { name: "Security baselines & patching", level: "working" },
+    ],
+  },
+  {
+    title: "Security Operations & Forensics",
+    // Levels here trace to .claude/context/soc-blue-team-training.md — the TryHackMe
+    // SOC Level 1 path (65 hands-on labs) and Blue Team Level 1, whose certification
+    // exam is a 24-hour graded practical. Structured training, not production SOC
+    // work: hands-on tooling is "practical", concept-only coverage stays "working",
+    // and nothing here is "production". SIEM/SOC, incident response and threat data
+    // analysis moved out of Cyber Security so the same capability is not counted twice.
+    //
+    // Tag names stay at or under ~37 characters: Once UI's Tag is `white-space: nowrap`,
+    // so a longer one pushes /skills past the 393px mobile viewport and fails the
+    // no-horizontal-overflow test. Tools that do not fit a tag (ProcDump, KAPE, PECmd,
+    // JumpList Explorer, CyberChef, Scalpel) are named in the group description and the
+    // evidence record instead.
+    skills: [
+      { name: "Alert triage & prioritisation", level: "practical" },
+      { name: "Incident response (PICERL)", level: "practical" },
+      { name: "Incident reporting & documentation", level: "practical" },
+      { name: "SOC case management (TheHive)", level: "practical" },
+      { name: "Splunk", level: "practical" },
+      { name: "Elastic Stack (Kibana)", level: "practical" },
+      { name: "Log correlation & SIEM investigation", level: "practical" },
+      { name: "Sigma detection rules", level: "practical" },
+      { name: "Snort & IDS fundamentals", level: "practical" },
+      { name: "Traffic analysis (NetworkMiner)", level: "practical" },
+      { name: "Network attack detection", level: "practical" },
+      { name: "Web attack & web shell detection", level: "practical" },
+      { name: "Windows & Linux log analysis", level: "practical" },
+      { name: "Endpoint detection (DeepBlueCLI)", level: "practical" },
+      { name: "Windows forensic artefacts", level: "practical" },
+      { name: "Memory analysis (Volatility)", level: "practical" },
+      { name: "Disk forensics (Autopsy, FTK Imager)", level: "practical" },
+      { name: "Evidence handling & chain of custody", level: "practical" },
+      { name: "Phishing analysis (PhishTool)", level: "practical" },
+      { name: "Threat intelligence (MISP, OpenCTI)", level: "practical" },
+      { name: "MITRE ATT&CK", level: "practical" },
+      { name: "Multi-source incident investigation", level: "practical" },
+      { name: "Cyber Kill Chain & Pyramid of Pain", level: "working" },
+      { name: "Threat intelligence reporting", level: "working" },
+      { name: "Malware classification", level: "working" },
+      { name: "Living-off-the-land techniques", level: "working" },
+      { name: "Static & behavioural malware analysis", level: "working" },
     ],
   },
   {

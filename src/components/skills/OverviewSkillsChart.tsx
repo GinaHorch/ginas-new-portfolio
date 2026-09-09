@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import type React from "react";
 import {
   BarElement,
   CategoryScale,
@@ -28,7 +28,7 @@ const GRID = "rgba(224, 224, 224, 0.12)";
 // instead of shrinking the font or abbreviating the group names, which have to stay
 // identical to the section headings below the chart.
 // Measured from the rendered canvas: Inter at 13px runs 6.15-7.0px per character
-// across these six labels. Use the widest so the estimate never under-reserves and
+// across these labels. Use the widest so the estimate never under-reserves and
 // lets a label clip; erring wide only means wrapping slightly sooner than needed.
 const AXIS_WIDTH_FRACTION = 0.36;
 const APPROX_CHAR_WIDTH = 7;
@@ -133,7 +133,11 @@ const OverviewSkillsChart = () => {
 
   return (
     <div className={styles.chartWrapper}>
-      <div className={styles.chartContainer}>
+      <div
+        className={styles.chartContainer}
+        // The container reserves one row per group; see SkillsChart.module.scss.
+        style={{ "--group-count": groups.length } as React.CSSProperties}
+      >
         <Bar
           data={data}
           options={options}

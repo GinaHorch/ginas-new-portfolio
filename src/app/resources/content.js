@@ -121,7 +121,9 @@ const about = {
       <p>
       Security and systems thinking run through all of it. I work on authentication and access control, Row
       Level Security, privacy and consent, secure configuration and security headers, and I hold a
-      Diploma of Information Technology specialising in cyber security and business analysis. Treating security as part of engineering,
+      Diploma of Information Technology specialising in cyber security and business analysis. I've since worked
+      through the defensive side in a lab: the TryHackMe SOC Level 1 path and Blue Team Level 1, certified by a
+      24-hour practical incident response exam. Treating security as part of engineering,
       rather than a pass to run after the build, is considerably cheaper and produces better software.
       </p>
       <p>
@@ -244,6 +246,15 @@ const about = {
     title: "Studies",
     institutions: [
       {
+        name: "Blue Team Level 1 (BTL1) and TryHackMe SOC Level 1",
+        description: <>Blue Team Level 1 (Security Blue Team / Centri, 2026) covers six domains — security
+        fundamentals, phishing analysis, threat intelligence, digital forensics, SIEM and incident response —
+        and is certified by a 24-hour practical incident response exam. Alongside it, the TryHackMe SOC Level 1
+        path: 14 modules and 65 hands-on labs in Splunk, the Elastic Stack, Wireshark, Snort, Volatility,
+        Autopsy, MISP and TheHive. Structured training rather than production SOC work, but the investigative
+        method behind it is not new to me.</>,
+      },
+      {
         name: "Diploma of Information Technology (Cyber Security & Business Analysis)",
         description: <>ICT50220, completed 2026 through EQC Institute (Equinim College, RTO 45758) and
         recognised under the Australian Qualifications Framework. Units covered network security, cyber
@@ -330,7 +341,7 @@ const skills = {
   title: `Skills | ${person.name}`,
   ogTitle: "Skills",
   description:
-    "TypeScript and Python, React, Next.js, Astro, Supabase and PostgreSQL, API and webhook integrations, AI-assisted engineering, cyber security, cloud and systems, and collaborative delivery.",
+    "TypeScript and Python, React, Next.js, Astro, Supabase and PostgreSQL, API and webhook integrations, AI-assisted engineering, cyber security, security operations and digital forensics, cloud and systems, and collaborative delivery.",
   tableOfContent: {
     display: true,
     subItems: false,
@@ -366,6 +377,17 @@ const skills = {
     // Learning certificate URLs were issued under an organisation licence and now
     // return 404, and a PDF proves nothing a line of text does not.
     items: [
+      {
+        title: "Blue Team Level 1 (BTL1) — Certified",
+        issuer:
+          "Security Blue Team / Centri — six domains, assessed by a 24-hour practical incident response exam",
+        year: "2026",
+      },
+      {
+        title: "SOC Level 1 Learning Path — Certificate of Completion",
+        issuer: "TryHackMe — 14 modules, 65 hands-on labs, approximately 65 hours",
+        year: "2026",
+      },
       {
         title: "ICT50220 Diploma of Information Technology (Cyber Security & Business Analysis)",
         issuer: "EQC Institute (Equinim College, RTO 45758) — nationally recognised training",
@@ -434,6 +456,15 @@ const skills = {
         work — alongside hands-on lab practice from a completed Diploma specialising in cyber security, covering
         Kali Linux, Nmap, Wireshark, firewalls and access control lists, AWS IAM and encryption, OWASP Top 10 and
         introductory penetration testing against deliberately vulnerable targets.</>,
+      },
+      {
+        title: "Security Operations & Forensics",
+        description: <>Blue-team work: alert triage in Splunk and the Elastic Stack, network and endpoint
+        threat detection, phishing and threat-intelligence analysis, digital forensics — Volatility, Autopsy,
+        FTK Imager, KAPE, PECmd, CyberChef — and incident response through the PICERL lifecycle. This is
+        <strong> training rather than production SOC work</strong>: 65 hands-on labs across the TryHackMe SOC
+        Level 1 path, and Blue Team Level 1, whose certification is assessed by a 24-hour practical incident
+        response exam rather than a quiz. The investigative method underneath it is the part that isn't new.</>,
       },
       {
         title: "Cloud, Systems & Deployment",
