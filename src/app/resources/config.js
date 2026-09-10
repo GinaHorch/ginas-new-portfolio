@@ -1,5 +1,5 @@
 // Host only — pages compose this as `https://${baseURL}` for metadata and OG images.
-const baseURL = "ginas-new-portfolio.vercel.app";
+const baseURL = "ginahorch.com";
 
 const routes = {
   "/": true,
