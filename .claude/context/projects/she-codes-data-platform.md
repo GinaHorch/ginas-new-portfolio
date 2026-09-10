@@ -20,7 +20,16 @@ Because the repository belongs to She Codes Australia and contains internal syst
 
 ## Your role
 
-I initially worked on the platform through a paid engagement and subsequently continued development and maintenance as a volunteer.
+**Approved framing (September 2026) — this supersedes the wording below.** I designed and built the platform for She Codes Australia, starting under a development contract and extending the work through substantial additional contribution beyond it. I built the system connecting several operational data sources on Supabase/PostgreSQL, with attention to authentication, data integrity and privacy-conscious handling of participant data, and delivered a full handover at the end of the engagement.
+
+Two constraints follow from that, and both are deliberate:
+
+- **The engagement has ended and the platform is not currently active.** Write the case study in past tense. No live link, and no "ongoing maintenance".
+- **Pull back on system-integration detail.** Describe the platform as connecting several operational data sources; do not enumerate the external platform categories, the sync/webhook mechanics or the automation inventory. The `shecodes-data-architecture.png` diagram was removed from the case study for this reason — its whole subject is the integration layer. The file is still in `public/images/projects/project-03/` but is no longer referenced.
+
+The earlier wording — "initially worked on the platform through a paid engagement and subsequently continued development and maintenance as a volunteer" — is superseded. Do not reinstate the volunteer framing.
+
+The detail below remains accurate as a record of the work performed.
 
 My work has included substantial full-stack, data and platform development, including:
 
@@ -208,14 +217,11 @@ Avoid brittle exact counts in public copy unless there is a reason to date the s
 
 **Repository:** Private She Codes Australia GitHub repository.
 
-**Previous public deployment:**  
-https://shecodes-dashboard.netlify.app/
-
-The previous public deployment is currently offline while changes are underway.
+**Previous public deployment:** none to link. The platform is not currently active.
 
 Recommended public wording:
 
-> **Private organisational repository · previous public deployment currently offline while changes are underway.**
+> **Private She Codes Australia repository. The platform is not currently active, so there is no public deployment to link.**
 
 There is no need to explain internal organisational decisions.
 

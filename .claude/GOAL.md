@@ -96,7 +96,7 @@ The Andromedae production-domain cutover **completed on 10 August 2026** and was
 
 ### Follow-ups for the maintainer
 
-**Outstanding — on the Andromedae site itself (not this repository):**
+**Handed to the client — on the Andromedae site itself (not this repository).** The Andromedae role has ended and the site was handed over, with non-technical staff trained to make routine content updates through GitHub. The font item below was flagged at handover; it is recorded here because the case study quotes the figures it affects, not because it is work waiting to be done from this repo.
 
 - **Fonts are now 70% of the page.** `Montserrat-VariableFont_wght.ttf` transfers at 280 KB and `roxboroughcf-extrabold.otf` at 43 KB — 323 KB of a 461 KB page, served as raw TTF/OTF relying on Brotli in transit rather than as WOFF2. WOFF2's compression is font-aware, and Montserrat ships Cyrillic, Greek and Vietnamese coverage the site does not use. Converting to WOFF2 and subsetting to Latin should take the fonts to roughly 60–80 KB and the page to around 200 KB. This is what is now holding mobile LCP at 2.5s rather than clearly below it.
 - **One console error remains by design** — Cloudflare's bot-management inline script carries a per-request token, so it cannot be allow-listed by hash. Best Practices stays at 93 unless `unsafe-inline` is added, which is not worth it. Recorded as accepted, not outstanding work.

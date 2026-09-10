@@ -28,10 +28,11 @@ My work includes:
 - implementing production security headers;
 - preparing the Wix-to-Cloudflare production migration;
 - planning DNS, TLS and rollback requirements;
-- testing the site prior to production release; and
-- documenting the deployment and ongoing development approach.
+- testing the site prior to production release;
+- documenting the deployment and ongoing development approach; and
+- training non-technical staff, in the final week of the role, to make routine content updates directly through GitHub, so the business could maintain the site independently after handover.
 
-I am also responsible for maintaining the website after launch as part of my broader systems, security and development role at Andromedae.
+I maintained the website after launch as part of my broader systems, security and development role at Andromedae. **That role has since ended (September 2026) and the site was handed over**, so the case study is written in past tense and does not claim ongoing maintenance. The outstanding font optimisation recorded in `.claude/GOAL.md` went to the client at handover.
 
 ## Tech stack
 

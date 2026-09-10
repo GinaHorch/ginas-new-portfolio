@@ -136,9 +136,9 @@ Keep any new copy consistent with `.claude/context/positioning.md` — in partic
 
 The project set is:
 
-- **Andromedae** — commercial Astro/Cloudflare website and structured Claude Code workflow;
+- **Andromedae** — commercial Astro/Cloudflare website and structured Claude Code workflow. The role has since ended: the site was handed over, with non-technical staff trained to make routine content updates through GitHub. Case study is past tense;
 - **Hold My Spoon** — inherited TypeScript product with API/integration, Stripe/webhook and production-debugging work;
-- **She Codes Data Platform** — connected Next.js/TypeScript/Supabase data platform with identity, automation, privacy and data-integrity work;
+- **She Codes Data Platform** — Next.js/TypeScript/Supabase data platform with identity-resolution, authentication, privacy and data-integrity work. Built under a development contract, extended beyond it, **handed over and no longer active** — the case study is past tense and deliberately light on system-integration detail (that pull-back is why the architecture diagram was dropped). Don't re-add integration/automation emphasis or a live link;
 - **Wedding Guestbook & Media Platform** — full-stack Next.js PWA developed from Bianca Di Biase's supplied design, with an admin dashboard giving a non-technical couple independent control. **Deliberately unlinked and screenshot-free**: it holds real guests' private media, so the couple are not named and the case study relies on a generalised architecture diagram. Do not add a live link, screenshots or client names to this one;
 - **End-to-End Data Engineering Pipeline** — retained and reframed, not replaced.
 
@@ -156,7 +156,7 @@ This work is tracked in:
 
 ### Open items carried forward
 
-- **Andromedae went live on 10 August 2026.** The case study carries a `linkLive` and Lighthouse figures measured against the public domain — desktop 96/100/93/92, mobile 95/100/93/92, mobile LCP 2.5s — as medians over repeated runs, not single runs. The hero-image regression found at launch (6.1s mobile LCP) has been fixed on the client site and re-verified here. Remaining open items are on that site, not in this repo: fonts are 70% of the page (raw TTF/OTF rather than WOFF2, unsubsetted), and one console error persists by design because Cloudflare's bot-management script cannot be hash-allow-listed. See the follow-ups in `.claude/GOAL.md`. **Re-measure before changing any figure here, quote medians, and never quote the desktop score alone** — the desktop number hid a 6.1s mobile LCP once already.
+- **Andromedae went live on 10 August 2026.** The case study carries a `linkLive` and Lighthouse figures measured against the public domain — desktop 96/100/93/92, mobile 95/100/93/92, mobile LCP 2.5s — as medians over repeated runs, not single runs. The hero-image regression found at launch (6.1s mobile LCP) has been fixed on the client site and re-verified here. Remaining open items are on that site, not in this repo, and **the Andromedae role has since ended** — the site was handed over, so the font work below is the client's to pick up, not a task waiting in this repository: fonts are 70% of the page (raw TTF/OTF rather than WOFF2, unsubsetted), and one console error persists by design because Cloudflare's bot-management script cannot be hash-allow-listed. See the follow-ups in `.claude/GOAL.md`. **Re-measure before changing any figure here, quote medians, and never quote the desktop score alone** — the desktop number hid a 6.1s mobile LCP once already.
 - **`baseURL` is `ginas-new-portfolio.vercel.app`** in `config.js`. Change it if a custom domain is set up; everything that builds canonical URLs, OG images, JSON-LD, the sitemap and robots reads from it.
 
 ### Agent workflow

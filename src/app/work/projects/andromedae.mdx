@@ -24,7 +24,7 @@ This is a production replacement rather than a portfolio demonstration. The Astr
 
 ## My role
 
-I am responsible for the technical implementation and production delivery of the new website. The visual design direction was supplied to the project as Figma design work; my job was to turn it into a working, accessible, maintainable site and get it safely into production.
+I was responsible for the technical implementation and production delivery of the new website. The visual design direction was supplied to the project as Figma design work; my job was to turn it into a working, accessible, maintainable site and get it safely into production.
 
 That covered:
 
@@ -37,10 +37,11 @@ That covered:
 - SEO fundamentals including metadata, sitemap and robots configuration;
 - preparing redirects that preserve legacy Wix URLs;
 - configuring Cloudflare deployment and production security headers;
-- planning the DNS, TLS and rollback requirements for the migration; and
-- documenting the deployment and ongoing development approach.
+- planning the DNS, TLS and rollback requirements for the migration;
+- documenting the deployment and ongoing development approach; and
+- training non-technical staff to make routine content updates directly through GitHub.
 
-I also maintain the website after launch as part of a broader systems, security and development role at Andromedae.
+I maintained the website after launch as part of a broader systems, security and development role at Andromedae, and handed it over at the end of that role.
 
 ## Technical approach
 
@@ -79,6 +80,12 @@ The useful distinction is not how much code an agent produced. It is how the ass
 
 Live on the public domain since 10 August 2026, replacing the legacy Wix site. Delivered: the rebuild itself, the migration to a developer-managed Astro architecture, production deployment through Cloudflare Workers/Wrangler, a reusable component architecture, accessibility as a development requirement rather than a retrofit, security headers serving in production, legacy URL preservation through redirects, SEO migration, and a documented rollback strategy for the cutover.
 
+### Handover
+
+Moving a site off a hosted website builder and into a code repository quietly takes something away from the business: the ability to change its own words without a developer. A rebuild that leaves the client dependent on whoever wrote it has solved the technical problem and created an operational one.
+
+So in my final week I trained non-technical staff to make routine content updates directly through GitHub. The business can keep its own site current after handover, and only genuinely technical work needs a developer.
+
 ### Measured against the live domain
 
 The security posture is the part that is verifiable from outside, so it is the part worth stating precisely. The production response carries HSTS, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, a `Permissions-Policy` denying camera, microphone, geolocation and payment, and a Content-Security-Policy that permits scripts only from the site's own origin plus one named hash — no `unsafe-inline` for scripts, with `object-src 'none'` and `frame-ancestors 'none'`.
@@ -90,7 +97,7 @@ Lighthouse against the public domain, replacing the pre-launch figures this sect
 
 The first measurement against the live domain was worse than this, and the gap is the useful part. Mobile Performance came back at 75, with a 6.1 second Largest Contentful Paint. The hero was a CSS `background-image`, which the browser's preload scanner cannot see, so 2.3 seconds went on load delay before the request was even made; and `image-set()` selects on device pixel ratio rather than width, so a 412px phone was served a 2880px, 422 KB image — half the page's total weight in one file.
 
-The fix was to promote the hero to a real `<img>` with a width-based `srcset`, `sizes="100vw"` and `fetchpriority="high"`. A phone now receives the 828px variant at 28 KB instead of the 2880px one at 422 KB, the whole page dropped from 843 KB to 461 KB, and mobile Largest Contentful Paint went from 6.1s to 2.5s — inside the "good" Core Web Vitals threshold, though not yet comfortably so. Fonts are now 70% of what remains and are the next thing to look at.
+The fix was to promote the hero to a real `<img>` with a width-based `srcset`, `sizes="100vw"` and `fetchpriority="high"`. A phone now receives the 828px variant at 28 KB instead of the 2880px one at 422 KB, the whole page dropped from 843 KB to 461 KB, and mobile Largest Contentful Paint went from 6.1s to 2.5s — inside the "good" Core Web Vitals threshold, though not yet comfortably so. Fonts are now 70% of what remains, and were flagged at handover as the next thing to look at.
 
 That sequence is the point of measuring against production rather than a preview deployment. The pre-launch build scored 100 on a fast connection from a Workers preview; the same code served to a throttled phone did not, and only the production measurement showed why.
 
