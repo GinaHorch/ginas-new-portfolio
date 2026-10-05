@@ -170,9 +170,13 @@ export default function Home() {
               </Button>
           </Flex>
           <Flex flex={2} paddingX="20">
-            {/* Positioning hierarchy: the homepage leads with production applications,
-                so the process case study is listed on /work rather than featured here. */}
-            <Projects range={[1, 2]} exclude={["spec-driven-agentic-development"]} />
+            {/* Positioning hierarchy: the homepage leads with client production work,
+                so the process case study and the in-house SIS Time Tracker are listed on
+                /work rather than featured here. */}
+            <Projects
+              range={[1, 2]}
+              exclude={["spec-driven-agentic-development", "sis-time-tracker"]}
+            />
           </Flex>
         </Flex>
       )}

@@ -1,0 +1,117 @@
+---
+title: "SIS Time Tracker — Hardening a Real App as if It Were Public"
+publishedAt: "2026-10-05"
+summary: "The time-tracking and invoicing app I built for my own business, reviewed and hardened against the OWASP Top 10:2025 and WCAG 2.2 AA — Row Level Security as the real boundary, invariants enforced in PostgreSQL, and every claim backed by tests that run on each push."
+images:
+  - "/images/projects/project-07/sis-security-boundary.png"
+
+team:
+  - name: "Gina Horch"
+    role: "Developer — design, build, security hardening and operation"
+    avatar: "/images/GinaHeadShot.webp"
+---
+
+## Context
+
+SIS Time Tracker is the time-tracking and invoicing app I built for my own sole-trader business, Social Insight Solutions. It logs hours against clients and projects, filters them by Australian financial year, generates PDF invoices — including superannuation as its own line — reminds me when a billing cycle is due, and charts monthly revenue.
+
+I built it in July 2025, and it is what I use to log time and generate the business's invoices. It is a React 19 and TypeScript front end on Supabase (Auth, PostgreSQL and Storage), and it runs locally for a single user.
+
+In October 2026 I spent three days reviewing and hardening it against the OWASP Top 10:2025 and WCAG 2.2 AA, treating it as though it were a public, multi-user application. This case study is about that work.
+
+## Why a local, single-user app still needs a threat model
+
+Running on localhost does not make the attack surface local. The app's backend is a public Supabase endpoint, and the publishable key ships inside the JavaScript bundle by design. Anyone holding that key can call the database and storage APIs directly and skip the interface entirely.
+
+So the route guards in the React app are only a convenience. **Row Level Security and Supabase Auth are the real security boundary** — and that became the first rule in the project's `CLAUDE.md`.
+
+![Security boundary diagram: the untrusted React client and the publishable key in its bundle sit above a dashed line marked "the real security boundary"; below it, Supabase Auth, PostgreSQL with Row Level Security, and private invoice storage are enforced server-side. A side panel lists the checks run on every push.](/images/projects/project-07/sis-security-boundary.png)
+
+Tested the way an attacker would test it rather than through the UI, the app had problems that looked fine on screen:
+
+- every table had Row Level Security switched on, but its only policy was `USING (true)` — any signed-in account could read, change and delete every row, and there was no owner column to scope by;
+- the invoices storage bucket was public: an invoice PDF came back with no credentials at all, and again with a deliberately invalid API key; and
+- public sign-up was still open at the API with no email verification, even though I had already removed the sign-up form. Removing a form does not close the endpoint behind it.
+
+## How I worked with AI, and kept it honest
+
+I used Claude Code as an engineering assistant, configured to work to my standards rather than its own defaults:
+
+- **A project guide (`CLAUDE.md`)** recording the threat model, a rule for each OWASP Top 10:2025 category, WCAG 2.2 AA and TypeScript rules, and the project's known traps. It has grown into a living record of why each decision was made.
+- **Five custom skills**, each a repeatable review procedure: OWASP security review, Supabase RLS audit, accessibility audit, dependency and secrets hygiene, and TypeScript quality.
+- **Scoped tooling.** The Supabase connection is read-only and limited to this one project, so the assistant could inspect policies and advisors but never change the database.
+
+The rules it worked under:
+
+1. Every finding cites a file and line, and is labelled Confirmed, Likely or Needs verification.
+2. Every review states what it did not cover.
+3. The assistant proposes SQL; I review it and apply each migration by hand.
+4. A security control is never weakened to make a build or test pass.
+
+The work ran as a loop — review, fix, re-run, review again — rather than a single audit followed by a fix list. Tests were held to the same standard as the code: the key regression tests were **mutation-checked**, meaning I put the original bug back and confirmed the test fails. A test that passes against the bug it claims to guard is worse than no test.
+
+## What changed
+
+- **Open access control (A01).** Every policy was `USING (true)` and the invoice bucket was public. Now there is an owner column on all five tables, owner-scoped policies for every operation, anonymous grants revoked, and a private bucket with short-lived signed download URLs — verified against the live database rather than taken on trust.
+- **Open sign-up (A02, A07).** Closed at the platform and verified against the live auth settings, with email confirmation, TOTP multi-factor authentication, a 12-character minimum, and one generic sign-in error so the form cannot confirm whether an email is registered.
+- **Password changes from any session (A07).** A re-authentication code is now required unless the session came from an emailed reset link. Uncertain cases always take the strict path.
+- **Two-step invoice numbering (A06).** One atomic database function reserves each number. PDFs are stored at the path saved on the invoice row, and creating an invoice can no longer overwrite an existing file.
+- **Failures that looked like empty data (A10).** A failed read used to return an empty list, so a real period could total to a $0 invoice and regenerating could overwrite a real invoice with zeros. Reads now fail closed: the dashboard shows a blocking "could not load your data" panel, and regeneration stops before touching anything.
+- **Business rules only in form code (A06).** Now database constraints: positive hours, whole-cent money, total equals fee plus super, one invoice per project period, known billing cycles.
+- **Unchecked database responses (A08).** Generated database types, plus zod validation of every row at the boundary, mirroring the constraints.
+- **Missing safety nets (A02, A03, A08).** Lint covered 2 files and no TypeScript; there was no CI, no tests and no Content-Security-Policy. Now type-aware linting with accessibility rules covers all source files, CI runs on every push, and a strict CSP is verified in a browser against the production build.
+- **Leaky logs and over-broad updates (A09, A01).** Logs printed the user's ID, and a project update sent the whole row. Now there is one safe logging helper and an explicit allow-list of editable columns.
+
+Turning on proper linting exposed a real Rules-of-Hooks crash in a form modal. Running the unit tests under five timezones exposed a date formatter that showed 1 January 2026 as `31-12-2025` in New York — moving a time entry across a financial-year boundary on an invoice. It passed every test in my own timezone, Perth.
+
+## Accessibility: what only a live test found
+
+I audited every component against WCAG 2.2 AA and fixed what the audit found: no confirmation before deleting a time entry, which feeds invoices; a revenue chart with no text alternative; pages with no `<main>` landmark; errors shown only in pop-ups; keyboard focus lost when forms swapped; and several contrast misses. The chart now has a spoken summary built from the same figures as the bars, plus the same data as a table.
+
+Then I signed in and tested it with a keyboard and a narrow window. That found three defects reading the code had not:
+
+- **Focus vanished whenever any dialog closed.** The dialog library returns focus only to its own trigger component, and every dialog in the app opens from state instead. Keyboard users were dropped back at the top of the page.
+- **Long dialogs were cut off.** Generating an invoice opened a dialog 1066px tall in a 700px window, with its title 184px above the screen and the page behind it scroll-locked.
+- **The invoice filters pushed the page sideways at 320px**, because a long project name widened the dropdown.
+
+The most interesting find was a CSS bug that was **hiding** a failure. A theme rule was invalid, and because it sat outside the framework's cascade layers it also overrode every border colour in the app, so every border rendered black. Black borders pass contrast; the intended light-grey form-field borders, at about 1.5:1, would have failed. Fixing the bug alone would have introduced a WCAG failure, so both changed together — and a browser test now guards both halves.
+
+The audit also caught a form offering a "Weekly" billing cycle the database would reject.
+
+## Decisions and trade-offs
+
+- **Plan limits, compensated and written down.** Leaked-password checking and server-side secure password change are not on my Supabase plan. The 12-character minimum, MFA and the re-authentication step compensate — and the gap is documented: a stolen session token calling the API directly is not stopped by a check in the UI.
+- **Dependency upgrades held back on purpose.** TypeScript 7 and ESLint 10 fall outside what the current lint tooling supports. One deployment package is pinned to an exact older version because every newer release pulls in a library with a high-severity advisory and no fixed version. I did not relax the audit threshold to get around it.
+- **Bank details left in the invoice code, deliberately.** Moving them to environment variables would not help, because the build inlines those into the bundle too. The real fix is a protected database table — a feature change, and low priority while the same details appear on every invoice I send.
+- **A mistake I caught.** While closing public sign-up I also switched off the email sign-in provider, which would have locked my only account out. I found it by checking the live auth settings, and the project guide now records the two separate settings and the command that re-checks them.
+
+## Hosting: local now, Cloudflare when needed
+
+The app does not need a public URL to be useful — the data lives in Supabase, so it works from any machine that can run it. It used to sit on GitHub Pages, which cannot send HTTP response headers, so a Content-Security-Policy had to live in a `<meta>` tag and there was no protection against the app being framed by another site.
+
+When remote access is operationally needed it will move to **Cloudflare Pages**, which can send real security headers: the CSP as a header with `frame-ancestors`, plus HSTS and the rest. The migration checklist is written and waiting.
+
+## What is still open
+
+1. Move to Cloudflare with real security headers, when remote access is needed.
+2. Six components derive state inside an effect. The fix is a refactor with real behavioural risk to the forms, so it gets its own change and tests.
+3. No component tests yet, and invoice generation is not tested end to end — that needs a seeded test account.
+4. Prepare for a second user: nothing yet creates the per-account invoice counter.
+5. Screen-reader and automated (axe-core) accessibility testing.
+
+## Verification
+
+Every claim above is checked on each push:
+
+- **Type-check** — TypeScript in strict mode, with no `any` and no non-null assertions.
+- **Lint** — type-aware rules plus accessibility rules; warnings fail the build.
+- **200 unit tests** — money, dates, auth error handling, schemas, billing rules, fail-closed reads and the password-change gate.
+- **The same tests under five timezones** — UTC-10 to UTC+14, because the date bug only fails west of UTC.
+- **15 browser tests** against the production build — zero CSP violations, accessible sign-in markup, border contrast.
+- **Dependency audit** — blocks on high and critical advisories; 0 vulnerabilities as of 5 October 2026.
+
+The browser tests deliberately never sign in, so they cannot fail because of a network error or an authentication rate limit.
+
+**Stack:** React 19, TypeScript, Vite, Tailwind CSS 4, Radix UI, Supabase (PostgreSQL, Auth, Storage), zod, Chart.js, Vitest, Playwright, GitHub Actions and Dependabot, with Claude Code as the AI-assisted development environment.
+
+The repository is private and the app holds real business data, so this case study describes the engineering rather than linking code or showing screens.

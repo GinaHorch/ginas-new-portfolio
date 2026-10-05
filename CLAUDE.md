@@ -59,6 +59,7 @@ Rule 4 is the one that earns its keep. When these tests were introduced, two fai
 - **Nav items exist twice in the DOM** (labelled and icon-only, one hidden by CSS). Use the `navLink()` helper rather than `getByRole` directly, or locators hit strict-mode violations.
 - **Visual baselines are committed** under `tests/visual-regression.spec.ts-snapshots/` and are per project and platform (`-desktop-darwin`, `-mobile-darwin`) — recorded on macOS. **CI runs Linux and therefore skips visual regression entirely**: `.github/workflows/playwright.yml` runs `npx playwright test --grep-invert "visual regression"`. Without that flag every snapshot test fails with *"A snapshot doesn't exist at …-desktop-linux.png"*, because Playwright will not create a baseline under `CI=true`. Copying the darwin files to `-linux` names does not fix it either — font rasterisation differs between the platforms by much more than the 150-pixel budget. **Visual regression is a local gate: run `npm run test:e2e` before pushing.** If CI ever needs to cover pixels, generate a second baseline set inside `mcr.microsoft.com/playwright:v<version>-noble` and pin the workflow to that same container, accepting that every intentional visual change then has to be re-recorded twice.
 - **Snapshot budget is `maxDiffPixels: 150`**, absolute rather than a ratio — a ratio scales with page height, so on a long page a real layout shift can hide under it.
+- **Known flake: `case-study matches its baseline` (desktop, `/work/andromedae`).** It intermittently fails by roughly 160–180 pixels, just over the 150 budget, under the full parallel run, then passes on a rerun. Observed 2026-10-05: it failed one of two full runs on an unmodified `main`, and passed three of three when run alone (`npx playwright test tests/visual-regression.spec.ts -g "case-study matches its baseline"`). So a failure of this test alone, at that size, is not by itself evidence of a regression. Rerun it in isolation before concluding anything, and **do not re-record its baseline to make it pass**: that hides the noise without fixing it. A failure well above ~200 pixels, or on mobile, should be treated as real. The likely fix is finding what renders non-deterministically on that page (probably image decoding or font timing under parallel load), not raising the budget.
 - `stabiliseForScreenshot()` disables motion, scrolls to trigger lazy images, waits for fonts, and the header (containing a live clock) is masked out.
 
 ## Route map
@@ -75,9 +76,11 @@ src/app/
 └── not-found.tsx           → 404
 ```
 
-Project slugs are the MDX filenames: `andromedae`, `hold-my-spoon`, `she-codes-data-platform`, `wedding-guestbook-platform`, `end-to-end-data-engineering`, `spec-driven-agentic-development`.
+Project slugs are the MDX filenames: `andromedae`, `hold-my-spoon`, `she-codes-data-platform`, `wedding-guestbook-platform`, `end-to-end-data-engineering`, `spec-driven-agentic-development`, `sis-time-tracker`.
 
 `spec-driven-agentic-development` is a process case study rather than an application. It is excluded from the homepage's featured projects (`<Projects range={[1, 2]} exclude={[...]} />` in `src/app/page.tsx`) so the homepage keeps leading with production applications, per the messaging hierarchy in `positioning.md`. It renders `<RunEvidencePanel />`, a zero-JS server component registered in `src/components/mdx.tsx`; every figure in it is traceable to `.claude/context/agentic-run-evidence.md`.
+
+`sis-time-tracker` (added 2026-10-05) is Gina's own in-house business tool, so it is also excluded from the homepage's featured projects — the homepage leads with client production work. It is a security-hardening and accessibility case study; its factual source is `.claude/context/projects/sis-time-tracker.md`. **No screenshots**: the app holds real client and invoice data, so its only image is a generalised security-boundary diagram. Don't add screens, client names, invoice amounts or a live link.
 
 There is no Pages Router directory and no API routes — `/agile`, its resource MDX, and the `src/pages/api/` password gate were removed with the repositioning (see `.claude/context/removals.md`).
 
@@ -136,6 +139,7 @@ Keep any new copy consistent with `.claude/context/positioning.md` — in partic
 
 The project set is:
 
+- **SIS Time Tracker** — Gina's own time-tracking and invoicing app (React/TypeScript/Supabase), presented as an OWASP Top 10:2025 and WCAG 2.2 AA hardening case study. Private repo, real business data: diagram only, no screenshots, no live link, no figures from the data;
 - **Andromedae** — commercial Astro/Cloudflare website and structured Claude Code workflow. The role has since ended: the site was handed over, with non-technical staff trained to make routine content updates through GitHub. Case study is past tense;
 - **Hold My Spoon** — inherited TypeScript product with API/integration, Stripe/webhook and production-debugging work;
 - **She Codes Data Platform** — Next.js/TypeScript/Supabase data platform with identity-resolution, authentication, privacy and data-integrity work. Built under a development contract, extended beyond it, **handed over and no longer active** — the case study is past tense and deliberately light on system-integration detail (that pull-back is why the architecture diagram was dropped). Don't re-add integration/automation emphasis or a live link;
