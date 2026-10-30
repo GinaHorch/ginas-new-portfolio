@@ -330,8 +330,9 @@ Lead with security credentials, in this order:
 1. Blue Team Level 1 (BTL1), Security Blue Team
 2. ICT50220 Diploma of Information Technology (Cyber Security & Business Analysis), EQC Institute (Equinim College, RTO 45758), completed August 2026
 3. TryHackMe SOC Level 1 path
-4. SC-200 Microsoft Security Operations Analyst: **in progress** (never display as earned)
-5. Development training and Agile/Scrum certifications: lower, grouped under "Other"
+4. School of SOC **in progress**
+5. SC-200 Microsoft Security Operations Analyst: **in progress** (never display as earned)
+6. Development training and Agile/Scrum certifications: lower, grouped under "Other"
 
 Include issue dates and verification links where they exist. Check dates match the CV and LinkedIn.
 
