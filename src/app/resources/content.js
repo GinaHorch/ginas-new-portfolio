@@ -57,13 +57,13 @@ const home = {
   description:
     "Cyber security analyst in Perth with a 22-year investigations background and hands-on identity, endpoint and vulnerability management experience. SOC and incident response training, GRC foundations, and Python/TypeScript for automation.",
   ogTitle: "Cyber security analyst with an investigator's discipline",
-  headline: <>Kaya. I'm a cyber security analyst with an investigator's discipline.</>,
+  headline: <>Kaya. I'm Gina, a cyber security analyst based in Perth.</>,
   subline: (
     <>
-      I'm Gina. After 22 years in law enforcement, including as a Detective Sergeant, I owned identity, endpoint
-      and vulnerability management for a regulated financial services business. I'm trained in SOC and incident
-      response, and I treat GRC as the foundation under all of it. I also build software in Python and TypeScript,
-      which helps me read code during an investigation and automate the repetitive parts of analysis.
+      I spent 22 years in law enforcement, most recently as a Detective Sergeant, before moving into technology. In my
+      last role I was responsible for identity, endpoint and vulnerability management at a regulated financial services 
+      business. I'm still building my GRC knowledge, and I see it as the foundation for doing security work well.
+      I also build software in Python and TypeScript, which helps me read code and understand how applications fail.
     </>
   ),
   focus: {
