@@ -4,7 +4,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Full-Stack Developer - TypeScript, Python & AI-Augmented Systems",
+  role: "Cyber Security Analyst — SOC, Identity & Endpoint Security, GRC",
   avatar: "/images/GinaHeadShot.webp",
   location: "Australia/Perth", // Expecting the IANA time zone identifier
   languages: ["English", "German"],
@@ -53,25 +53,43 @@ const flags = [
 
 const home = {
   label: "Home",
-  title: `${person.name} | Full-Stack Developer`,
+  title: `${person.name} | Cyber Security Analyst`,
   description:
-    "Systems, security and development specialist working across TypeScript and Python. Full-stack developer building and improving production applications with React, Next.js, Astro, Supabase and APIs, with security and AI-assisted engineering built into the work.",
-  ogTitle: "I build real systems, and protect what they touch",
-  headline: <>Kaya. I build real systems, and protect what they touch.</>,
+    "Cyber security analyst in Perth with a 22-year investigations background and hands-on identity, endpoint and vulnerability management experience. SOC and incident response training, GRC foundations, and Python/TypeScript for automation.",
+  ogTitle: "Cyber security analyst with an investigator's discipline",
+  headline: <>Kaya. I'm a cyber security analyst with an investigator's discipline.</>,
   subline: (
     <>
-      I'm Gina, a systems, security and development specialist working across TypeScript and Python. I build and 
-      improve real applications — a connected data platform, a public product I inherited and extended, a commercial 
-      website heading into production — and I treat AI as an engineering practice: context, constraints, review and 
-      verification. Security is part of how I build, not something added afterwards.
+      I'm Gina. After 22 years in law enforcement, including as a Detective Sergeant, I owned identity, endpoint
+      and vulnerability management for a regulated financial services business. I'm trained in SOC and incident
+      response, and I treat GRC as the foundation under all of it. I also build software in Python and TypeScript,
+      which helps me read code during an investigation and automate the repetitive parts of analysis.
     </>
   ),
   focus: {
     label: "What I work with",
     // Every capability the subline claims in prose has to appear here too — see the
-    // hero guidance in .claude/context/positioning.md.
-    primary: ["TypeScript", "Python", "Full Stack", "Security & Systems", "AI-Assisted Engineering"],
-    supporting: ["React", "Next.js", "Astro", "Supabase", "APIs", "Cloudflare"],
+    // hero guidance in .claude/context/positioning-and-messaging.md.
+    primary: [
+      "SOC & Incident Response",
+      "Identity & Endpoint Security",
+      "Vulnerability Management",
+      "GRC",
+      "Investigations",
+    ],
+    supporting: ["Microsoft Entra", "Intune", "Defender", "Splunk", "Elastic", "MITRE ATT&CK", "Python", "TypeScript"],
+  },
+  // Proof points shown beside the hero. Only figures listed under "Facts and figures
+  // that may be used" in positioning-and-messaging.md belong here; never show an
+  // in-progress credential as earned.
+  proof: {
+    label: "Credentials and experience",
+    items: [
+      "22+ years in investigations",
+      "Blue Team Level 1 (BTL1) certified",
+      "Diploma of IT, Cyber Security",
+      "TryHackMe SOC Level 1",
+    ],
   },
 };
 

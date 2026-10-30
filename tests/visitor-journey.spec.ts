@@ -37,12 +37,17 @@ test.describe("visitor journey", () => {
       await expect(hero).toBeVisible();
       expect((await hero.innerText()).trim().length).toBeGreaterThan(15);
 
-      // The capability tags are a deliberate part of the hero.
-      await expect(page.getByRole("listitem").filter({ hasText: /^TypeScript$/ })).toBeVisible();
+      // The capability tags are a deliberate part of the hero, and security leads them
+      // (.claude/context/positioning-and-messaging.md).
+      await expect(
+        page.getByRole("listitem").filter({ hasText: /^SOC & Incident Response$/ }),
+      ).toBeVisible();
+      await expect(page).toHaveTitle(/Cyber Security Analyst/);
 
-      // Positioning guardrail from .claude/context/positioning.md: the site must not
-      // lead with the old Scrum Master framing.
+      // Positioning guardrail: the site must not lead with the old Scrum Master or
+      // Full-Stack Developer framing.
       await expect(page.locator("body")).not.toContainText("Scrum Master");
+      await expect(page).not.toHaveTitle(/Full-Stack Developer/);
 
       // Featured work is the evidence behind the hero's claim.
       await expect(page.getByRole("heading", { name: "Featured work" })).toBeVisible();

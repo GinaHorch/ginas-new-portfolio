@@ -146,6 +146,24 @@ export default function Home() {
                     </Flex>
                   </Column>
                 </RevealFx>
+                <RevealFx translateY="12" delay={0.6} horizontal="start" fillWidth padding="m">
+                  <Flex
+                    as="ul"
+                    wrap
+                    gap="16"
+                    aria-label={home.proof.label}
+                    style={{ listStyle: "none", padding: 0, margin: 0 }}
+                  >
+                    {home.proof.items.map((item) => (
+                      <Flex as="li" key={item} gap="8" vertical="center">
+                        <Icon name="checkCircle" size="s" onBackground="accent-weak" />
+                        <Text variant="body-default-s" onBackground="neutral-medium">
+                          {item}
+                        </Text>
+                      </Flex>
+                    ))}
+                  </Flex>
+                </RevealFx>
             </Column>
       </Flex>
               
