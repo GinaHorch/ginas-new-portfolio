@@ -59,7 +59,7 @@ Rule 4 is the one that earns its keep. When these tests were introduced, two fai
 - **Nav items exist twice in the DOM** (labelled and icon-only, one hidden by CSS). Use the `navLink()` helper rather than `getByRole` directly, or locators hit strict-mode violations.
 - **Visual baselines are committed** under `tests/visual-regression.spec.ts-snapshots/` and are per project and platform (`-desktop-darwin`, `-mobile-darwin`) — recorded on macOS. **CI runs Linux and therefore skips visual regression entirely**: `.github/workflows/playwright.yml` runs `npx playwright test --grep-invert "visual regression"`. Without that flag every snapshot test fails with *"A snapshot doesn't exist at …-desktop-linux.png"*, because Playwright will not create a baseline under `CI=true`. Copying the darwin files to `-linux` names does not fix it either — font rasterisation differs between the platforms by much more than the 150-pixel budget. **Visual regression is a local gate: run `npm run test:e2e` before pushing.** If CI ever needs to cover pixels, generate a second baseline set inside `mcr.microsoft.com/playwright:v<version>-noble` and pin the workflow to that same container, accepting that every intentional visual change then has to be re-recorded twice.
 - **Snapshot budget is `maxDiffPixels: 150`**, absolute rather than a ratio — a ratio scales with page height, so on a long page a real layout shift can hide under it.
-- **Known flake: `case-study matches its baseline` (desktop, `/work/andromedae`).** It intermittently fails by roughly 160–180 pixels, just over the 150 budget, under the full parallel run, then passes on a rerun. Observed 2026-10-05: it failed one of two full runs on an unmodified `main`, and passed three of three when run alone (`npx playwright test tests/visual-regression.spec.ts -g "case-study matches its baseline"`). So a failure of this test alone, at that size, is not by itself evidence of a regression. Rerun it in isolation before concluding anything, and **do not re-record its baseline to make it pass**: that hides the noise without fixing it. A failure well above ~200 pixels, or on mobile, should be treated as real. The likely fix is finding what renders non-deterministically on that page (probably image decoding or font timing under parallel load), not raising the budget.
+- **Known flake: `case-study matches its baseline` (desktop, `/work/andromedae`).** It intermittently fails by roughly 160–180 pixels, just over the 150 budget, under the full parallel run, then passes on a rerun. Observed 2026-10-05: it failed one of two full runs on an unmodified `main`, and passed three of three when run alone (`npx playwright test tests/visual-regression.spec.ts -g "case-study matches its baseline"`). So a failure of this test alone, at that size, is not by itself evidence of a regression. Rerun it in isolation before concluding anything, and **do not re-record its baseline to make it pass**: that hides the noise without fixing it. A failure well above ~200 pixels, or on mobile, should be treated as real. The likely fix is finding what renders non-deterministically on that page, not raising the budget. **Strong lead (2026-10-30):** the same ~160–214-pixel desktop failures then hit `home`, `skills` and `work` as well. In every diff the changed pixels were confined to a ~10×17 px strip at x≈1200–1211, y≈36–53: the left edge of the masked header clock. The mask is drawn over the clock's bounding box, and that box changes width with the digits on screen (proportional figures), so the strip differs from run to run. Giving the clock a fixed width (e.g. `font-variant-numeric: tabular-nums` plus a fixed-width container) should remove the flake on every page. Unverified until that change is made.
 - `stabiliseForScreenshot()` disables motion, scrolls to trigger lazy images, waits for fonts, and the header (containing a live clock) is masked out.
 
 ## Route map
@@ -78,7 +78,7 @@ src/app/
 
 Project slugs are the MDX filenames: `andromedae`, `hold-my-spoon`, `she-codes-data-platform`, `wedding-guestbook-platform`, `end-to-end-data-engineering`, `spec-driven-agentic-development`, `sis-time-tracker`.
 
-`spec-driven-agentic-development` is a process case study rather than an application. It is excluded from the homepage's featured projects (`<Projects range={[1, 2]} exclude={[...]} />` in `src/app/page.tsx`) so the homepage keeps leading with production applications, per the messaging hierarchy in `positioning.md`. It renders `<RunEvidencePanel />`, a zero-JS server component registered in `src/components/mdx.tsx`; every figure in it is traceable to `.claude/context/agentic-run-evidence.md`.
+`spec-driven-agentic-development` is a process case study rather than an application. It is excluded from the homepage's featured projects (`<Projects range={[1, 2]} exclude={[...]} />` in `src/app/page.tsx`) so the homepage keeps leading with production work. (That exclusion predates the security repositioning; featured-work ordering is due to be reworked against `positioning-and-messaging.md`.) It renders `<RunEvidencePanel />`, a zero-JS server component registered in `src/components/mdx.tsx`; every figure in it is traceable to `.claude/context/agentic-run-evidence.md`.
 
 `sis-time-tracker` (added 2026-10-05) is Gina's own in-house business tool, so it is also excluded from the homepage's featured projects — the homepage leads with client production work. It is a security-hardening and accessibility case study; its factual source is `.claude/context/projects/sis-time-tracker.md`. **No screenshots**: the app holds real client and invoice data, so its only image is a generalised security-boundary diagram. Don't add screens, client names, invoice amounts or a live link.
 
@@ -131,11 +131,25 @@ The repo is linked to the `ginas-new-portfolio` Vercel project (`.vercel/repo.js
 - **`.claude/skills/frontend-design/SKILL.md`** — design-direction guidance adapted from Anthropic's `frontend-design` skill, with an added Accessibility & Contrast section (WCAG 2.2 AA contrast minimums, reduced motion, keyboard focus, semantic HTML) and a repo-specific note about checking Once UI token contrast against this site's forced dark theme. Reach for it on any visual/design/copy change.
 - Built-in **`security-review`** and **`code-review`** skills — use as normal.
 
-## Portfolio repositioning (landed)
+## Portfolio repositioning: cyber security analyst (in progress)
 
-The site has been repositioned from a "Scrum Master / career pivot" narrative to **full-stack development across TypeScript and Python, real production software, and security and systems thinking**, supported by React/Next.js, Astro, APIs/integrations, Supabase/PostgreSQL, AI-assisted engineering and collaborative delivery. The positioning was widened in August 2026 — an earlier "TypeScript developer" framing was too narrow. `.claude/context/positioning.md` is the source of truth and records why.
+**October 2026: the positioning changed from developer-led to cyber security analyst**, to match the roles being applied for (SOC Analyst, Security Analyst, primarily in Perth). `.claude/context/positioning-and-messaging.md` is the source of truth; it replaced `positioning.md`, which is gone. Development work stays on the site as supporting evidence: it explains how an analyst reads code, understands application failure and automates analysis.
 
-Keep any new copy consistent with `.claude/context/positioning.md` — in particular: don't lead with Scrum Master, career-changer or "aspiring developer" framing; present AI as an engineering workflow, not a tool list; and preserve accurate ownership (built vs inherited vs implemented-from-someone-else's-design).
+This is a second repositioning. The first (August 2026) moved the site from "Scrum Master / career pivot" to full-stack development, and it is complete. The record of it is kept in `.claude/GOAL.md` as Phase 1.
+
+**Current state, to keep this file honest:**
+
+- **Landed:** the homepage hero, `person.role`, the homepage title/meta description and OG title. They lead with security: SOC & incident response, identity & endpoint security, vulnerability management, GRC, investigations. The hero also carries a proof-point row (`home.proof` in `content.js`). Only figures from the "Facts and figures that may be used" section of the positioning doc go there, and in-progress credentials (School of SOC, SC-200) are never shown as earned.
+- **Not yet repositioned:** the About intro, `/skills` (data, groups, chart), certifications display, featured-work ordering and the project case studies. They still read developer-first. Until the Skills pass lands, the hero's security tags do not all appear on `/skills`, which breaks the positioning rule that every hero claim must. That gap is known.
+- The security-and-operations case studies the positioning asks for (identity/endpoint/vulnerability management, the M365 → Google Workspace migrations, SOC lab write-ups, BTL1) **do not exist yet and have no context documents**. Write the context document from Gina's supplied facts first, the same way the existing projects were done; don't draft them from the positioning doc alone.
+
+Keep any new copy consistent with `.claude/context/positioning-and-messaging.md`, in particular:
+
+- Don't lead with Scrum Master, Full-Stack Developer, career-changer or "aspiring" framing.
+- Never present lab or exam work as real-world experience.
+- Don't name the SMSF employer, and use only the approved facts and figures.
+- Present AI as a reviewed workflow aid, not an identity.
+- Preserve accurate ownership: built vs inherited vs implemented from someone else's design.
 
 The project set is:
 
@@ -148,15 +162,15 @@ The project set is:
 
 This work is tracked in:
 
-- **`.claude/GOAL.md`** — target state and definition-of-done checklist. Check here before assuming the repositioning is complete or fully scoped.
-- **`.claude/context/positioning.md`** — approved messaging direction and framing guardrails.
+- **`.claude/GOAL.md`** — target state and definition-of-done checklist. Phase 2 (security analyst) is the active one. Check here before assuming the repositioning is complete or fully scoped.
+- **`.claude/context/positioning-and-messaging.md`** — approved messaging direction, facts that may be used, evidence levels and framing guardrails.
 - **`.claude/context/removals.md`** — approved keep/remove/replace decisions, including removal of Agile Resources.
 - **`.claude/context/projects/*.md`** — populated factual source documents for the replacement case studies. Do not invent project details, metrics, ownership or technologies beyond what the relevant context file supports.
 - **`.claude/context/agentic-run-evidence.md`** — how the repositioning was executed: the goal-driven autonomous run, run statistics, parallel/review agent topology, validation performed and blockers preserved. It is the factual source for the `spec-driven-agentic-development` case study — treat it the same way as the project context files, and don't add claims to that case study which this document doesn't support.
 
 ### Current-state vs target-state rule
 
-`CLAUDE.md` documents how the repository works **now**. `GOAL.md`, `positioning.md` and `removals.md` describe the intended **target state**. Where the implementation has landed, this file has been updated to match; if a future change is planned but not yet done, keep describing the current state here until it lands and is verified.
+`CLAUDE.md` documents how the repository works **now**. `GOAL.md`, `positioning-and-messaging.md` and `removals.md` describe the intended **target state**. Where the implementation has landed, this file has been updated to match; if a future change is planned but not yet done, keep describing the current state here until it lands and is verified.
 
 ### Open items carried forward
 

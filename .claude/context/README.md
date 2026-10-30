@@ -10,7 +10,7 @@ For repositioning work, use the documents in this order:
 
 1. **`CLAUDE.md`** — current repository architecture, commands, conventions, quirks and technical operating rules.
 2. **`.claude/GOAL.md`** — target state and definition of done for the repositioning project.
-3. **`positioning.md`** — approved messaging direction, audience, tone, hierarchy and framing guardrails.
+3. **`positioning-and-messaging.md`** — approved messaging direction, audience, tone, hierarchy, the facts and figures that may be used, evidence levels and framing guardrails. (It replaced `positioning.md` in October 2026, when the positioning moved from developer to cyber security analyst.)
 4. **`removals.md`** — approved project/section removals and replacement mapping.
 5. **`projects/*.md`** — factual source material for each replacement project case study.
 
@@ -20,7 +20,7 @@ Do not silently rewrite current-state technical documentation as if a planned re
 
 ## How each document is used
 
-- **`positioning.md`** — read before touching homepage, About, Skills, project summaries, page titles, metadata or SEO copy.
+- **`positioning-and-messaging.md`** — read before touching homepage, About, Skills, project summaries, page titles, metadata or SEO copy. Its "Facts and figures that may be used" list is the only source for numbers about Gina's background.
 - **`projects/andromedae.md`** — factual source for the Andromedae project case study.
 - **`projects/hold-my-spoon.md`** — factual source for the Hold My Spoon case study, including inherited-codebase and API/integration boundaries.
 - **`projects/she-codes-data-platform.md`** — factual source for the She Codes Data Platform case study. Privacy and organisational confidentiality constraints are especially important here.
@@ -37,7 +37,7 @@ Read:
 
 1. `CLAUDE.md`
 2. `.claude/GOAL.md`
-3. `.claude/context/positioning.md`
+3. `.claude/context/positioning-and-messaging.md`
 
 ### Project case-study agent
 
@@ -81,18 +81,19 @@ This workflow may later be wrapped in an autonomous loop after it has been prove
 Until one is added, agents must:
 
 - preserve the existing verified technical facts in that MDX;
-- improve only framing, structure and relevance to the new developer/data-engineering positioning;
+- improve only framing, structure and relevance to the current positioning;
 - not add new technologies, responsibilities, results or metrics unless they are explicitly verified from the repository or added to context.
 
 ## Status
 
-**Context complete; the repositioning has been implemented against it.**
+**Phase 2 (security analyst repositioning, October 2026) is in progress.** See `.claude/GOAL.md`.
 
-- `positioning.md`, `removals.md` and all four replacement-project context documents are populated.
-- The site now carries the four replacement case studies plus the retained, reframed data-engineering project. `/agile` and its password gate are gone.
-- The retained end-to-end data-engineering project still has the guardrail above — it was reframed from existing verified facts only, and still has no dedicated context document.
-- Andromedae production metrics remain intentionally pending the scheduled public-domain cutover and post-launch verification. The case study labels its Lighthouse numbers pre-launch and links no live site yet.
+- `positioning-and-messaging.md` is populated and approved.
+- The project context documents under `projects/` cover the existing engineering case studies only. The security-and-operations case studies the new positioning asks for need their own context documents, written from Gina's facts, before any MDX is drafted.
+- `diploma-practical-labs.md` and `soc-blue-team-training.md` are the evidence records behind study-based skill levels.
+
+**Phase 1 (developer repositioning, August 2026) is complete.** The four replacement case studies plus the reframed data-engineering project are live; `/agile` and its password gate are gone. The data-engineering project still has no dedicated context document (guardrail above). Andromedae went live on 10 August 2026 and its case study carries measured production figures.
 
 See the follow-ups section at the end of `.claude/GOAL.md` for the remaining human-in-the-loop items.
 
-How the work was actually run — the autonomous run, agent topology, validation and preserved blockers — is recorded in `agentic-run-evidence.md`.
+How the Phase 1 work was actually run — the autonomous run, agent topology, validation and preserved blockers — is recorded in `agentic-run-evidence.md`.

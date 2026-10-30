@@ -4,7 +4,60 @@ This is the definition of done for the portfolio repositioning project — what 
 
 The context documents in `.claude/context/` define the approved messaging, project facts, public/private boundaries and removal decisions. Do not invent missing details to satisfy this checklist.
 
-## Why
+## Phase 2 (active): cyber security analyst — October 2026
+
+### Why
+
+Gina is applying for SOC Analyst, Security Analyst and Cyber Security Analyst roles, primarily in Perth. The site still leads with full-stack development, which answers the wrong question for that audience. The goal is to reposition it as **a cyber security analyst with a 22-year investigations background and hands-on security operations in a live, regulated business**, with SOC/IR training and GRC as the foundation. Software engineering stays as supporting evidence, not a competing headline.
+
+`.claude/context/positioning-and-messaging.md` is the source of truth. It replaced `positioning.md`; references to `positioning.md` in Phase 1 below are historical.
+
+### Completion criteria
+
+#### Context
+
+- [x] `.claude/context/positioning-and-messaging.md` contains the approved messaging, audience, hierarchy, usable facts, evidence levels, GRC/ASD Essentials guidance and framing guardrails.
+- [x] `CLAUDE.md`, this file, `.claude/context/README.md` and the frontend-design skill point at the new positioning doc and describe the current state honestly.
+- [ ] Context documents exist for each new security-and-operations case study before it is drafted: identity/endpoint/vulnerability management (live business, sanitised), M365 → Google Workspace migrations, BTL1/incident-response practical, and each SOC lab write-up. Facts come from Gina, not from the positioning doc.
+
+#### Homepage
+
+- [x] Hero, `person.role`, homepage title, meta description and OG title lead with security, using only approved facts. A proof-point row shows earned credentials only.
+- [ ] Featured work leads with security and operations evidence; engineering projects follow as supporting evidence.
+- [ ] Every capability claimed in the hero appears in the hero tags **and** on `/skills`.
+
+#### About
+
+- [ ] The intro follows investigation → evidence and risk → technology and security operations → security analyst, and briefly covers live-environment security work and migrations, SOC/blue-team training, the GRC foundation, why building software helps an analyst, and Perth.
+- [ ] Certifications and education are ordered BTL1 → Diploma → TryHackMe SOC L1 → School of SOC (in progress) → SC-200 (in progress) → Other. Nothing in progress is shown as earned; dates match CV and LinkedIn.
+- [ ] Law-enforcement content describes skills and responsibilities only; no case or operational detail.
+
+#### Skills
+
+- [ ] `/skills` leads with Cyber Security, with Incident Response · Security Operations (SIEM/SOC) · Identity & Endpoint Security pinned at the top and GRC visible in the first screen.
+- [ ] Groups follow the positioning doc's order. Evidence levels respect "nothing becomes production from study"; lab work is labelled as lab work.
+- [ ] The overview chart is rebalanced toward security operations, identity/endpoint, GRC and investigation.
+
+#### Project case studies
+
+- [ ] Engineering case studies carry a security, risk and data considerations section and are re-framed as supporting evidence. Ownership and privacy constraints from Phase 1 still apply.
+- [ ] Hold My Spoon is kept but shortened.
+- [ ] SOC write-ups (when published) are sanitised, lab-labelled, and explain reasoning and escalation decisions, with MITRE ATT&CK mapping.
+
+#### Review and quality
+
+- [ ] Every page passes the "Portfolio success test" at the end of the positioning doc.
+- [ ] `npm run lint`, `npm run build` and the full Playwright suite pass. Visual baselines are re-recorded only for deliberate changes.
+- [ ] Metadata, OG images, JSON-LD and the sitemap reflect the new positioning on every page.
+- [ ] Website, LinkedIn and GitHub tell the same story. This is outside the repo and needs Gina to confirm.
+
+---
+
+## Phase 1 (complete, superseded): developer repositioning — August 2026
+
+The record below is kept as written. Its positioning targets are superseded by Phase 2; its ownership, privacy, removal and infrastructure outcomes still stand.
+
+### Why
 
 The portfolio currently frames Gina primarily around a **"Scrum Master / career pivot"** narrative.
 
@@ -90,7 +143,9 @@ After this workflow has been completed manually and reliably at least once, it m
 
 ## Status
 
-**Implementation complete except for three externally blocked items** (LinkedIn link verification, Vercel bundle-payload check, Vercel preview deployment). Each is annotated inline above.
+**Phase 2 in progress (October 2026):** context and homepage hero landed; About, Skills, featured work and case studies are next.
+
+**Phase 1:** implementation complete except for three externally blocked items (LinkedIn link verification, Vercel bundle-payload check, Vercel preview deployment). Each is annotated inline above.
 
 The Andromedae production-domain cutover **completed on 10 August 2026** and was verified: `www.andromedae.com.au` is served from Cloudflare with no Wix markers in the response, the apex domain 301s to `www`, and the security headers are live. Production Lighthouse was measured against the public domain and the case study now carries those figures and a `linkLive`.
 

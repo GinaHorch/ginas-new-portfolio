@@ -350,7 +350,10 @@ Include, briefly:
 - SOC and blue-team training
 - a short, honest line on building software and why it helps an analyst
 - the GRC foundation and continuing study
-- Perth base, openness to Perth cyber community and roles; NV1 line (see open items)
+- Perth base, openness to Perth cyber community and roles
+- the research role with the Australian Centre for Child Protection, kept brief, as part of the investigation → technology path
+
+Do not mention NV1 or security clearance on the website (decided October 2026).
 
 Avoid long law-enforcement storytelling. Skills and judgment, not case detail.
 

@@ -15,7 +15,7 @@ Approach this as the design lead at a small studio known for giving every client
 
 If the brief does not pin down what the product or subject is, pin it yourself before designing: name one concrete subject, its audience, and the page's single job, and state your choice. If there's any information in your memory about the human's preferences, context about what they're building, or designs you've made before – use that as a hint. The subject's own world, its materials, instruments, artifacts, and vernacular, is where distinctive choices come from. Build with the brief's real content and subject matter throughout.
 
-For this repo specifically: the subject is a working developer's portfolio repositioning toward React/TypeScript/AI-augmented development (see `.claude/context/positioning.md` and `.claude/GOAL.md`). Ground design choices in that subject — real project work, real tools (Next.js, Astro, Supabase, Cursor, Claude Code) — rather than generic "portfolio template" defaults.
+For this repo specifically: the subject is a cyber security analyst's portfolio, with an investigations background, live-environment identity and endpoint security work, and software engineering as supporting evidence (see `.claude/context/positioning-and-messaging.md` and `.claude/GOAL.md`). Ground design choices in that subject — real security work, real tools (Entra ID, Intune, Defender, Splunk, Elastic) and calm, evidence-led presentation — rather than generic "portfolio template" or hacker-aesthetic defaults.
 
 ## Design principles
 
@@ -72,4 +72,4 @@ Use active voice as default. A control should say exactly what happens when it's
 
 Treat failure and emptiness as moments for direction, not mood. Explain what went wrong and how to fix it, in the interface's voice rather than a person's. Errors don't apologize, and they are never vague about what happened. An empty screen is an invitation to act.
 
-Keep the register conversational and tuned: plain verbs, sentence case, no filler, with tone matched to the brand and the audience. Let each element do exactly one job. A label labels, an example demonstrates, and nothing quietly does double duty. For this repo, tone should match `.claude/context/positioning.md` once it's filled in — currently unset.
+Keep the register conversational and tuned: plain verbs, sentence case, no filler, with tone matched to the brand and the audience. Let each element do exactly one job. A label labels, an example demonstrates, and nothing quietly does double duty. For this repo, tone should match the "Tone and case-study style" section of `.claude/context/positioning-and-messaging.md`: professional, direct, evidence-based, calm and risk-aware.
