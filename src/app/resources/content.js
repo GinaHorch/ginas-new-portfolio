@@ -56,7 +56,7 @@ const home = {
   title: `${person.name} | Cyber Security Analyst`,
   description:
     "Cyber security analyst in Perth with a 22-year investigations background and hands-on identity, endpoint and vulnerability management experience. SOC and incident response training, GRC foundations, and Python/TypeScript for automation.",
-  ogTitle: "Cyber security analyst with an investigator's discipline",
+  ogTitle: "Cyber security analyst based in Perth",
   headline: <>Kaya. I'm Gina, a cyber security analyst based in Perth.</>,
   subline: (
     <>
@@ -95,9 +95,9 @@ const home = {
 
 const about = {
   label: "About",
-  title: `About ${person.name} | Software Developer`,
+  title: `About ${person.name} | Cyber Security Analyst`,
   ogTitle: "About Gina",
-  description: `${person.name} is a full-stack developer in Perth, Western Australia, working across TypeScript and Python and building production applications with security, systems and AI-assisted engineering built in.`,
+  description: `${person.name} is a cyber security analyst in Perth, Western Australia, with a 22-year investigations background and hands-on identity, endpoint and vulnerability management experience. She is building SOC and incident response skills on a GRC foundation.`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -115,48 +115,50 @@ const about = {
     description: (
       <>
       <p>
-      I'm a software developer working across TypeScript and Python, building full-stack production systems 
-      with an AI-augmented engineering practice — context, constraints, review and verification, not just 
-      prompting and accepting. Day to day that means React and Next.js applications, an Astro site in
-      commercial production, PostgreSQL and Supabase behind them, Python-based automation and integrations, and
-      the webhooks and scheduled jobs that connect those systems to everything else an organisation already 
-      runs on.
+      I'm a cyber security analyst based in Perth, looking for SOC Analyst and Security Analyst roles. I was
+      most recently responsible for identity, endpoint and vulnerability management at an SMSF financial
+      services business, working in Microsoft Entra ID, Intune and Defender for Business across a mixed
+      Windows fleet. That covered device compliance, encryption, hardening, MFA and vulnerability remediation,
+      and tracing device and driver failures back to a root cause using diagnostic logs. I also planned and
+      delivered two company-wide platform migrations, Microsoft 365 and then Google Workspace, while keeping
+      email, identities, devices and automations running.
       </p>
       <p>
-      The work I care most about is the kind that has real users attached to it: rebuilding a company's
-      public website and planning its production migration; taking over a partially built product and
-      getting it into a reliable state; developing and maintaining a data platform where a wrong assumption
-      about identity can quietly corrupt years of history. Building something new is enjoyable. Understanding
-      a system you did not write, and changing it safely, is the harder and more useful skill.
+      To build deeper security operations skills, I completed the TryHackMe SOC Level 1 path and earned Blue
+      Team Level 1 from Security Blue Team, which ends with a 24-hour practical incident response exam. That
+      training covered alert triage and log investigation in Splunk and Elastic, phishing analysis, disk and
+      memory forensics, and incident handling using the PICERL model. It was lab and exam work rather than
+      live incidents, and I try to be clear about that difference. I also completed a Diploma of Information
+      Technology specialising in cyber security and business analysis in August 2026, and I'm now enrolled in
+      the School of SOC to learn hands-on SOC skills and practice incident response.
       </p>
       <p>
-      I work with AI-assisted development tools - Claude Code, Cursor, Replit - as part of a disciplined
-      engineering workflow rather than as a shortcut. That means persistent project context and constraints,
-      planning before implementation, reviewing what comes back, testing behaviour, diagnosing failures, and
-      keeping a clear Definition of Done. I remain responsible for the requirements, the technical decisions,
-      the security considerations and the finished system.
+      I see governance, risk and compliance as the foundation under technical security work: controls and
+      detections only matter when they're tied to what a business needs to protect and the obligations it has
+      to meet. It's also the area where I still have the most to learn. I'm currently studying ASD's new
+      Essentials series, which is evolving the Essential Eight, alongside the Information Security Manual and
+      MITRE ATT&CK, and I expect that to be ongoing.
       </p>
       <p>
-      Security and systems thinking run through all of it. I work on authentication and access control, Row
-      Level Security, privacy and consent, secure configuration and security headers, and I hold a
-      Diploma of Information Technology specialising in cyber security and business analysis. I've since worked
-      through the defensive side in a lab: the TryHackMe SOC Level 1 path and Blue Team Level 1, certified by a
-      24-hour practical incident response exam. Treating security as part of engineering,
-      rather than a pass to run after the build, is considerably cheaper and produces better software.
-      </p>
-      <p>
-      I came to development along an unusual path: twenty-two years in law enforcement leading complex
+      I came to technology along an unusual path: twenty-two years in law enforcement leading complex
       investigations, then research with the Australian Centre for Child Protection, then technology. Digital
       forensics is where I first saw how much technical work sits underneath a good answer, and research is
       where I saw how many processes could be improved by building something better. That background is why I
       approach problems the way I do — establish what is actually true before acting, look for the evidence
-      rather than the assumption, document what you found, and think carefully about the people whose data
-      you are handling.
+      rather than the assumption, document what I found, and think carefully about the people whose data
+      I am handling.
+      </p>
+      <p>
+      I also build software in Python, TypeScript, React and Supabase, including websites and applications
+      that real people use. That helps me read code, understand how applications fail, and pick up SOC tooling
+      and automation more quickly. I use AI-assisted tools such as Claude Code and Cursor with planning,
+      review and testing, I stay responsible for the decisions and the finished work, and I don't put
+      confidential or client data into them.
       </p>
       <p>
       I work collaboratively and iteratively: short feedback loops, transparency about what is and isn't done,
-      and reviewing outcomes rather than assuming that shipping equals finished. I'm based on Whadjuk Noongar
-      boodja in Perth, Western Australia.
+      and reviewing outcomes together. I'm based on Whadjuk Noongar boodja in Perth, Western Australia, and I'm 
+      always glad to connect with the cyber security community.
       </p>
       </>
     ),
