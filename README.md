@@ -106,12 +106,5 @@ A huge thanks to **Once-UI** for providing an **amazing boilerplate** and to the
 
 ---
 
-### **📌 Next Steps**
-1. **Continued Portfolio Enhancements** – Further optimising performance and adding new projects.
-2. **User Feedback Integration** – Iterating on UX improvements based on visitor behavior.
-3. **Post-launch metrics for Andromedae** – Replacing pre-launch benchmarks with production Lighthouse and Core Web Vitals results once the domain cutover is verified.
-
----
-
 ### **🔗 Visit My Portfolio Here:**
-👉 [**Gina’s New Portfolio**](https://ginas-new-portfolio.vercel.app/) 🚀  
+👉 [**Gina’s New Portfolio**](https://ginahorch.com/) 🚀  
